@@ -1,16 +1,17 @@
 import { createHashRouter } from "react-router";
-import FrontendLayout from "./layout/FrontendLayout";
-import Home from "./views/front/Home";
-import Products from "./views/front/Products";
-import SingleProduct from "./views/front/SingleProduct";
-import Cart from "./views/front/Cart";
-import Checkout from "./views/front/Checkout";
-import Login from "./views/Login";
-import AdminLayout from "./layout/AdminLayout";
-import AdminProducts from "./views/admin/AdminProducts";
-import AdminOrders from "./views/admin/AdminOrders";
-import NotFound from "./views/front/NotFound";
-import ProtectedRoute from "./components/ProtectedRoute";
+import FrontendLayout from "../layout/FrontendLayout";
+import Home from "../views/front/Home";
+import Products from "../views/front/Products";
+import SingleProduct from "../views/front/SingleProduct";
+import Cart from "../views/front/Cart";
+import Checkout from "../views/front/Checkout";
+import CheckoutSuccess from "../views/front/CheckoutSuccess";
+import Login from "../views/Login";
+import AdminLayout from "../layout/AdminLayout";
+import AdminProducts from "../views/admin/AdminProducts";
+import AdminOrders from "../views/admin/AdminOrders";
+import NotFound from "../views/NotFound";
+import ProtectedRoute from "../components/ProtectedRoute";
 
 export const router = createHashRouter([
   {
@@ -36,6 +37,10 @@ export const router = createHashRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/checkout-success",
+        element: <CheckoutSuccess />,
       },
       {
         path: "/login",

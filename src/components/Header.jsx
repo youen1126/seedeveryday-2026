@@ -1,19 +1,37 @@
+import { NavLink } from "react-router";
+import logoImg from "../../public/seed-everydayicon-Header.png";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { createAsyncGetCart } from "../slice/cartSlice";
+
 const Header = () => {
+  const carts = useSelector((state) => state.cart.carts);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(createAsyncGetCart());
+  }, [dispatch]);
+
   return (
     <div className="bg-white sticky-top">
       <div className="container">
         <nav className="navbar px-0 navbar-expand-lg navbar-light bg-white">
-          <a
+          <NavLink
             className="navbar-brand position-absolute"
-            href="./index.html"
+            to="/"
             style={{
               left: "50%",
               transform: "translate(-50%, -50%)",
               top: "50%",
             }}
           >
-            Navbar
-          </a>
+            <img
+              src={logoImg}
+              style={{
+                height: "200px",
+              }}
+            />
+          </NavLink>
           <button
             className="navbar-toggler"
             type="button"
@@ -31,24 +49,32 @@ const Header = () => {
           >
             <ul className="navbar-nav">
               <li className="nav-item active">
-                <a className="nav-link ps-0" href="./product.html">
-                  Lorem ipsum
-                </a>
+                <NavLink className="nav-link ps-0" to="/product">
+                  找商品
+                </NavLink>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="./detail.html">
-                  Lorem ipsum
-                </a>
-              </li>
+              {/* <li className="nav-item">
+                <NavLink className="nav-link" to="/product/id">
+                  商品細節
+                </NavLink>
+              </li> */}
             </ul>
           </div>
           <div className="d-flex">
-            <a href="#">
-              <i className="fas fa-heart me-5"></i>
-            </a>
-            <a href="./cart-2.html">
-              <i className="fas fa-shopping-cart"></i>
-            </a>
+            {/* <NavLink to="/">
+              <i className="fas fa-heart me-3"></i>
+            </NavLink> */}
+            {/* <NavLink to="/">
+              <i className="fa-solid fa-circle-user me-3"></i>
+            </NavLink> */}
+            <NavLink to="/cart">
+              <div className="position-relative">
+                <i className="fas fa-shopping-cart"></i>
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  {carts.length}
+                </span>
+              </div>
+            </NavLink>
           </div>
         </nav>
       </div>
