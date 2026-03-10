@@ -1,3 +1,5 @@
+import { NavLink } from "react-router";
+
 export default function Home() {
   return (
     <>
@@ -16,18 +18,13 @@ export default function Home() {
               Carry a seed, carry a blessing.
             </h5>
             <div className="input-group mb-0 mt-4">
-              <input
-                type="text"
-                className="form-control rounded-0"
-                placeholder=""
-              />
               <div className="input-group-append">
                 <button
                   className="btn btn-dark rounded-0"
                   type="button"
                   id="search"
                 >
-                  Lorem ipsum
+                  前往選購商品
                 </button>
               </div>
             </div>
@@ -144,48 +141,21 @@ export default function Home() {
                       }}
                     />
                     <div className="d-flex flex-column">
-                      <p className="h5">
-                        “Lorem ipsum dolor sit amet, consetetur sadipscing
-                        elitr, sed diam nonumy eirmod tempor invidunt ut labore
-                        et dolore magna aliquyam erat.”
-                      </p>
+                      <p className="h5">在忙碌的生活裡</p>
+                      <p className="h5">我們希望留下一點安靜</p>
+                      <p className="h5">一顆小小的種子</p>
+                      <p className="h5">也許就是一份祝福</p>
                       <p className="mt-auto text-muted">
-                        Lorem ipsum dolor sit amet.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="carousel-item">
-                <div className="row justify-content-center py-7">
-                  <div className="col-md-8 d-flex">
-                    <img
-                      src="https://images.unsplash.com/photo-1490138139357-fc819d02e344?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
-                      alt=""
-                      className="rounded-circle me-5"
-                      style={{
-                        width: "160px",
-                        height: "160px",
-                        objectFit: "cover",
-                      }}
-                    />
-                    <div className="d-flex flex-column">
-                      <p className="h5">
-                        “Lorem ipsum dolor sit amet, consetetur sadipscing
-                        elitr, sed diam nonumy eirmod tempor invidunt ut labore
-                        et dolore magna aliquyam erat.”
-                      </p>
-                      <p className="mt-auto text-muted">
-                        Lorem ipsum dolor sit amet.
+                        A little seed for everyday blessings.
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <a
+            {/* <a
               className="carousel-control-prev"
-              href="#carouselExampleControls"
+              href="#"
               role="button"
               data-slide="prev"
             >
@@ -193,11 +163,11 @@ export default function Home() {
                 className="carousel-control-prev-icon"
                 aria-hidden="true"
               ></span>
-              <span className="sr-only">Previous</span>
-            </a>
-            <a
+              <span className="sr-only">上一頁</span>
+            </a> */}
+            {/* <a
               className="carousel-control-next"
-              href="#carouselExampleControls"
+              href="#"
               role="button"
               data-slide="next"
             >
@@ -205,8 +175,8 @@ export default function Home() {
                 className="carousel-control-next-icon"
                 aria-hidden="true"
               ></span>
-              <span className="sr-only">Next</span>
-            </a>
+              <span className="sr-only">下一頁</span>
+            </a> */}
           </div>
         </div>
       </div>
@@ -236,50 +206,55 @@ export default function Home() {
         <div className="row">
           <div className="col-md-4">
             <img
-              src="https://i.pinimg.com/avif/1200x/f6/71/98/f671980751b7152331583096d541b0b5.avf"
-              alt=""
+              src="https://i.pinimg.com/1200x/57/af/03/57af030b81bfb337f624f636cffbcde2.jpg"
+              alt="無患子"
               style={{
-                width: "48px",
-                height: "48px",
+                width: "100px",
+                height: "100px",
                 objectFit: "cover",
               }}
             />
-            <h4 className="mt-4">Lorem Ａ</h4>
+            <h4 className="mt-4">無患子｜守護與平安</h4>
             <p className="text-muted">
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut labore et dolore magna.
+              無患子在東方文化中，一直被視為帶來平安與守護的種子。
+              在過去，人們會把無患子製成念珠或護身物，象徵遠離煩惱與不安。
+              這顆看似樸實的種子，其實承載著一份古老而安靜的祝福。
             </p>
           </div>
           <div className="col-md-4">
             <img
-              src="https://i.pinimg.com/736x/03/d9/88/03d988b872a0ad31893906dd71dfd365.jpg"
+              src="https://i.pinimg.com/736x/97/eb/bd/97ebbd44d102b0bee444cb9d4648cebe.jpg"
               alt=""
               style={{
-                width: "48px",
-                height: "48px",
+                width: "100px",
+                height: "100px",
                 objectFit: "cover",
               }}
             />
-            <h4 className="mt-4">Lorem Ｂ</h4>
+            <h4 className="mt-4">橡實｜力量與成長</h4>
             <p className="text-muted">
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut labore et dolore magna.
+              橡實是橡樹的種子，也是森林中最有力量象徵的存在。
+              一顆小小的橡實，未來卻可能長成高大的橡樹，陪伴土地與時間走過數十年甚至上百年。
+              因此在許多文化裡，橡實象徵著力量、成長與希望。
+              它提醒人們，即使是一顆看似微小的種子，也蘊藏著巨大的生命能量。
             </p>
           </div>
           <div className="col-md-4">
             <img
-              src="https://i.pinimg.com/736x/4c/b2/d2/4cb2d28f8accbd85815cd45c06005e52.jpg"
+              src="https://i.pinimg.com/1200x/f0/76/3a/f0763a55979173e09d01922b9211d259.jpg"
               alt=""
               style={{
-                width: "48px",
-                height: "48px",
+                width: "100px",
+                height: "100px",
                 objectFit: "cover",
               }}
             />
-            <h4 className="mt-4">Lorem Ｃ</h4>
+            <h4 className="mt-4">菩提子｜覺察與智慧</h4>
             <p className="text-muted">
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut labore et dolore magna.
+              菩提子在東方文化中，象徵覺察與智慧。
+              相傳佛陀在菩提樹下悟道，因此菩提也成為一種提醒人們向內觀照、保持清明心境的象徵。
+              菩提子的外型自然而質樸，每一顆紋理都不盡相同，像是時間慢慢雕刻出的痕跡。
+              當我們看著它時，也彷彿能感受到一種安靜與沉穩。
             </p>
           </div>
         </div>
@@ -289,14 +264,13 @@ export default function Home() {
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-md-4 text-center">
-              <h3>Lorem ipsum</h3>
+              <h3>種子日常</h3>
               <p className="text-muted">
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                diam nonumy eirmod.
+                我們把來自大地的種子， 透過手作，變成可以陪伴生活的小小物件。
               </p>
-              <button className="btn btn-dark mt-4 rounded-0">
-                Lorem ipsum
-              </button>
+              <NavLink to="/aboutwe" className="btn btn-dark mt-4 rounded-0">
+                關於我們
+              </NavLink>
             </div>
           </div>
         </div>

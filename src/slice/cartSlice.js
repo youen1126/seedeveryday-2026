@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 //import { createAsyncMessage } from "@reduxjs/toolkit";
+import { DelCartApi, getCartsApi } from "../services/carts";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
 const API_PATH = import.meta.env.VITE_API_PATH;
@@ -28,7 +29,7 @@ export const createAsyncGetCart = createAsyncThunk(
   "cart/createAsyncGetCart",
   async (_, { dispatch }) => {
     try {
-      const res = await axios.get(`${API_BASE}/api/${API_PATH}/cart`);
+      const res = await getCartsApi();
       console.log("觸發createAsyncGetCart:", res.data.data);
       dispatch(updateCarts(res.data.data));
     } catch (error) {
@@ -61,9 +62,7 @@ export const createAsyncDelCart = createAsyncThunk(
   "cart/createAsyncDelCart",
   async (cartId, { dispatch }) => {
     try {
-      const res = await axios.delete(
-        `${API_BASE}/api/${API_PATH}/cart/${cartId}`,
-      );
+      const res = await DelCartApi(cartId);
       alert(res.data.message);
       console.log("觸發createAsyncDelCart:", res.data);
       dispatch(createAsyncGetCart());

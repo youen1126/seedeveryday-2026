@@ -1,6 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import { getProductAllApi, getProductApi } from "../../services/product";
+import { useDispatch } from "react-redux";
+import { createAsyncAddCart } from "../../slice/cartSlice";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
 const API_PATH = import.meta.env.VITE_API_PATH;
@@ -9,12 +12,13 @@ export default function Products() {
   const [categories, setCategories] = useState([]);
   const [currentCategory, setCurrentCategory] = useState("全部商品");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     //取全部產品
     const getAllProducts = async () => {
       try {
-        const res = await axios.get(`${API_BASE}/api/${API_PATH}/products/all`);
+        const res = await getProductAllApi();
         const result = [
           "全部商品",
           ...new Set(
@@ -23,7 +27,7 @@ export default function Products() {
             }),
           ),
         ];
-        //console.log(result);
+        //console.log(res, result);
         setCategories(result);
       } catch (error) {
         console.log(error.response);
@@ -33,12 +37,7 @@ export default function Products() {
     //取當前頁數產品
     const getProducts = async (page = 1, category) => {
       try {
-        const res = await axios.get(`${API_BASE}/api/${API_PATH}/products`, {
-          params: {
-            page,
-            category: category === "全部商品" ? undefined : category,
-          },
-        });
+        const res = await getProductApi(page, category);
         //console.log(res.data.products);
         setProduct(res.data.products);
       } catch (error) {
@@ -51,6 +50,16 @@ export default function Products() {
   const handleViewDetail = (e, id) => {
     e.preventDefault();
     navigate(`/product/${id}`);
+  };
+
+  const handleAddCart = (e, id, qty = 1) => {
+    e.preventDefault();
+    dispatch(
+      createAsyncAddCart({
+        id,
+        qty,
+      }),
+    );
   };
   return (
     <>
@@ -115,6 +124,7 @@ export default function Products() {
                         src={item.imageUrl}
                         className="card-img-top rounded-0"
                         alt={item.title}
+                        onClick={(e) => handleViewDetail(e, item.id)}
                       />
                       <a href="#" className="text-dark">
                         <i
@@ -135,14 +145,23 @@ export default function Products() {
                             {item.title}
                           </a>
                         </h4>
-                        <p className="card-text mb-0">
-                          NT${item.price}{" "}
-                          <span className="text-muted ">
-                            <del>NT${item.origin_price}</del>
-                          </span>
-                        </p>
-                        <p className="text-muted mt-3">{item.description}</p>
+                        <div className="py-3">
+                          <button
+                            type="button"
+                            className="text-nowrap btn btn-dark w-20 p-2"
+                            onClick={(e) => handleAddCart(e, item.id)}
+                          >
+                            加入購物車
+                          </button>
+                        </div>
                       </div>
+                      <p className="card-text mb-0">
+                        NT${item.price}{" "}
+                        <span className="text-muted ">
+                          <del>NT${item.origin_price}</del>
+                        </span>
+                      </p>
+                      <p className="text-muted mt-3">{item.description}</p>
                     </div>
                   </div>
                 );

@@ -53,6 +53,11 @@ const Header = () => {
                   找商品
                 </NavLink>
               </li>
+              <li className="nav-item active">
+                <NavLink className="nav-link ps-0" to="/aboutwe">
+                  關於我們
+                </NavLink>
+              </li>
               {/* <li className="nav-item">
                 <NavLink className="nav-link" to="/product/id">
                   商品細節

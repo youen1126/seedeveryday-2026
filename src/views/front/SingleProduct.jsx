@@ -3,9 +3,7 @@ import { useParams } from "react-router";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { createAsyncAddCart } from "../../slice/cartSlice";
-
-const API_BASE = import.meta.env.VITE_API_BASE;
-const API_PATH = import.meta.env.VITE_API_PATH;
+import { getThisProductApi } from "../../services/product";
 
 export default function SingleProducts() {
   const { id } = useParams();
@@ -15,9 +13,7 @@ export default function SingleProducts() {
   useEffect(() => {
     const getProduct = async (id) => {
       try {
-        const response = await axios.get(
-          `${API_BASE}/api/${API_PATH}/product/${id}`,
-        );
+        const response = await getThisProductApi(id);
         //console.log("單一頁", response.data.product);
         setProduct(response.data.product);
       } catch (error) {
