@@ -55,7 +55,7 @@ const Header = () => {
               </li>
               <li className="nav-item active">
                 <NavLink className="nav-link ps-0" to="/aboutwe">
-                  關於我們
+                  品牌故事
                 </NavLink>
               </li>
               {/* <li className="nav-item">

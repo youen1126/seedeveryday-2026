@@ -1,57 +1,35 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router";
-import { getProductAllApi, getProductApi } from "../../services/product";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createAsyncAddCart } from "../../slice/cartSlice";
+import {
+  createAsyncGetAllProducts,
+  createAsyncGetProducts,
+} from "../../slice/productsSlice";
+import { setCategory } from "../../slice/productsSlice";
 
-const API_BASE = import.meta.env.VITE_API_BASE;
-const API_PATH = import.meta.env.VITE_API_PATH;
 export default function Products() {
-  const [product, setProduct] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [currentCategory, setCurrentCategory] = useState("全部商品");
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const { products, categories, currentCategory } = useSelector(
+    (state) => state.products,
+  );
+
   useEffect(() => {
-    //取全部產品
-    const getAllProducts = async () => {
-      try {
-        const res = await getProductAllApi();
-        const result = [
-          "全部商品",
-          ...new Set(
-            res.data.products.map((item) => {
-              return item.category;
-            }),
-          ),
-        ];
-        //console.log(res, result);
-        setCategories(result);
-      } catch (error) {
-        console.log(error.response);
-      }
-    };
-    getAllProducts();
-    //取當前頁數產品
-    const getProducts = async (page = 1, category) => {
-      try {
-        const res = await getProductApi(page, category);
-        //console.log(res.data.products);
-        setProduct(res.data.products);
-      } catch (error) {
-        console.log(error.response);
-      }
-    };
-    getProducts(1, currentCategory);
+    dispatch(createAsyncGetAllProducts());
+  }, []);
+
+  useEffect(() => {
+    dispatch(createAsyncGetProducts({ page: 1, category: currentCategory }));
   }, [currentCategory]);
 
+  //進入商品詳細頁
   const handleViewDetail = (e, id) => {
     e.preventDefault();
     navigate(`/product/${id}`);
   };
-
+  //將商品加入購物車
   const handleAddCart = (e, id, qty = 1) => {
     e.preventDefault();
     dispatch(
@@ -100,7 +78,7 @@ export default function Products() {
                             className={`py-2 d-block text-muted ${currentCategory === category ? "text-dark fw-bold" : "text-muted"}`}
                             onClick={(e) => {
                               e.preventDefault();
-                              setCurrentCategory(category);
+                              dispatch(setCategory(category));
                             }}
                           >
                             {category}
@@ -116,7 +94,7 @@ export default function Products() {
           <div className="col-md-8">
             <div className="row">
               {/* 產品列表 */}
-              {product.map((item) => {
+              {products.map((item) => {
                 return (
                   <div className="col-md-6" key={item.id}>
                     <div className="card border-0 mb-4 position-relative position-relative">

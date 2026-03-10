@@ -96,6 +96,11 @@ export default function AboutWe() {
                 src="https://i.pinimg.com/avif/1200x/c6/0a/71/c60a716a1b20b4987c50fbbbd6292978.avf"
                 className="img-fluid rounded mb-3"
                 alt="select seed"
+                style={{
+                  width: "350px",
+                  height: "350px",
+                  objectFit: "cover",
+                }}
               />
               <h5>挑選種子</h5>
               <p className="text-muted">每一顆種子都經過細心挑選</p>
@@ -106,6 +111,11 @@ export default function AboutWe() {
                 src="https://i.pinimg.com/736x/35/fc/39/35fc395deb9e8b48bda096c6c85df2c2.jpg"
                 className="img-fluid rounded mb-3"
                 alt="handcraft"
+                style={{
+                  width: "350px",
+                  height: "350px",
+                  objectFit: "cover",
+                }}
               />
               <h5>手工製作</h5>
               <p className="text-muted">保留自然紋理與形狀</p>
@@ -116,6 +126,11 @@ export default function AboutWe() {
                 src="https://i.pinimg.com/1200x/c5/3a/1b/c53a1bf67f769d8cf6195442c48731ed.jpg"
                 className="img-fluid rounded mb-3"
                 alt="finished craft"
+                style={{
+                  width: "350px",
+                  height: "350px",
+                  objectFit: "cover",
+                }}
               />
               <h5>完成作品</h5>
               <p className="text-muted">成為生活中的祝福</p>

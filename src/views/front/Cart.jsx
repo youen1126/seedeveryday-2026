@@ -1,8 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
-import { createAsyncDelCart } from "../../slice/cartSlice";
+import {
+  createAsyncDelCart,
+  selectCartTotal,
+  selectCartFinallyTotal,
+} from "../../slice/cartSlice";
 
 export default function Cart() {
   const carts = useSelector((state) => state.cart.carts);
+  const total = useSelector(selectCartTotal);
+  const finally_total = useSelector(selectCartFinallyTotal);
   const dispatch = useDispatch();
 
   const handleDelItem = (e, id) => {
@@ -79,20 +85,18 @@ export default function Cart() {
             );
           })}
           <table className="table mt-4 text-muted">
-            <tbody>
+            {/* <tbody>
               <tr>
                 <th scope="row" className="border-0 px-0 font-weight-normal">
                   結算
                 </th>
-                <td className="text-end border-0 px-0">
-                  NT${carts.totle || "未填"}
-                </td>
+                <td className="text-end border-0 px-0">NT${total || "未填"}</td>
               </tr>
-            </tbody>
+            </tbody> */}
           </table>
           <div className="d-flex justify-content-between mt-4">
             <p className="mb-0 h4 fw-bold">總金額</p>
-            <p className="mb-0 h4 fw-bold">NT$未填</p>
+            <p className="mb-0 h4 fw-bold">NT${total}</p>
           </div>
           <button
             type="button"

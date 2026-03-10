@@ -25,11 +25,6 @@ const Footer = () => {
                 <i className="fab fa-instagram"></i>
               </a>
             </li>
-            <li>
-              <a href="#" className="text-white ms-3">
-                <i className="fab fa-line"></i>
-              </a>
-            </li>
           </ul>
         </div>
       </div>

@@ -1,124 +1,15 @@
 import { NavLink } from "react-router";
+import Hotspot from "./Hotspot";
+import HomeHero from "./HomeHero";
 
 export default function Home() {
   return (
     <>
-      {/* section 1 搜尋區 */}
       <div className="container">
-        <div className="row flex-md-row-reverse flex-column">
-          <div className="col-md-6">
-            <img
-              src="https://i.pinimg.com/1200x/c8/c7/a0/c8c7a04cfbf4a5d2a420669f3ca63810.jpg"
-              className="img-fluid"
-            />
-          </div>
-          <div className="col-md-6 d-flex flex-column justify-content-center mt-md-0 mt-3">
-            <h2 className="fw-bold">來自自然的祝福手作</h2>
-            <h5 className="font-weight-normal text-muted mt-2">
-              Carry a seed, carry a blessing.
-            </h5>
-            <div className="input-group mb-0 mt-4">
-              <div className="input-group-append">
-                <button
-                  className="btn btn-dark rounded-0"
-                  type="button"
-                  id="search"
-                >
-                  前往選購商品
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* section 2 商品4項 */}
-        <div className="row mt-5">
-          <div className="col-md-6 mt-md-4">
-            <div className="card border-0 mb-4 position-relative position-relative">
-              <img
-                src="https://i.pinimg.com/736x/03/d2/ea/03d2eae6373170868515703050d3a5c9.jpg"
-                className="card-img-top rounded-0"
-                alt="..."
-              />
-              <div className="card-body p-0">
-                <h4 className="mb-0 mt-4">Lorem ipsum</h4>
-                <div className="d-flex justify-content-between mt-3">
-                  <p className="card-text text-muted mb-0 w-75">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod.
-                  </p>
-                  <button className="btn btn-outline-dark rounded-0 text-nowrap">
-                    Lorem ipsum
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-6 mt-md-4">
-            <div className="card border-0 mb-4 position-relative position-relative">
-              <img
-                src="https://i.pinimg.com/736x/03/d2/ea/03d2eae6373170868515703050d3a5c9.jpg"
-                className="card-img-top rounded-0"
-                alt="..."
-              />
-              <div className="card-body p-0">
-                <h4 className="mb-0 mt-4">Lorem ipsum</h4>
-                <div className="d-flex justify-content-between mt-3">
-                  <p className="card-text text-muted mb-0 w-75">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod.
-                  </p>
-                  <button className="btn btn-outline-dark rounded-0 text-nowrap">
-                    Lorem ipsum
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-6 mt-md-4">
-            <div className="card border-0 mb-4 position-relative position-relative">
-              <img
-                src="https://i.pinimg.com/736x/03/d2/ea/03d2eae6373170868515703050d3a5c9.jpg"
-                className="card-img-top rounded-0"
-                alt="..."
-              />
-              <div className="card-body p-0">
-                <h4 className="mb-0 mt-4">Lorem ipsum</h4>
-                <div className="d-flex justify-content-between mt-3">
-                  <p className="card-text text-muted mb-0 w-75">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod.
-                  </p>
-                  <button className="btn btn-outline-dark rounded-0 text-nowrap">
-                    Lorem ipsum
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-6 mt-md-4">
-            <div className="card border-0 mb-4 position-relative position-relative">
-              <img
-                src="https://i.pinimg.com/736x/03/d2/ea/03d2eae6373170868515703050d3a5c9.jpg"
-                className="card-img-top rounded-0"
-                alt="..."
-              />
-              <div className="card-body p-0">
-                <h4 className="mb-0 mt-4">Lorem ipsum</h4>
-                <div className="d-flex justify-content-between mt-3">
-                  <p className="card-text text-muted mb-0 w-75">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod.
-                  </p>
-                  <button className="btn btn-outline-dark rounded-0 text-nowrap">
-                    Lorem ipsum
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <HomeHero />
+        <Hotspot />
       </div>
-      {/* section 3 箴言或關於 */}
+      {/* section 3 箴言 */}
       <div className="bg-light mt-7">
         <div className="container">
           <div

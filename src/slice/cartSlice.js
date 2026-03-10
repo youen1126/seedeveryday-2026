@@ -20,7 +20,7 @@ export const cartSlice = createSlice({
       state.carts = carts || [];
       state.total = total || 0;
       state.finally_total = finally_total || 0;
-      console.log("觸發updateCarts");
+      console.log("觸發updateCarts", finally_total);
     },
   },
 });
@@ -73,5 +73,7 @@ export const createAsyncDelCart = createAsyncThunk(
 );
 
 export const { updateCarts } = cartSlice.actions;
+export const selectCartTotal = (state) => state.cart.total;
+export const selectCartFinallyTotal = (state) => state.cart.finally_total;
 
 export default cartSlice.reducer;
