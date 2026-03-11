@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { emailValidation } from "@/utils/emailValidation";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
+import { createAsyncGetCart } from "../../slice/cartSlice";
 const API_BASE = import.meta.env.VITE_API_BASE;
 const API_PATH = import.meta.env.VITE_API_PATH;
 
@@ -35,6 +36,7 @@ export default function Checkout() {
       console.warn("訂單送出成功", submitRes.data);
       reset();
       navigate("/orderSuccess");
+      dispatch(createAsyncGetCart());
     } catch (error) {
       console.error(error);
     }

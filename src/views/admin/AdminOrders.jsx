@@ -64,12 +64,12 @@ export default function AdminOrders() {
                           role="group"
                           aria-label="Small button group"
                         >
-                          <button
+                          {/* <button
                             type="button"
                             className="btn btn-outline-info"
                           >
                             編輯
-                          </button>
+                          </button> */}
                           <button
                             type="button"
                             className="btn btn-outline-danger"

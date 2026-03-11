@@ -3,6 +3,10 @@ export default function Pagination({ pagination, onChangePage }) {
   const handleClick = (e, page) => {
     e.preventDefault();
     onChangePage(page);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   return (

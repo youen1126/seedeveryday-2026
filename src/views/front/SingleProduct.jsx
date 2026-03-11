@@ -1,20 +1,19 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import axios from "axios";
+import { Link, useParams } from "react-router";
 import { useDispatch } from "react-redux";
 import { createAsyncAddCart } from "../../slice/cartSlice";
 import { getThisProductApi } from "../../services/product";
 
 export default function SingleProducts() {
   const { id } = useParams();
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState({ imagesUrl: [] });
   const dispatch = useDispatch();
 
   useEffect(() => {
     const getProduct = async (id) => {
       try {
         const response = await getThisProductApi(id);
-        //console.log("單一頁", response.data.product);
+        console.log("單一頁", response.data.product);
         setProduct(response.data.product);
       } catch (error) {
         console.error("取得產品資料失敗", error);
@@ -47,80 +46,28 @@ export default function SingleProducts() {
               className="carousel slide"
               data-ride="carousel"
             >
-              <div className="carousel-inner">
-                {/* {product.map((item, index) => {
-                  return (
-                    <>
-                      <div className="carousel-item " key={item}>
-                        <img
-                          src={item.imageUrl}
-                          className="d-block w-100"
-                          alt={`商品圖片${index + 1}`}
-                        />
-                      </div>
-                    </>
-                  );
-                })} */}
-                <div className="carousel-item active">
-                  <img
-                    src="https://i.pinimg.com/1200x/67/29/bd/6729bd79f1d6da4f6420583901149ed7.jpg"
-                    className="d-block w-100"
-                    alt="商品1圖片1"
-                  />
-                </div>
-                <div className="carousel-item">
-                  <img
-                    src="https://i.pinimg.com/avif/736x/a9/95/35/a9953563f3d0075c6c76fd58bf59d3b5.avf"
-                    className="d-block w-100"
-                    alt="商品1圖片2"
-                  />
-                </div>
-                <div className="carousel-item">
-                  <img
-                    src="https://images.unsplash.com/photo-1502743780242-f10d2ce370f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1916&q=80"
-                    className="d-block w-100"
-                    alt="商品1圖片3"
-                  />
-                </div>
+              <div className="my-4">
+                <img
+                  src={product.imageUrl}
+                  style={{ height: "600px" }}
+                  alt=""
+                  className="img-fluid mt-4"
+                />
               </div>
-              <a
-                className="carousel-control-prev"
-                href="#carouselExampleControls"
-                role="button"
-                data-slide="prev"
-              >
-                <span
-                  className="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
-                <span className="sr-only">Previous</span>
-              </a>
-              <a
-                className="carousel-control-next"
-                href="#carouselExampleControls"
-                role="button"
-                data-slide="next"
-              >
-                <span
-                  className="carousel-control-next-icon"
-                  aria-hidden="true"
-                ></span>
-                <span className="sr-only">Next</span>
-              </a>
             </div>
           </div>
           <div className="col-md-5">
             <nav aria-label="breadcrumb">
               <ol className="breadcrumb bg-white px-0 mb-0 py-3">
                 <li className="breadcrumb-item">
-                  <a className="text-muted" href="./index.html">
+                  <Link className="text-muted" to="/">
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li className="breadcrumb-item">
-                  <a className="text-muted" href="./product.html">
+                  <Link className="text-muted" to="/product">
                     Products
-                  </a>
+                  </Link>
                 </li>
                 <li className="breadcrumb-item active" aria-current="page">
                   Detail
@@ -128,9 +75,14 @@ export default function SingleProducts() {
               </ol>
             </nav>
             <h2 className="fw-bold h1 mb-1">{product.title}</h2>
+            <br />
+            <div className="col-md-12">
+              <p>{product.description}</p>
+            </div>
             <p className="mb-0 text-muted text-end">
               <del>NT${product.origin_price}</del>
             </p>
+
             <p className="h4 fw-bold text-end">NT${product.price}</p>
             <div className="row align-items-center">
               <div className="col-6">
@@ -175,46 +127,20 @@ export default function SingleProducts() {
               </div>
             </div>
           </div>
-        </div>
-        <div className="row my-5">
-          <div className="col-md-6">
-            <p>{product.description}</p>
-          </div>
-          {/* <div className="col-md-3">
-            <p className="text-muted">
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor
-            </p>
-          </div> */}
-        </div>
-        <h3 className="fw-bold">你可能也喜歡</h3>
-        {/* swiper滑軌 */}
-        <div className="swiper-container mt-4 mb-5">
-          <div className="swiper-wrapper">
-            <div className="swiper-slide">
-              <div className="card border-0 mb-4 position-relative position-relative">
+          {product.imagesUrl?.map((item, index) => {
+            return (
+              <div className="my-4" key={index}>
                 <img
-                  src="https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
-                  className="card-img-top rounded-0"
-                  alt="..."
+                  src={item}
+                  style={{ height: "400px" }}
+                  alt=""
+                  className="img-fluid mt-4"
                 />
-                <a href="#" className="text-dark"></a>
-                <div className="card-body p-0">
-                  <h4 className="mb-0 mt-3">
-                    <a href="#">Lorem ipsum</a>
-                  </h4>
-                  <p className="card-text mb-0">
-                    NT$1,080{" "}
-                    <span className="text-muted ">
-                      <del>NT$1,200</del>
-                    </span>
-                  </p>
-                  <p className="text-muted mt-3"></p>
-                </div>
               </div>
-            </div>
-          </div>
+            );
+          })}
         </div>
+        <div className="row my-5"></div>
       </div>
     </div>
   );

@@ -18,7 +18,7 @@ export default function Hotspot() {
     <div className="row mt-5">
       {handmadeProducts.map((product) => {
         return (
-          <div className="col-md-6 mt-md-4">
+          <div className="col-md-6 mt-md-4" key={product.id}>
             <div className="card border-0 mb-4 position-relative position-relative">
               <img
                 src={product.imageUrl}
