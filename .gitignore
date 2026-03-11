@@ -29,10 +29,8 @@ dist-ssr
 *.sw?
 
 # env variables (very important)
-.env
-.env.*
-.env.development
-.env.production
+
+
 
 # 以下是單檔不想add . 
 
