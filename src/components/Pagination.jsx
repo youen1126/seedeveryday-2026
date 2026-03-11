@@ -1,4 +1,5 @@
 export default function Pagination({ pagination, onChangePage }) {
+  if (!pagination || !pagination.total_pages) return null;
   const handleClick = (e, page) => {
     e.preventDefault();
     onChangePage(page);
@@ -6,7 +7,6 @@ export default function Pagination({ pagination, onChangePage }) {
 
   return (
     <nav aria-label="Page navigation example">
-      {/* {JSON.stringify(pagination)} */}
       <ul className="pagination  justify-content-center">
         <li className={`page-item ${!pagination.has_pre && "disabled"}`}>
           <a

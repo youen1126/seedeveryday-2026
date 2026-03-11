@@ -20,21 +20,21 @@ export default function Checkout() {
   });
 
   const onSubmit = async (formData) => {
-    try {
-      const data = {
-        user: formData.name,
+    const data = {
+      user: {
+        name: formData.name,
         email: formData.email,
         tel: formData.tel,
         address: formData.address,
-        message: formData.message,
-      };
+      },
+      message: formData.message,
+    };
+    try {
       const url = `${API_BASE}/api/${API_PATH}/order`;
-      const submitRes = await axios.post(url, {
-        data,
-      });
+      const submitRes = await axios.post(url, { data });
       console.warn("訂單送出成功", submitRes.data);
       reset();
-      dispatch(createAsyncGetCart());
+      navigate("/orderSuccess");
     } catch (error) {
       console.error(error);
     }
@@ -50,9 +50,10 @@ export default function Checkout() {
       <div className="container">
         <div className="row justify-content-center flex-md-row flex-column-reverse">
           <div className="col-md-6">
-            <div className="bg-white p-4">
-              <h4 className="fw-bold">填寫收件資料</h4>
-              <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="bg-white p-4">
+                <h4 className="fw-bold">填寫收件資料</h4>
+
                 <div className="mb-2">
                   <label
                     htmlFor="ContactMail"
@@ -120,11 +121,11 @@ export default function Checkout() {
                 {errors.tel && (
                   <p className="text-danger">{errors.tel.message}</p>
                 )}
-              </form>
-            </div>
-            <div className="bg-white p-4 mt-3">
-              <h4 className="fw-bold">收件地址和備註</h4>
-              <form>
+              </div>
+
+              <div className="bg-white p-4 mt-3">
+                <h4 className="fw-bold">收件地址和備註</h4>
+
                 <label htmlFor="address" className="mt-4 mb-3">
                   收件地址
                 </label>
@@ -170,8 +171,8 @@ export default function Checkout() {
                     送出訂單
                   </button>
                 </div>
-              </form>
-            </div>
+              </div>
+            </form>
           </div>
           <CheckoutCart />
         </div>

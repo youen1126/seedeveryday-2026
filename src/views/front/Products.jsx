@@ -8,22 +8,28 @@ import {
   createAsyncGetProducts,
 } from "../../slice/productsSlice";
 import { setCategory } from "../../slice/productsSlice";
+import Pagination from "../../components/Pagination";
 
 export default function Products() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { products, categories, currentCategory } = useSelector(
+  const { products, pagination, currentCategory, categories } = useSelector(
     (state) => state.products,
   );
 
   useEffect(() => {
     dispatch(createAsyncGetAllProducts());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
-    dispatch(createAsyncGetProducts({ page: 1, category: currentCategory }));
-  }, [currentCategory]);
+    dispatch(
+      createAsyncGetProducts({
+        page: 1,
+        category: currentCategory === "全部商品" ? "" : currentCategory,
+      }),
+    );
+  }, [dispatch, currentCategory]);
 
   //進入商品詳細頁
   const handleViewDetail = (e, id) => {
@@ -71,7 +77,7 @@ export default function Products() {
               <div className="card border-0">
                 <div className="card-body py-0">
                   <ul className="list-unstyled">
-                    {categories.map((category) => {
+                    {categories?.map((category) => {
                       return (
                         <li key={category}>
                           <a
@@ -95,7 +101,7 @@ export default function Products() {
           <div className="col-md-8">
             <div className="row">
               {/* 產品列表 */}
-              {products.map((item) => {
+              {products?.map((item) => {
                 return (
                   <div className="col-md-6" key={item.id}>
                     <div className="card border-0 mb-4 position-relative position-relative">
@@ -147,35 +153,18 @@ export default function Products() {
               })}
             </div>
             {/* 頁碼區 */}
-            <nav className="d-flex justify-content-center">
-              <ul className="pagination">
-                <li className="page-item">
-                  <a className="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                  </a>
-                </li>
-                <li className="page-item active">
-                  <a className="page-link" href="#">
-                    1
-                  </a>
-                </li>
-                <li className="page-item">
-                  <a className="page-link" href="#">
-                    2
-                  </a>
-                </li>
-                <li className="page-item">
-                  <a className="page-link" href="#">
-                    3
-                  </a>
-                </li>
-                <li className="page-item">
-                  <a className="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
+            <Pagination
+              pagination={pagination}
+              onChangePage={(page) =>
+                dispatch(
+                  createAsyncGetProducts({
+                    page,
+                    category:
+                      currentCategory === "全部商品" ? "" : currentCategory,
+                  }),
+                )
+              }
+            />
           </div>
         </div>
       </div>

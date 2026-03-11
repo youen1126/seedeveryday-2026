@@ -19,7 +19,7 @@ export default function AdminLayout() {
         className="align-items-center text-white"
         style={{
           minHeight: "5vh",
-          backgroundColor: "#493c33",
+          backgroundColor: "#c5ab89",
         }}
       >
         <ul className="nav">

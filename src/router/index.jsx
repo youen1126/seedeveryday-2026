@@ -7,6 +7,7 @@ import Cart from "../views/front/Cart";
 import Checkout from "../views/front/Checkout";
 import CheckoutSuccess from "../views/front/CheckoutSuccess";
 import Login from "../views/Login";
+import OrderSuccess from "../components/OrderSuccess";
 import AdminLayout from "../layout/AdminLayout";
 import AdminProducts from "../views/admin/AdminProducts";
 import AdminOrders from "../views/admin/AdminOrders";
@@ -46,6 +47,10 @@ export const router = createHashRouter([
       {
         path: "/checkout-success",
         element: <CheckoutSuccess />,
+      },
+      {
+        path: "/orderSuccess",
+        element: <OrderSuccess />,
       },
       {
         path: "/login",

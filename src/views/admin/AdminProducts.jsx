@@ -4,6 +4,7 @@ import ProductModal from "../../components/ProductModal";
 import Pagination from "../../components/Pagination";
 import { Oval } from "react-loader-spinner";
 import useMessage from "@/hooks/useMessage";
+import { Modal } from "bootstrap";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
 const API_PATH = import.meta.env.VITE_API_PATH;
@@ -56,6 +57,7 @@ function AdminProducts() {
 
   useEffect(() => {
     getProducts();
+    productModalRef.current = new Modal("#productModal");
   }, []);
 
   const openModal = (type, product) => {
@@ -69,30 +71,19 @@ function AdminProducts() {
 
   const closeModal = () => {
     productModalRef.current.hide();
+    document.activeElement.blur();
   };
 
   return (
     <>
-      {loading && (
-        <div className="login-loading">
-          <Oval
-            height={50}
-            width={50}
-            color="#ff7a15ff"
-            secondaryColor="#ccc"
-            strokeWidth={4}
-          />
-        </div>
-      )}
-
       <div className="container p-0 my-3">
         <div className="row mt-5 ">
           <div className="col-md-6 ">
-            <h2 className="text-black">🌿 管理產品列表 🌿</h2>
+            <h2 className="text-black text-center">🌿 管理產品列表 🌿</h2>
             <div className="text-end md-1">
               <button
                 type="button"
-                className="btn btn-un"
+                className="btn btn-warning"
                 onClick={() => {
                   openModal("creat", INITIAL_TEMPLATE_DATA);
                 }}
@@ -130,7 +121,7 @@ function AdminProducts() {
                       </td>
                       <td>
                         <button
-                          className="btn btn-un-produck btn-sm"
+                          className="btn btn-outline-dark btn-sm"
                           onClick={() => setSeeProduct(item)}
                         >
                           查看
@@ -162,14 +153,25 @@ function AdminProducts() {
                   ))}
                 </tbody>
               </table>
+              {loading && (
+                <div className="login-loading">
+                  <Oval
+                    height={50}
+                    width={50}
+                    color="#ff7a15ff"
+                    secondaryColor="#ccc"
+                    strokeWidth={4}
+                  />
+                </div>
+              )}
             </div>
             {/* 頁碼 */}
             <div className="m-3">
               <Pagination pagination={pagination} onChangePage={getProducts} />
             </div>
           </div>
-          <div className="col-md-6">
-            <h2 className="text-black">🌿 單一產品細節 🌿</h2>
+          <div className="col-md-6 text-center">
+            <h2 className="text-black">🌿 產品細節 🌿</h2>
             {seeProduct ? (
               <div className="card m-3">
                 <img
@@ -208,7 +210,10 @@ function AdminProducts() {
                 </div>
               </div>
             ) : (
-              <p className="text-write">請選擇一個商品查看</p>
+              <div className="text-center py-5 my-5">
+                <i className="bi bi-archive fs-1 text-muted"></i>
+                <h3 className="mt-3">請選擇一個商品查看</h3>
+              </div>
             )}
           </div>
         </div>

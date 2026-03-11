@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { createAsyncMessage } from "../slice/messageSlice";
-import useMessage from "../hooks/useMessage";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
 const API_PATH = import.meta.env.VITE_API_PATH;
@@ -15,7 +14,6 @@ export default function ProductModal({
 }) {
   const [tempData, setTempData] = useState(templeteProduct);
   const dispatch = useDispatch();
-  const { showSuccess } = useMessage;
 
   //當父元件的templeteProduct更新，這裡的tempData也要更新
   useEffect(() => {
@@ -73,14 +71,12 @@ export default function ProductModal({
       const res = await axios.delete(
         `${API_BASE}/api/${API_PATH}/admin/product/${id}`,
       );
-      showSuccess("刪除成功");
-      //alert(res.data.message);
-      getProducts();
+      console.log(res);
+      await getProducts();
+      alert("刪除成功");
       closeModal();
     } catch (error) {
-      //alert('刪除失敗')
-      //showError('刪除失敗')
-      console.error(error.response);
+      console.error("沒刪除成功，請查看error", error);
     }
   };
 
@@ -426,13 +422,23 @@ export default function ProductModal({
 
             <div className="modal-footer">
               {modalType === "delete" ? (
-                <button
-                  type="button"
-                  className="btn btn-danger"
-                  onClick={() => delProduct(tempData.id)}
-                >
-                  刪除
-                </button>
+                <div>
+                  <button
+                    type="button"
+                    className="btn btn-outline-secondary"
+                    data-bs-dismiss="modal"
+                    onClick={() => closeModal()}
+                  >
+                    取消
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-danger"
+                    onClick={() => delProduct(tempData.id)}
+                  >
+                    刪除
+                  </button>
+                </div>
               ) : (
                 <>
                   <button
