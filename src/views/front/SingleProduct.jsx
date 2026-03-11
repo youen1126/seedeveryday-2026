@@ -13,7 +13,6 @@ export default function SingleProducts() {
     const getProduct = async (id) => {
       try {
         const response = await getThisProductApi(id);
-        console.log("單一頁", response.data.product);
         setProduct(response.data.product);
       } catch (error) {
         console.error("取得產品資料失敗", error);

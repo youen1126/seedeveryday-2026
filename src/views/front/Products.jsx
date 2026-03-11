@@ -109,6 +109,10 @@ export default function Products() {
                         src={item.imageUrl}
                         className="card-img-top rounded-0"
                         alt={item.title}
+                        style={{
+                          height: "350px",
+                          objectFit: "cover",
+                        }}
                         onClick={(e) => handleViewDetail(e, item.id)}
                       />
                       <a href="#" className="text-dark">

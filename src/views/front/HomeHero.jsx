@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 export default function HomeHero() {
   return (
     <div className="row flex-md-row-reverse flex-column">
@@ -14,13 +16,9 @@ export default function HomeHero() {
         </h5>
         <div className="input-group mb-0 mt-4">
           <div className="input-group-append">
-            <button
-              className="btn btn-dark rounded-0"
-              type="button"
-              id="search"
-            >
+            <Link className="btn btn-dark rounded-0" to="/product">
               前往選購商品
-            </button>
+            </Link>
           </div>
         </div>
       </div>
