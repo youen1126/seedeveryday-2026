@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-
+import BackToTop from "@/components/BackToTop";
 export default function AboutWe() {
   return (
     <div className="about-page">
@@ -154,6 +154,7 @@ export default function AboutWe() {
           </Link>
         </div>
       </section>
+      <BackToTop />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { NavLink } from "react-router";
 import Hotspot from "./Hotspot";
 import HomeHero from "./HomeHero";
+import BackToTop from "@/components/BackToTop";
 
 export default function Home() {
   return (
@@ -166,6 +167,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <BackToTop />
     </>
   );
 }

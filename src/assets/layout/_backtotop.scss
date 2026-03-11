@@ -1,0 +1,33 @@
+.backToTop {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+
+  width: 48px;
+  height: 48px;
+
+  border-radius: 50%;
+  border: none;
+
+  background: #6d765b;
+  color: white;
+  font-size: 20px;
+
+  cursor: pointer;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+  transition: 0.3s;
+  opacity: 0;
+  transform: translateY(20px);
+
+  &:hover {
+    transform: translateY(-3px);
+    background: #ab8c83;
+  }
+}
+
+.backToTop.show {
+  opacity: 1;
+  transform: translateY(0);
+}

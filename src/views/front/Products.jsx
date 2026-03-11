@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { createAsyncAddCart } from "../../slice/cartSlice";
+import BackToTop from "@/components/BackToTop";
 import {
   createAsyncGetAllProducts,
   createAsyncGetProducts,
@@ -178,6 +179,7 @@ export default function Products() {
           </div>
         </div>
       </div>
+      <BackToTop />
     </>
   );
 }

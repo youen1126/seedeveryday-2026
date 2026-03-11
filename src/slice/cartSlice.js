@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 //import { createAsyncMessage } from "@reduxjs/toolkit";
-import { DelCartApi, getCartsApi } from "../services/carts";
+import { DelCartApi, getCartsApi, UpdataItemNumApi } from "../services/carts";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
 const API_PATH = import.meta.env.VITE_API_PATH;
@@ -12,6 +12,7 @@ export const cartSlice = createSlice({
     carts: [],
     total: 0,
     finally_total: 0,
+    loadingItem: null,
   },
   //動作 action
   reducers: {
@@ -20,8 +21,23 @@ export const cartSlice = createSlice({
       state.carts = carts || [];
       state.total = total || 0;
       state.finally_total = finally_total || 0;
-      console.log("觸發updateCarts", finally_total);
+      console.log("觸發updateCarts");
     },
+  },
+  extraReducers: (builder) => {
+    builder
+
+      .addCase(createAsyncUpdataItemNum.pending, (state, action) => {
+        state.loadingItem = action.meta.arg.cartId;
+      })
+
+      .addCase(createAsyncUpdataItemNum.fulfilled, (state) => {
+        state.loadingItem = null;
+      })
+
+      .addCase(createAsyncUpdataItemNum.rejected, (state) => {
+        state.loadingItem = null;
+      });
   },
 });
 //取得購物車data api
@@ -69,6 +85,23 @@ export const createAsyncDelCart = createAsyncThunk(
     } catch (error) {
       console.error(error.respones);
     }
+  },
+);
+
+//更改商品數量
+export const createAsyncUpdataItemNum = createAsyncThunk(
+  "cart/createAsyncUpdataItemNum",
+  async ({ cartId, productId, qty }, { dispatch }) => {
+    const data = {
+      product_id: productId,
+      qty,
+    };
+
+    const res = await UpdataItemNumApi(cartId, data);
+
+    dispatch(createAsyncGetCart());
+
+    return { cartId };
   },
 );
 
