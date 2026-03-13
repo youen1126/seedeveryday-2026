@@ -83,49 +83,65 @@ export default function Login() {
         </div>
       )}
       <div className="container login p-5 text-center m-5">
-        <h2>🌿 請先登入 🌿</h2>
-        <br />
-        <form className="form-floating" onSubmit={handleSubmit(onSubmit)}>
-          <div className="form-floating mb-3">
-            <input
-              type="email"
-              id="username"
-              className="form-control"
-              placeholder="name@example.com"
-              {...register("username", emailValidation)}
+        <div className="row">
+          <div className="col-md-6">
+            <img
+              src="https://i.pinimg.com/736x/0c/90/c6/0c90c6192e90dc7eb25121b3f9eb669e.jpg"
+              className="img-fluid"
+              data-aos="fade-down"
+              style={{
+                height: "500px",
+                width: "500px",
+                objectFit: "cover",
+              }}
             />
-            <label htmlFor="username">Email address</label>
-            {errors.username && (
-              <p className="text-danger">{errors.username.message}</p>
-            )}
           </div>
-          <div className="form-floating">
-            <input
-              type="password"
-              className="form-control"
-              id="password"
-              placeholder="Password"
-              {...register("password", {
-                required: "請輸入密碼",
-                minLength: {
-                  value: 6,
-                  message: "密碼長度至少需 6 碼",
-                },
-              })}
-            />
-            <label htmlFor="password">Password</label>
-            {errors.password && (
-              <p className="text-danger">{errors.password.message}</p>
-            )}
+          <div className="col-md-6" data-aos="zoom-in-left">
+            <h2>登入後台管理商品和訂單</h2>
+            <br />
+            <form className="form-floating" onSubmit={handleSubmit(onSubmit)}>
+              <div className="form-floating mb-3">
+                <input
+                  type="email"
+                  id="username"
+                  className="form-control"
+                  placeholder="name@example.com"
+                  {...register("username", emailValidation)}
+                />
+                <label htmlFor="username">Email address</label>
+                {errors.username && (
+                  <p className="text-danger">{errors.username.message}</p>
+                )}
+              </div>
+              <div className="form-floating">
+                <input
+                  type="password"
+                  className="form-control"
+                  id="password"
+                  placeholder="Password"
+                  {...register("password", {
+                    required: "請輸入密碼",
+                    minLength: {
+                      value: 6,
+                      message: "密碼長度至少需 6 碼",
+                    },
+                  })}
+                />
+                <label htmlFor="password">Password</label>
+                {errors.password && (
+                  <p className="text-danger">{errors.password.message}</p>
+                )}
+              </div>
+              <button
+                type="submit"
+                className="btn w-100 mt-3"
+                disabled={!isValid}
+              >
+                登入
+              </button>
+            </form>
           </div>
-          <button
-            type="submit"
-            className="btn btn-un w-100 mt-3"
-            disabled={!isValid}
-          >
-            登入
-          </button>
-        </form>
+        </div>
       </div>
     </>
   );
