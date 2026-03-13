@@ -25,7 +25,7 @@ export default function CheckoutCart() {
                 </div>
                 <div className="d-flex justify-content-between">
                   <p className="text-muted mb-0">
-                    <small>NT${curryency(item.qty * item.product.price)}</small>
+                    <small>NT${curryency(item.product.price)}</small>
                   </p>
                   <p className="mb-0">
                     NT${curryency(item.qty * item.product.price)}

@@ -156,7 +156,9 @@ export default function Cart() {
                             </button>
                           </div>
                         </div>
-                        <p className="mb-0 ms-auto">NT${item.product.price}</p>
+                        <p className="mb-0 ms-auto">
+                          NT${item.product.price * item.qty}
+                        </p>
                       </div>
                     </div>
                   </div>
