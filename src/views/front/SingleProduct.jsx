@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createAsyncAddCart } from "../../slice/cartSlice";
 import { getThisProductApi } from "../../services/product";
 import useMessage from "../../hooks/useMessage";
+import { Oval } from "react-loader-spinner";
 
 export default function SingleProducts() {
   const { id } = useParams();
   const [product, setProduct] = useState({ imagesUrl: [] });
   const dispatch = useDispatch();
   const { showSuccess, showError } = useMessage();
+  const { loading } = useSelector((state) => state.products);
 
   useEffect(() => {
     const getProduct = async (id) => {
@@ -46,6 +48,17 @@ export default function SingleProducts() {
   return (
     <div>
       <div className="container">
+        {loading && (
+          <div className="login-loading">
+            <Oval
+              height={50}
+              width={50}
+              color="#ff7a15ff"
+              secondaryColor="#ccc"
+              strokeWidth={4}
+            />
+          </div>
+        )}
         <div className="row align-items-center">
           <div className="col-md-7">
             <div

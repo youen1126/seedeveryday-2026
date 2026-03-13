@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { createAsyncAddCart } from "../../slice/cartSlice";
@@ -10,15 +10,15 @@ import {
 import { setCategory } from "../../slice/productsSlice";
 import Pagination from "../../components/Pagination";
 import useMessage from "../../hooks/useMessage";
+import { Oval } from "react-loader-spinner";
 
 export default function Products() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { showSuccess, showError } = useMessage();
+  const { showSuccess } = useMessage();
 
-  const { products, pagination, currentCategory, categories } = useSelector(
-    (state) => state.products,
-  );
+  const { products, pagination, currentCategory, categories, loading } =
+    useSelector((state) => state.products);
 
   useEffect(() => {
     dispatch(createAsyncGetAllProducts());
@@ -104,6 +104,17 @@ export default function Products() {
           <div className="col-md-8">
             <div className="row">
               {/* 產品列表 */}
+              {loading && (
+                <div className="login-loading">
+                  <Oval
+                    height={50}
+                    width={50}
+                    color="#ff7a15ff"
+                    secondaryColor="#ccc"
+                    strokeWidth={4}
+                  />
+                </div>
+              )}
               {products?.map((item) => {
                 return (
                   <div className="col-md-6" key={item.id}>
