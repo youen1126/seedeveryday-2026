@@ -1,6 +1,13 @@
 import { Link } from "react-router";
 import BackToTop from "@/components/BackToTop";
+import { useEffect } from "react";
 export default function AboutWe() {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
   return (
     <div className="about-page">
       {/* HERO */}

@@ -18,9 +18,14 @@ export default function SingleProducts() {
         setProduct(response.data.product);
       } catch (error) {
         console.error("取得產品資料失敗", error);
+        showError("取得產品資料失敗");
       }
     };
     getProduct(id);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   }, [id]);
 
   const handleAddCart = (e, id, qty = 1) => {
@@ -51,7 +56,11 @@ export default function SingleProducts() {
               <div className="my-4">
                 <img
                   src={product.imageUrl}
-                  style={{ height: "600px" }}
+                  style={{
+                    height: "500px",
+                    width: "500px",
+                    objectFit: "cover",
+                  }}
                   alt=""
                   className="img-fluid mt-4"
                 />
@@ -134,7 +143,11 @@ export default function SingleProducts() {
               <div className="my-4" key={index}>
                 <img
                   src={item}
-                  style={{ height: "400px" }}
+                  style={{
+                    height: "500px",
+                    width: "500px",
+                    objectFit: "cover",
+                  }}
                   alt=""
                   className="img-fluid mt-4"
                 />

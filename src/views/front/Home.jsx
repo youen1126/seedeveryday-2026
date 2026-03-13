@@ -2,8 +2,15 @@ import { NavLink } from "react-router";
 import Hotspot from "./Hotspot";
 import HomeHero from "./HomeHero";
 import BackToTop from "@/components/BackToTop";
+import { useEffect } from "react";
 
 export default function Home() {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
   return (
     <>
       <div className="container">
