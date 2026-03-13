@@ -1,0 +1,45 @@
+.img-hover {
+  overflow: hidden;
+}
+
+.img-hover img {
+  transition: transform 0.4s ease;
+}
+
+.img-hover:hover img {
+  transform: scale(1.05);
+}
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+.link-hover {
+  position: relative;
+}
+
+.link-hover::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background: black;
+  left: 0;
+  bottom: -4px;
+  transition: width 0.3s;
+}
+
+.link-hover:hover::after {
+  width: 100%;
+}
+
+.icon-hover {
+  transition: transform 0.2s ease;
+}
+
+.icon-hover:hover {
+  transform: scale(1.1);
+}

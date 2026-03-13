@@ -105,7 +105,7 @@ export default function AboutWe() {
           <h2 className="text-center mb-5">每一件作品，都是手作完成</h2>
 
           <div className="row text-center">
-            <div className="col-md-4 mb-4">
+            <div className="col-md-4 mb-4 card-hover">
               <img
                 src="https://i.pinimg.com/avif/1200x/c6/0a/71/c60a716a1b20b4987c50fbbbd6292978.avf"
                 className="img-fluid rounded mb-3"
@@ -120,7 +120,7 @@ export default function AboutWe() {
               <p className="text-muted">每一顆種子都經過細心挑選</p>
             </div>
 
-            <div className="col-md-4 mb-4">
+            <div className="col-md-4 mb-4 card-hover">
               <img
                 src="https://i.pinimg.com/736x/35/fc/39/35fc395deb9e8b48bda096c6c85df2c2.jpg"
                 className="img-fluid rounded mb-3"
@@ -135,7 +135,7 @@ export default function AboutWe() {
               <p className="text-muted">保留自然紋理與形狀</p>
             </div>
 
-            <div className="col-md-4 mb-4">
+            <div className="col-md-4 mb-4 card-hover">
               <img
                 src="https://i.pinimg.com/1200x/c5/3a/1b/c53a1bf67f769d8cf6195442c48731ed.jpg"
                 className="img-fluid rounded mb-3"

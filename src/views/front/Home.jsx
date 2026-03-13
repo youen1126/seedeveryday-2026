@@ -28,7 +28,7 @@ export default function Home() {
             <div className="carousel-inner">
               <div className="carousel-item active">
                 <div className="row justify-content-center py-7">
-                  <div className="col-md-8 d-flex">
+                  <div className="col-md-8 d-flex img-hover">
                     <img
                       src="https://i.pinimg.com/736x/42/21/60/422160101cf1fb73d25f83dbd453c191.jpg"
                       alt=""
@@ -40,11 +40,11 @@ export default function Home() {
                       }}
                     />
                     <div className="d-flex flex-column">
-                      <p className="h5">在忙碌的生活裡</p>
-                      <p className="h5">我們希望留下一點安靜</p>
-                      <p className="h5">一顆小小的種子</p>
-                      <p className="h5">也許就是一份祝福</p>
-                      <p className="mt-auto text-muted">
+                      <p className="h5 link-hover">在忙碌的生活裡</p>
+                      <p className="h5 link-hover">我們希望留下一點安靜</p>
+                      <p className="h5 link-hover">一顆小小的種子</p>
+                      <p className="h5 link-hover">也許就是一份祝福</p>
+                      <p className="mt-auto text-muted link-hover">
                         A little seed for everyday blessings.
                       </p>
                     </div>
@@ -79,7 +79,7 @@ export default function Home() {
       {/* section 4 小圖-標題-文字  */}
       <div className="container my-7">
         <div className="row">
-          <div className="col-md-4">
+          <div className="col-md-4 card-hover ">
             <img
               src="https://i.pinimg.com/1200x/57/af/03/57af030b81bfb337f624f636cffbcde2.jpg"
               alt="無患子"
@@ -97,7 +97,7 @@ export default function Home() {
               這顆看似樸實的種子，其實承載著一份古老而安靜的祝福。
             </p>
           </div>
-          <div className="col-md-4">
+          <div className="col-md-4 card-hover ">
             <img
               src="https://i.pinimg.com/736x/97/eb/bd/97ebbd44d102b0bee444cb9d4648cebe.jpg"
               alt=""
@@ -116,7 +116,7 @@ export default function Home() {
               它提醒人們，即使是一顆看似微小的種子，也蘊藏著巨大的生命能量。
             </p>
           </div>
-          <div className="col-md-4">
+          <div className="col-md-4 card-hover ">
             <img
               src="https://i.pinimg.com/1200x/f0/76/3a/f0763a55979173e09d01922b9211d259.jpg"
               alt=""
@@ -143,7 +143,7 @@ export default function Home() {
           <div className="row justify-content-center">
             <div className="col-md-4 text-center">
               <h3>種子日常</h3>
-              <p className="text-muted">
+              <p className="text-muted link-hover">
                 我們把來自大地的種子， 透過手作，變成可以陪伴生活的小小物件。
               </p>
               <NavLink

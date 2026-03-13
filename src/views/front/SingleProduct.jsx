@@ -66,7 +66,7 @@ export default function SingleProducts() {
               className="carousel slide"
               data-ride="carousel"
             >
-              <div className="my-4">
+              <div className="my-4 img-hover">
                 <img
                   src={product.imageUrl}
                   style={{
@@ -153,7 +153,7 @@ export default function SingleProducts() {
           </div>
           {product.imagesUrl?.map((item, index) => {
             return (
-              <div className="my-4" key={index}>
+              <div className="my-4 img-hover" key={index}>
                 <img
                   src={item}
                   style={{

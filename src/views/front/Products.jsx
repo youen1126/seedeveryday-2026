@@ -85,7 +85,7 @@ export default function Products() {
                         <li key={category}>
                           <a
                             href="#"
-                            className={`py-2 d-block text-muted ${currentCategory === category ? "text-dark fw-bold" : "text-muted"}`}
+                            className={`py-2 d-block text-muted icon-hover ${currentCategory === category ? "text-dark fw-bold" : "text-muted"}`}
                             onClick={(e) => {
                               e.preventDefault();
                               dispatch(setCategory(category));
@@ -117,8 +117,8 @@ export default function Products() {
               )}
               {products?.map((item) => {
                 return (
-                  <div className="col-md-6" key={item.id}>
-                    <div className="card border-0 mb-4 position-relative position-relative">
+                  <div className="col-md-6 card-hover" key={item.id}>
+                    <div className="card img-hover border-0 mb-4 position-relative position-relative">
                       <img
                         src={item.imageUrl}
                         className="card-img-top rounded-0"
@@ -170,6 +170,7 @@ export default function Products() {
                 );
               })}
             </div>
+            <br />
             {/* 頁碼區 */}
             <Pagination
               pagination={pagination}
