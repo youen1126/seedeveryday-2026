@@ -5,12 +5,14 @@ import { emailValidation } from "@/utils/emailValidation";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { createAsyncGetCart } from "../../slice/cartSlice";
+import useMessage from "../../hooks/useMessage";
 const API_BASE = import.meta.env.VITE_API_BASE;
 const API_PATH = import.meta.env.VITE_API_PATH;
 
 export default function Checkout() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { showSuccess, showError } = useMessage();
   const {
     register,
     handleSubmit,
@@ -33,12 +35,13 @@ export default function Checkout() {
     try {
       const url = `${API_BASE}/api/${API_PATH}/order`;
       const submitRes = await axios.post(url, { data });
-      console.warn("訂單送出成功", submitRes.data);
+      showSuccess("訂單送出成功");
       reset();
       navigate("/orderSuccess");
       dispatch(createAsyncGetCart());
     } catch (error) {
       console.error(error);
+      showError("訂單送出失敗");
     }
   };
 

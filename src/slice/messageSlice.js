@@ -2,15 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const messageSlice = createSlice({
   name: "message",
-  initialState: [
-    //初始值
-    // {
-    //     id: 1,
-    //     type: 'success',
-    //     title: '成功',
-    //     text: '測試用的'
-    // }
-  ],
+  initialState: [],
   reducers: {
     createMessage(state, action) {
       state.push({
@@ -33,7 +25,7 @@ export const messageSlice = createSlice({
 });
 
 export const createAsyncMessage = createAsyncThunk(
-  "message/createAsyncMessage", //取一個唯一名字
+  "message/createAsyncMessage",
   async (payload, { dispatch, requestId }) => {
     dispatch(
       createMessage({

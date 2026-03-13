@@ -3,11 +3,13 @@ import { Link, useParams } from "react-router";
 import { useDispatch } from "react-redux";
 import { createAsyncAddCart } from "../../slice/cartSlice";
 import { getThisProductApi } from "../../services/product";
+import useMessage from "../../hooks/useMessage";
 
 export default function SingleProducts() {
   const { id } = useParams();
   const [product, setProduct] = useState({ imagesUrl: [] });
   const dispatch = useDispatch();
+  const { showSuccess, showError } = useMessage();
 
   useEffect(() => {
     const getProduct = async (id) => {
@@ -29,10 +31,11 @@ export default function SingleProducts() {
         qty,
       }),
     );
+    showSuccess("成功加入購物車");
   };
 
   const handleNum = () => {
-    console.log("test input bug");
+    return;
   };
 
   return (

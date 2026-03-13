@@ -8,6 +8,7 @@ import {
 import { DelAllCartApi } from "../../services/carts";
 import { useNavigate } from "react-router";
 import EmptyCart from "../../components/EmptyCart";
+import useMessage from "../../hooks/useMessage";
 
 export default function Cart() {
   const carts = useSelector((state) => state.cart.carts);
@@ -15,20 +16,23 @@ export default function Cart() {
   const dispatch = useDispatch();
   const { loadingItem } = useSelector((state) => state.cart);
   const navigate = useNavigate();
+  const { showSuccess, showError } = useMessage();
   //刪除單一商品
   const handleDelItem = (e, id) => {
     e.preventDefault();
     dispatch(createAsyncDelCart(id));
+    showSuccess("刪除成功");
   };
 
   //刪除全部
   const deleteAll = async () => {
     try {
       const res = await DelAllCartApi();
-      alert(res.data.message);
       dispatch(createAsyncGetCart());
+      showSuccess("刪除成功");
     } catch (error) {
       console.error(error.respones);
+      showError("刪除失敗，請聯繫客服");
     }
   };
   //更改購物車數量
@@ -41,6 +45,7 @@ export default function Cart() {
         qty,
       }),
     );
+    showSuccess("更改成功");
   };
   //進入資料填寫頁
   const handleSubmitCart = (e) => {

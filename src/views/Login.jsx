@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import axios from "axios";
 import { Oval } from "react-loader-spinner";
 import { emailValidation } from "@/utils/emailValidation";
-import useMessage from "@/hooks/useMessage";
+import useMessage from "../hooks/useMessage";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
 
@@ -33,7 +33,6 @@ export default function Login() {
       setAuthData({ token, expired });
     } catch (err) {
       showError(`登入失敗，:${err.response?.data.message || err.message}`);
-      //alert(`登入失敗：${err.response?.data?.message || err.message}`);
     } finally {
       setLoading(false); // 關 spinner
     }
@@ -62,7 +61,6 @@ export default function Login() {
       axios.defaults.headers.common.Authorization = token;
 
       showSuccess(`登入成功！`);
-      //alert("登入成功！");
       setLoading(true);
 
       setTimeout(() => {

@@ -9,10 +9,12 @@ import {
 } from "../../slice/productsSlice";
 import { setCategory } from "../../slice/productsSlice";
 import Pagination from "../../components/Pagination";
+import useMessage from "../../hooks/useMessage";
 
 export default function Products() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { showSuccess, showError } = useMessage();
 
   const { products, pagination, currentCategory, categories } = useSelector(
     (state) => state.products,
@@ -45,6 +47,7 @@ export default function Products() {
         qty,
       }),
     );
+    showSuccess("成功加入購物車");
   };
   return (
     <>

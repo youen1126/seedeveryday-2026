@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { createAsyncMessage } from "../slice/messageSlice";
+import useMessage from "@/hooks/useMessage";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
 const API_PATH = import.meta.env.VITE_API_PATH;
@@ -14,6 +15,7 @@ export default function ProductModal({
 }) {
   const [tempData, setTempData] = useState(templeteProduct);
   const dispatch = useDispatch();
+  const { showSuccess, showError } = useMessage();
 
   //當父元件的templeteProduct更新，這裡的tempData也要更新
   useEffect(() => {
@@ -71,9 +73,8 @@ export default function ProductModal({
       const res = await axios.delete(
         `${API_BASE}/api/${API_PATH}/admin/product/${id}`,
       );
-      console.log(res);
       await getProducts();
-      alert("刪除成功");
+      showSuccess("刪除成功");
       closeModal();
     } catch (error) {
       console.error("沒刪除成功，請查看error", error);
@@ -99,7 +100,7 @@ export default function ProductModal({
         imageUrl: res.data.imageUrl,
       }));
     } catch (error) {
-      alert("上傳圖片失敗");
+      showError("上傳圖片失敗");
       console.error(error.response);
     }
   };
@@ -126,15 +127,14 @@ export default function ProductModal({
     };
 
     try {
-      alert("產品已儲存，請等候畫面更新");
+      showSuccess("產品已儲存，請等候畫面更新");
       const res = await axios[method](url, productData);
-      console.warn(res.data);
+      showSuccess(res.data);
       dispatch(createAsyncMessage(res.data));
       getProducts();
       closeModal();
     } catch (error) {
-      dispatch(createAsyncMessage(error.response?.data));
-      console.warn(error.response);
+      showError(error.response);
     }
   };
 

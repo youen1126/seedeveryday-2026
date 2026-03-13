@@ -21,7 +21,6 @@ export const cartSlice = createSlice({
       state.carts = carts || [];
       state.total = total || 0;
       state.finally_total = finally_total || 0;
-      console.log("觸發updateCarts");
     },
   },
   extraReducers: (builder) => {
@@ -46,7 +45,6 @@ export const createAsyncGetCart = createAsyncThunk(
   async (_, { dispatch }) => {
     try {
       const res = await getCartsApi();
-      console.log("觸發createAsyncGetCart:", res.data.data);
       dispatch(updateCarts(res.data.data));
     } catch (error) {
       console.error(error.respones);
@@ -65,8 +63,6 @@ export const createAsyncAddCart = createAsyncThunk(
       const res = await axios.post(`${API_BASE}/api/${API_PATH}/cart`, {
         data,
       });
-      alert(res.data.message);
-      console.log("觸發createAsyncAddCart:", res.data);
       dispatch(createAsyncGetCart());
     } catch (error) {
       console.error(error.respones);
@@ -79,8 +75,6 @@ export const createAsyncDelCart = createAsyncThunk(
   async (cartId, { dispatch }) => {
     try {
       const res = await DelCartApi(cartId);
-      alert(res.data.message);
-      console.log("觸發createAsyncDelCart:", res.data);
       dispatch(createAsyncGetCart());
     } catch (error) {
       console.error(error.respones);
