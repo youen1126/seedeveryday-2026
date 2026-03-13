@@ -18,7 +18,7 @@ export default function NotFound() {
             <Link to="/" className="nf__btn nf__btn--primary">
               回到 Home
             </Link>
-            <Link to="/products" className="nf__btn nf__btn--ghost">
+            <Link to="/product" className="nf__btn nf__btn--ghost">
               前往商品列表
             </Link>
           </div>
