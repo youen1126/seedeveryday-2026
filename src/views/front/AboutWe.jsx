@@ -26,8 +26,10 @@ export default function AboutWe() {
         ></div>
 
         <div className="container position-relative">
-          <h1 className="mb-3">關於 種子日常</h1>
-          <p className="lead">
+          <h1 className="mb-3" data-aos="zoom-in">
+            關於 種子日常
+          </h1>
+          <p className="lead" data-aos="zoom-in-right">
             每一顆種子，都來自自然。 我們把它變成日常中的祝福。
           </p>
         </div>
@@ -42,6 +44,7 @@ export default function AboutWe() {
                 src="https://i.pinimg.com/736x/0a/e8/7d/0ae87dc790167246f3b23815c679d132.jpg"
                 className="img-fluid rounded"
                 alt="seed story"
+                data-aos="zoom-out"
               />
             </div>
 
@@ -54,7 +57,11 @@ export default function AboutWe() {
                 透過手作，變成能陪伴生活的小小祝福。
               </p>
               <div className="p-3">
-                <Link to="/product" className="btn btn-dark px-5 py-2">
+                <Link
+                  to="/product"
+                  className="btn btn-dark px-5 py-2"
+                  data-aos="zoom-out-left"
+                >
                   前往商品頁
                 </Link>
               </div>
@@ -156,7 +163,11 @@ export default function AboutWe() {
             一顆小小的種子，也許就是一份祝福。
           </p>
 
-          <Link to="/product" className="btn btn-dark px-4 py-2">
+          <Link
+            to="/product"
+            className="btn btn-dark px-4 py-2"
+            data-aos="fade-down"
+          >
             前往商品頁
           </Link>
         </div>

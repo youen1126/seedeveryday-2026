@@ -52,30 +52,6 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            {/* <a
-              className="carousel-control-prev"
-              href="#"
-              role="button"
-              data-slide="prev"
-            >
-              <span
-                className="carousel-control-prev-icon"
-                aria-hidden="true"
-              ></span>
-              <span className="sr-only">上一頁</span>
-            </a> */}
-            {/* <a
-              className="carousel-control-next"
-              href="#"
-              role="button"
-              data-slide="next"
-            >
-              <span
-                className="carousel-control-next-icon"
-                aria-hidden="true"
-              ></span>
-              <span className="sr-only">下一頁</span>
-            </a> */}
           </div>
         </div>
       </div>
@@ -112,6 +88,7 @@ export default function Home() {
                 height: "100px",
                 objectFit: "cover",
               }}
+              data-aos="flip-left"
             />
             <h4 className="mt-4">無患子｜守護與平安</h4>
             <p className="text-muted">
@@ -129,6 +106,7 @@ export default function Home() {
                 height: "100px",
                 objectFit: "cover",
               }}
+              data-aos="flip-left"
             />
             <h4 className="mt-4">橡實｜力量與成長</h4>
             <p className="text-muted">
@@ -147,6 +125,7 @@ export default function Home() {
                 height: "100px",
                 objectFit: "cover",
               }}
+              data-aos="flip-left"
             />
             <h4 className="mt-4">菩提子｜覺察與智慧</h4>
             <p className="text-muted">
@@ -167,7 +146,11 @@ export default function Home() {
               <p className="text-muted">
                 我們把來自大地的種子， 透過手作，變成可以陪伴生活的小小物件。
               </p>
-              <NavLink to="/aboutwe" className="btn btn-dark mt-4 rounded-0">
+              <NavLink
+                to="/aboutwe"
+                className="btn btn-dark mt-4 rounded-0"
+                data-aos="zoom-in"
+              >
                 關於我們
               </NavLink>
             </div>
