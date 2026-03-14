@@ -178,6 +178,10 @@ function AdminProducts() {
                   src={seeProduct.imageUrl}
                   className="card-img-top"
                   alt="主圖"
+                  style={{
+                    height: "400px",
+                    objectFit: "cover",
+                  }}
                 />
                 <div className="card-body">
                   <h5 className="card-title">
