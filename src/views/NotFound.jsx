@@ -1,5 +1,4 @@
 import { Link } from "react-router";
-import notFoundImg from "../../public/seedEveryDayLogo.png";
 
 export default function NotFound() {
   return (
@@ -9,7 +8,6 @@ export default function NotFound() {
 
         <div className="nf__content container">
           <h1 className="nf__title">啊喔...這一頁走丟了</h1>
-          {/* <img src={notFoundImg} style={{ height: "300px" }} /> */}
           <p className="nf__desc">
             我們把自然留在生活裡，但這個連結沒有留下來。
           </p>

@@ -58,20 +58,9 @@ const Header = () => {
                   品牌故事
                 </NavLink>
               </li>
-              {/* <li className="nav-item">
-                <NavLink className="nav-link" to="/product/id">
-                  商品細節
-                </NavLink>
-              </li> */}
             </ul>
           </div>
           <div className="d-flex">
-            {/* <NavLink to="/">
-              <i className="fas fa-heart me-3"></i>
-            </NavLink> */}
-            {/* <NavLink to="/">
-              <i className="fa-solid fa-circle-user me-3"></i>
-            </NavLink> */}
             <NavLink to="/cart">
               <div className="position-relative">
                 <i className="fas fa-shopping-cart"></i>
