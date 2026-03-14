@@ -112,6 +112,7 @@ export default function Cart() {
                           >
                             <button
                               className="btn btn-outline-secondary"
+                              type="button"
                               onClick={() =>
                                 handleUpdateNum(
                                   item.id,
@@ -143,6 +144,7 @@ export default function Cart() {
 
                             <button
                               className="btn btn-outline-secondary"
+                              type="button"
                               onClick={() =>
                                 handleUpdateNum(
                                   item.id,

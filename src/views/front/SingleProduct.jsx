@@ -12,6 +12,7 @@ export default function SingleProducts() {
   const dispatch = useDispatch();
   const { showSuccess, showError } = useMessage();
   const { loading } = useSelector((state) => state.products);
+  const [qty, setQty] = useState(1);
 
   useEffect(() => {
     const getProduct = async (id) => {
@@ -41,8 +42,9 @@ export default function SingleProducts() {
     showSuccess("成功加入購物車");
   };
 
-  const handleNum = () => {
-    return;
+  const handleNum = (newQty) => {
+    if (newQty < 1) return; // 不讓小於1
+    setQty(newQty);
   };
 
   return (
@@ -109,42 +111,39 @@ export default function SingleProducts() {
 
             <p className="h4 fw-bold text-end">NT${product.price}</p>
             <div className="row align-items-center">
+              {/* 數量選擇 */}
               <div className="col-6">
                 <div className="input-group my-3 bg-light rounded">
                   <div className="input-group-prepend">
                     <button
                       className="btn btn-outline-dark border-0 py-2"
                       type="button"
-                      id="button-addon1"
+                      disabled={qty === 1}
+                      onClick={() => handleNum(qty - 1)}
                     >
-                      <i className="bi bi-dash"></i>
+                      -
                     </button>
                   </div>
-                  <input
-                    type="text"
-                    className="form-control border-0 text-center my-auto shadow-none bg-light"
-                    placeholder=""
-                    aria-label="Example text with button addon"
-                    aria-describedby="button-addon1"
-                    value="1"
-                    onChange={handleNum}
-                  />
+                  <span className="qty-number form-control border-0 text-center my-auto shadow-none bg-light">
+                    {qty}
+                  </span>
                   <div className="input-group-append">
                     <button
                       className="btn btn-outline-dark border-0 py-2"
                       type="button"
-                      id="button-addon2"
+                      onClick={() => handleNum(qty + 1)}
                     >
-                      <i className="bi bi-plus"></i>
+                      +
                     </button>
                   </div>
                 </div>
               </div>
+              {/* 加入購物車按鈕 */}
               <div className="col-6">
                 <button
                   type="button"
                   className="text-nowrap btn btn-dark w-100 py-2"
-                  onClick={(e) => handleAddCart(e, product.id)}
+                  onClick={(e) => handleAddCart(e, product.id, qty)}
                 >
                   加入購物車
                 </button>
