@@ -5,6 +5,7 @@ import axios from "axios";
 import { Oval } from "react-loader-spinner";
 import { emailValidation } from "@/utils/emailValidation";
 import useMessage from "../hooks/useMessage";
+import { logout } from "../utils/logout";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
 
@@ -32,7 +33,11 @@ export default function Login() {
       const { token, expired } = response.data;
       setAuthData({ token, expired });
     } catch (err) {
-      showError(`登入失敗，:${err.response?.data.message || err.message}`);
+      showError(
+        `${err.response?.data.message || err.message}，請確認帳密是否正確`,
+      );
+      logout();
+      navigate("/login", { replace: true });
     } finally {
       setLoading(false); // 關 spinner
     }
