@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Oval } from "react-loader-spinner";
 
@@ -7,7 +7,6 @@ const API_PATH = import.meta.env.VITE_API_PATH;
 
 export default function AdminOrders() {
   const [orders, setOrders] = useState([]);
-  const [pagination, setPagination] = useState({});
   const [loading, setLoading] = useState(false);
   //取得遠端order data
   const getAdminOrder = async (page = 1) => {
@@ -17,7 +16,6 @@ export default function AdminOrders() {
         `${API_BASE}/api/${API_PATH}/admin/orders?page=${page}`,
       );
       setOrders(res.data.orders);
-      setPagination(res.data.pagination);
     } catch (error) {
       console.error("catch失敗", error);
     } finally {
@@ -46,7 +44,6 @@ export default function AdminOrders() {
                   <th>客戶信箱</th>
                   <th>客戶電話</th>
                   <th>備註留言</th>
-                  <th>編輯</th>
                 </tr>
                 {orders.map((item) => {
                   return (
@@ -63,20 +60,7 @@ export default function AdminOrders() {
                           className="btn-group btn-group-sm"
                           role="group"
                           aria-label="Small button group"
-                        >
-                          {/* <button
-                            type="button"
-                            className="btn btn-outline-info"
-                          >
-                            編輯
-                          </button> */}
-                          <button
-                            type="button"
-                            className="btn btn-outline-danger"
-                          >
-                            刪除
-                          </button>
-                        </div>
+                        ></div>
                       </td>
                     </tr>
                   );

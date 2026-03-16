@@ -60,12 +60,13 @@ export const createAsyncAddCart = createAsyncThunk(
       qty,
     };
     try {
-      const res = await axios.post(`${API_BASE}/api/${API_PATH}/cart`, {
+      await axios.post(`${API_BASE}/api/${API_PATH}/cart`, {
         data,
       });
       dispatch(createAsyncGetCart());
+      return { success: true };
     } catch (error) {
-      console.error(error.respones);
+      console.error(error.response || "加入購物車失敗");
     }
   },
 );
@@ -74,10 +75,10 @@ export const createAsyncDelCart = createAsyncThunk(
   "cart/createAsyncDelCart",
   async (cartId, { dispatch }) => {
     try {
-      const res = await DelCartApi(cartId);
+      await DelCartApi(cartId);
       dispatch(createAsyncGetCart());
     } catch (error) {
-      console.error(error.respones);
+      console.error(error.response);
     }
   },
 );
@@ -91,7 +92,7 @@ export const createAsyncUpdataItemNum = createAsyncThunk(
       qty,
     };
 
-    const res = await UpdataItemNumApi(cartId, data);
+    await UpdataItemNumApi(cartId, data);
 
     dispatch(createAsyncGetCart());
 

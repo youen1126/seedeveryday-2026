@@ -35,7 +35,7 @@ export default function Checkout() {
     try {
       const url = `${API_BASE}/api/${API_PATH}/order`;
       const submitRes = await axios.post(url, { data });
-      showSuccess("訂單送出成功");
+      showSuccess("訂單送出成功", submitRes);
       reset();
       navigate("/orderSuccess");
       dispatch(createAsyncGetCart());

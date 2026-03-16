@@ -76,7 +76,7 @@ export default function ProductModal({
         `${API_BASE}/api/${API_PATH}/admin/product/${id}`,
       );
       await getProducts();
-      showSuccess("刪除成功");
+      showSuccess("刪除成功", res);
       closeModal();
     } catch (error) {
       console.error("沒刪除成功，請查看error", error);

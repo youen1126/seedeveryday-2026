@@ -29,7 +29,7 @@ export default function Cart() {
     try {
       const res = await DelAllCartApi();
       dispatch(createAsyncGetCart());
-      showSuccess("刪除成功");
+      showSuccess(res.data.data, "成功");
     } catch (error) {
       console.error(error.respones);
       showError("刪除失敗，請聯繫客服");
