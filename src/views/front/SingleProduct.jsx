@@ -106,6 +106,7 @@ export default function SingleProducts() {
             <br />
             <div className="col-md-12">
               <p>{product.description}</p>
+              <p>{product.content}</p>
             </div>
             <p className="mb-0 text-muted text-end">
               <del>NT${product.origin_price}</del>
