@@ -1,11 +1,23 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import { createAsyncGetProducts } from "../../slice/productsSlice";
 
 export default function Hotspot() {
-  const products = useSelector((state) => state.products.products);
+  const dispatch = useDispatch();
+  const { products, currentCategory } = useSelector((state) => state.products);
   const navigate = useNavigate();
 
-  const handmadeProducts = products.filter(
+  useEffect(() => {
+    dispatch(
+      createAsyncGetProducts({
+        page: 1,
+        category: currentCategory === "全部商品" ? "" : currentCategory,
+      }),
+    );
+  }, [dispatch, currentCategory]);
+
+  const handmadeProducts = (products || []).filter(
     (item) => item.category === "種子小物",
   );
 
