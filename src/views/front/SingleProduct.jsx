@@ -3,8 +3,10 @@ import { Link, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { createAsyncAddCart } from "../../slice/cartSlice";
 import { getThisProductApi } from "../../services/product";
+import BackToTop from "@/components/BackToTop";
 import useMessage from "../../hooks/useMessage";
 import { Oval } from "react-loader-spinner";
+import YoumaylikeSwiper from "../../components/YoumaylikeSwiper";
 
 export default function SingleProducts() {
   const { id } = useParams();
@@ -169,6 +171,8 @@ export default function SingleProducts() {
         </div>
         <div className="row my-5"></div>
       </div>
+      <YoumaylikeSwiper />
+      <BackToTop />
     </div>
   );
 }

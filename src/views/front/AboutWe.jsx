@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import BackToTop from "@/components/BackToTop";
 import { useEffect } from "react";
+import YoumaylikeSwiper from "../../components/YoumaylikeSwiper";
 export default function AboutWe() {
   useEffect(() => {
     window.scrollTo({
@@ -172,6 +173,7 @@ export default function AboutWe() {
           </Link>
         </div>
       </section>
+      <YoumaylikeSwiper />
       <BackToTop />
     </div>
   );
