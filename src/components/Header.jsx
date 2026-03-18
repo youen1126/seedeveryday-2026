@@ -58,11 +58,6 @@ const Header = () => {
                   品牌故事
                 </NavLink>
               </li>
-              <li className="nav-item active">
-                <NavLink className="nav-link ps-0" to="/checkoutsuccess">
-                  checkoutSuccess
-                </NavLink>
-              </li>
             </ul>
           </div>
           <div className="d-flex">

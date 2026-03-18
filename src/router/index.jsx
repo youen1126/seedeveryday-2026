@@ -41,10 +41,6 @@ export const router = createHashRouter([
         element: <Checkout />,
       },
       {
-        path: "/checkoutsuccess",
-        element: <CheckoutSuccess />,
-      },
-      {
         path: "/cart",
         element: <Cart />,
       },
