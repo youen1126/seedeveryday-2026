@@ -9,6 +9,7 @@ import { DelAllCartApi } from "../../services/carts";
 import { useNavigate } from "react-router";
 import EmptyCart from "../../components/EmptyCart";
 import useMessage from "../../hooks/useMessage";
+import CheckoutFlow from "../../components/CheckoutFlow";
 
 export default function Cart() {
   const carts = useSelector((state) => state.cart.carts);
@@ -55,6 +56,7 @@ export default function Cart() {
   };
   return (
     <div className="container">
+      <CheckoutFlow currentStep={1} />
       <div className="row justify-content-center">
         <div
           className="col-md-8 bg-white py-5"

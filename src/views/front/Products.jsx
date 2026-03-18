@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { createAsyncAddCart } from "../../slice/cartSlice";
 import BackToTop from "@/components/BackToTop";

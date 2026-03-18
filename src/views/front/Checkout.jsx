@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { createAsyncGetCart } from "../../slice/cartSlice";
 import useMessage from "../../hooks/useMessage";
+import CheckoutFlow from "../../components/CheckoutFlow";
 const API_BASE = import.meta.env.VITE_API_BASE;
 const API_PATH = import.meta.env.VITE_API_PATH;
 
@@ -52,6 +53,7 @@ export default function Checkout() {
 
   return (
     <div className="bg-light pt-5 pb-7">
+      <CheckoutFlow currentStep={2} />
       <div className="container">
         <div className="row justify-content-center flex-md-row flex-column-reverse">
           <div className="col-md-6">

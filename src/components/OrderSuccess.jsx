@@ -1,10 +1,10 @@
-import { useNavigate } from "react-router";
+import { Link } from "react-router";
+import CheckoutFlow from "./CheckoutFlow";
 
 function OrderSuccess() {
-  const navigate = useNavigate();
-
   return (
     <div className="container text-center py-5">
+      <CheckoutFlow currentStep={3} />
       <div className="mb-4">
         <i className="bi bi-check-circle-fill text-success fs-1"></i>
       </div>
@@ -14,16 +14,13 @@ function OrderSuccess() {
       <p className="text-muted">感謝你的購買，我們已收到你的訂單。</p>
 
       <div className="mt-4">
-        <button
-          className="btn btn-dark me-3"
-          onClick={() => navigate("/products")}
-        >
+        <Link className="btn btn-dark me-3" to="/product">
           繼續購物
-        </button>
+        </Link>
 
-        <button className="btn btn-outline-dark" onClick={() => navigate("/")}>
+        <Link className="btn btn-outline-dark" to="/">
           回到首頁
-        </button>
+        </Link>
       </div>
     </div>
   );
