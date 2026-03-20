@@ -3,10 +3,12 @@ import logoImg from "../../public/seed-everydayicon-Header.png";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { createAsyncGetCart } from "../slice/cartSlice";
+import { useState } from "react";
 
 const Header = () => {
   const carts = useSelector((state) => state.cart.carts);
   const dispatch = useDispatch();
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     dispatch(createAsyncGetCart());
@@ -40,6 +42,7 @@ const Header = () => {
             aria-controls="navbarNav"
             aria-expanded="false"
             aria-label="Toggle navigation"
+            onClick={() => setIsOpen(!isOpen)}
           >
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -47,18 +50,20 @@ const Header = () => {
             className="collapse navbar-collapse bg-white custom-header-md-open"
             id="navbarNav"
           >
-            <ul className="navbar-nav">
-              <li className="nav-item active">
-                <NavLink className="nav-link ps-0" to="/product">
-                  找商品
-                </NavLink>
-              </li>
-              <li className="nav-item active">
-                <NavLink className="nav-link ps-0" to="/aboutwe">
-                  品牌故事
-                </NavLink>
-              </li>
-            </ul>
+            <div className={`collapse navbar-collapse ${isOpen ? "show" : ""}`}>
+              <ul className="navbar-nav">
+                <li className="nav-item active">
+                  <NavLink className="nav-link ps-0" to="/product">
+                    找商品
+                  </NavLink>
+                </li>
+                <li className="nav-item active">
+                  <NavLink className="nav-link ps-0" to="/aboutwe">
+                    品牌故事
+                  </NavLink>
+                </li>
+              </ul>
+            </div>
           </div>
           <div className="d-flex">
             <NavLink to="/cart">

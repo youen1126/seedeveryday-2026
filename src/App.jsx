@@ -4,8 +4,6 @@ import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-//import "./assets/style.css";
-//import "./styles/main.scss"; // 入口 Sass
 import MessageToast from "./components/MessageToast";
 
 export default function App() {

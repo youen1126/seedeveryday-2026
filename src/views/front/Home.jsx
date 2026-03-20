@@ -31,7 +31,7 @@ export default function Home() {
                   <div className="col-md-8 d-flex img-hover">
                     <img
                       src="https://i.pinimg.com/736x/42/21/60/422160101cf1fb73d25f83dbd453c191.jpg"
-                      alt=""
+                      alt="箴言配圖"
                       className="rounded-circle me-5"
                       style={{
                         width: "160px",
@@ -61,7 +61,7 @@ export default function Home() {
           <div className="col-md-8 d-flex">
             <img
               src="https://i.pinimg.com/avif/1200x/ff/f4/21/fff421ec047a1f8ce38666d80d8a6cf3.avf"
-              alt=""
+              alt="配圖"
               className="rounded-circle me-5"
               style={{
                 width: "160px",
@@ -100,7 +100,7 @@ export default function Home() {
           <div className="col-md-4 card-hover ">
             <img
               src="https://i.pinimg.com/736x/97/eb/bd/97ebbd44d102b0bee444cb9d4648cebe.jpg"
-              alt=""
+              alt="橡實"
               style={{
                 width: "100px",
                 height: "100px",
@@ -119,7 +119,7 @@ export default function Home() {
           <div className="col-md-4 card-hover ">
             <img
               src="https://i.pinimg.com/1200x/f0/76/3a/f0763a55979173e09d01922b9211d259.jpg"
-              alt=""
+              alt="菩提子"
               style={{
                 width: "100px",
                 height: "100px",

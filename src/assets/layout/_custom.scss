@@ -1,3 +1,8 @@
+html,
+body {
+  overflow-x: hidden;
+}
+
 .navbar-custom-scroll::-webkit-scrollbar {
   display: none;
 }
@@ -7,9 +12,16 @@
 
 @include media-breakpoint-down(md) {
   .custom-header-md-open {
-    position: absolute;
-    top: 100%;
-    right: 0px;
-    left: 0px;
+    position: fixed;
+    top: 60px; // navbar 高度
+    left: 0;
+    right: 0;
   }
 }
+
+// .custom-header-md-open {
+//     position: absolute;
+//     top: 100%;
+//     right: 0px;
+//     left: 0px;
+//   }

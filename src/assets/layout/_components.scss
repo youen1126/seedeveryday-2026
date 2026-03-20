@@ -1,3 +1,8 @@
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 .img-hover {
   overflow: hidden;
 }
@@ -24,7 +29,7 @@
 .link-hover::after {
   content: "";
   position: absolute;
-  width: 0;
+  max-width: 0;
   height: 2px;
   background: black;
   left: 0;
@@ -51,4 +56,8 @@
 .section-gray {
   background-color: $gray-300;
   padding: 40px 0;
+}
+
+.swiper {
+  overflow: hidden; // 必加
 }
