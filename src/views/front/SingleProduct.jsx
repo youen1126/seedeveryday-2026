@@ -31,7 +31,7 @@ export default function SingleProducts() {
       top: 0,
       behavior: "smooth",
     });
-  }, [id]);
+  }, [id, showError]);
 
   const handleAddCart = (e, id, qty = 1) => {
     e.preventDefault();
@@ -78,7 +78,7 @@ export default function SingleProducts() {
                     width: "500px",
                     objectFit: "cover",
                   }}
-                  alt=""
+                  alt="主圖"
                   className="img-fluid mt-4"
                 />
               </div>
@@ -163,7 +163,7 @@ export default function SingleProducts() {
                     width: "500px",
                     objectFit: "cover",
                   }}
-                  alt=""
+                  alt="附圖"
                   className="img-fluid mt-4"
                 />
               </div>

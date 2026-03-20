@@ -72,7 +72,7 @@ export default function Login() {
         navigate("/admin/product");
       }, 300);
     }
-  }, [authData, navigate]);
+  }, [authData, navigate, showSuccess]);
 
   return (
     <>
@@ -99,6 +99,7 @@ export default function Login() {
                 width: "500px",
                 objectFit: "cover",
               }}
+              alt="附圖"
             />
           </div>
           <div className="col-md-6" data-aos="zoom-in-left">
