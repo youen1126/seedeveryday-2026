@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { createAsyncAddCart } from "../../slice/cartSlice";
@@ -16,6 +16,27 @@ export default function Products() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { showSuccess } = useMessage();
+  //收藏清單存器
+  const [wishList, setWishList] = useState(() => {
+    const initWishList = localStorage.getItem("wishList")
+      ? JSON.parse(localStorage.getItem("wishList"))
+      : {};
+    return initWishList;
+  });
+
+  //收藏和取消收藏切換功能e.preventDefault();
+  const tooggleWishListItem = (e, product_id) => {
+    e.preventDefault();
+    setWishList((prev) => {
+      const newWishList = {
+        ...prev,
+        [product_id]: !prev[product_id],
+      };
+
+      localStorage.setItem("wishList", JSON.stringify(newWishList));
+      return newWishList;
+    });
+  };
 
   const { products, pagination, currentCategory, categories, loading } =
     useSelector((state) => state.products);
@@ -49,6 +70,7 @@ export default function Products() {
     );
     showSuccess("成功加入購物車");
   };
+
   return (
     <>
       <div
@@ -129,14 +151,15 @@ export default function Products() {
                         }}
                         onClick={(e) => handleViewDetail(e, item.id)}
                       />
-                      <a href="#" className="text-dark">
+                      <a href="#" className="text-dark border-none">
                         <i
-                          className="fa-regular fa-heart position-absolute"
+                          className={`fa-${wishList[item.id] ? "solid " : "regular"} fa-heart position-absolute`}
                           style={{
                             right: "16px",
                             top: "16px",
                             fontSize: "18px",
                           }}
+                          onClick={(e) => tooggleWishListItem(e, item.id)}
                         ></i>
                       </a>
                       <div className="card-body p-0">
