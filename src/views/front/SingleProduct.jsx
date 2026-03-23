@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { createAsyncAddCart } from "../../slice/cartSlice";
 import { getThisProductApi } from "../../services/product";
 import BackToTop from "@/components/BackToTop";
@@ -13,17 +13,21 @@ export default function SingleProducts() {
   const [product, setProduct] = useState({ imagesUrl: [] });
   const dispatch = useDispatch();
   const { showSuccess, showError } = useMessage();
-  const { loading } = useSelector((state) => state.products);
+  //const { loading } = useSelector((state) => state.products);
   const [qty, setQty] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const getProduct = async (id) => {
       try {
+        setLoading(true);
         const response = await getThisProductApi(id);
         setProduct(response.data.product);
       } catch (error) {
         console.error("取得產品資料失敗", error);
         showError("取得產品資料失敗");
+      } finally {
+        setLoading(false);
       }
     };
     getProduct(id);
@@ -52,17 +56,6 @@ export default function SingleProducts() {
   return (
     <div>
       <div className="container">
-        {loading && (
-          <div className="login-loading">
-            <Oval
-              height={50}
-              width={50}
-              color="#ff7a15ff"
-              secondaryColor="#ccc"
-              strokeWidth={4}
-            />
-          </div>
-        )}
         <div className="row align-items-center">
           <div className="col-md-7">
             <div
@@ -71,16 +64,30 @@ export default function SingleProducts() {
               data-ride="carousel"
             >
               <div className="my-4 img-hover">
-                <img
-                  src={product.imageUrl}
-                  style={{
-                    height: "500px",
-                    width: "500px",
-                    objectFit: "cover",
-                  }}
-                  alt="主圖"
-                  className="img-fluid mt-4"
-                />
+                {loading ? (
+                  <div className="login-loading">
+                    <Oval
+                      height={50}
+                      width={50}
+                      color="#ff7a15ff"
+                      secondaryColor="#ccc"
+                      strokeWidth={4}
+                    />
+                  </div>
+                ) : (
+                  <>
+                    <img
+                      src={product.imageUrl}
+                      style={{
+                        height: "500px",
+                        width: "500px",
+                        objectFit: "cover",
+                      }}
+                      alt="主圖"
+                      className="img-fluid mt-4"
+                    />
+                  </>
+                )}
               </div>
             </div>
           </div>
