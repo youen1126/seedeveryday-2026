@@ -23,7 +23,7 @@ const wishlistSlice = createSlice({
 
       state.items[id] = !state.items[id];
 
-      // 👉 同步 localStorage
+      //  同步 localStorage
       localStorage.setItem("wishList", JSON.stringify(state.items));
     },
 

@@ -16,25 +16,27 @@ export default function WishList() {
 
   return (
     <div className="container py-5">
-      <h2 className="mb-4 text-center">我的收藏</h2>
+      <h2 className="mb-4 text-center">收藏列表</h2>
 
-      {/* 🟥 空狀態 */}
+      {/* 空狀態 */}
       {wishListItems.length === 0 && (
         <div className="text-center py-5">
-          <i className="fa-regular fa-heart fs-1 mb-3"></i>
+          <h1>
+            <i class="fa-sharp fa-regular fa-heart text-secondary"></i>
+          </h1>
           <p>目前還沒有收藏任何商品</p>
-          <Link to="/" className="btn btn-dark mt-3">
+          <Link to="/product" className="btn btn-dark mt-3">
             去逛逛
           </Link>
         </div>
       )}
 
-      {/* 🟩 有資料 */}
+      {/* 有資料 */}
       <div className="row">
         {wishListItems.map((item) => (
           <div className="col-md-3 mb-4" key={item.id}>
             <div className="card h-100 position-relative">
-              {/* ❤️ 收藏按鈕 */}
+              {/* 收藏按鈕 */}
               <button
                 type="button"
                 className="p-0 border-0 bg-transparent"
@@ -46,16 +48,23 @@ export default function WishList() {
                   zIndex: 2,
                 }}
               >
-                <i className="fa-solid fa-heart text-danger"></i>
+                <i className="fa-solid fa-heart"></i>
               </button>
 
               {/* 商品圖片 */}
+
               <Link to={`/product/${item.id}`}>
-                <img
-                  src={item.imageUrl}
-                  className="card-img-top"
-                  alt={item.title}
-                />
+                <div className="img-hover">
+                  <img
+                    src={item.imageUrl}
+                    className="card-img-top rounded-0"
+                    style={{
+                      height: "100px",
+                      objectFit: "cover",
+                    }}
+                    alt={item.title}
+                  />
+                </div>
               </Link>
 
               {/* 商品資訊 */}
