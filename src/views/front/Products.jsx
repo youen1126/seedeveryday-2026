@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { createAsyncAddCart } from "../../slice/cartSlice";
 import BackToTop from "@/components/BackToTop";
@@ -11,32 +11,14 @@ import { setCategory } from "../../slice/productsSlice";
 import Pagination from "../../components/Pagination";
 import useMessage from "../../hooks/useMessage";
 import { Oval } from "react-loader-spinner";
+import { toggleWishlistItem } from "../../slice/wishlistSlice";
 
 export default function Products() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { showSuccess } = useMessage();
-  //收藏清單存器
-  const [wishList, setWishList] = useState(() => {
-    const initWishList = localStorage.getItem("wishList")
-      ? JSON.parse(localStorage.getItem("wishList"))
-      : {};
-    return initWishList;
-  });
-
-  //收藏和取消收藏切換功能e.preventDefault();
-  const tooggleWishListItem = (e, product_id) => {
-    e.preventDefault();
-    setWishList((prev) => {
-      const newWishList = {
-        ...prev,
-        [product_id]: !prev[product_id],
-      };
-
-      localStorage.setItem("wishList", JSON.stringify(newWishList));
-      return newWishList;
-    });
-  };
+  const [animatingId, setAnimatingId] = useState(null);
+  const wishList = useSelector((state) => state.wishlist.items);
 
   const { products, pagination, currentCategory, categories, loading } =
     useSelector((state) => state.products);
@@ -151,17 +133,32 @@ export default function Products() {
                         }}
                         onClick={(e) => handleViewDetail(e, item.id)}
                       />
-                      <a href="#" className="text-dark border-none">
+                      <button
+                        type="button"
+                        className="p-0 border-0 bg-transparent text-dark"
+                        onClick={() => {
+                          dispatch(toggleWishlistItem(item.id));
+
+                          setAnimatingId(item.id);
+
+                          setTimeout(() => {
+                            setAnimatingId(null);
+                          }, 350);
+                        }}
+                      >
                         <i
-                          className={`fa-${wishList[item.id] ? "solid " : "regular"} fa-heart position-absolute`}
+                          className={`fa-${
+                            wishList[item.id] ? "solid" : "regular"
+                          } fa-heart position-absolute ${
+                            animatingId === item.id ? "is-animating" : ""
+                          }`}
                           style={{
                             right: "16px",
                             top: "16px",
                             fontSize: "18px",
                           }}
-                          onClick={(e) => tooggleWishListItem(e, item.id)}
                         ></i>
-                      </a>
+                      </button>
                       <div className="card-body p-0">
                         <h4 className="mb-0 mt-3">
                           <a
