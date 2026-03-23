@@ -108,7 +108,7 @@ export default function Products() {
           <div className="col-md-8">
             <div className="row">
               {/* 產品列表 */}
-              {loading && (
+              {loading ? (
                 <div className="login-loading">
                   <Oval
                     height={50}
@@ -118,77 +118,80 @@ export default function Products() {
                     strokeWidth={4}
                   />
                 </div>
-              )}
-              {products?.map((item) => {
-                return (
-                  <div className="col-md-6 card-hover" key={item.id}>
-                    <div className="card img-hover border-0 mb-4 position-relative position-relative">
-                      <img
-                        src={item.imageUrl}
-                        className="card-img-top rounded-0"
-                        alt={item.title}
-                        style={{
-                          height: "350px",
-                          objectFit: "cover",
-                        }}
-                        onClick={(e) => handleViewDetail(e, item.id)}
-                      />
-                      <button
-                        type="button"
-                        className="p-0 border-0 bg-transparent text-dark"
-                        onClick={() => {
-                          dispatch(toggleWishlistItem(item.id));
-
-                          setAnimatingId(item.id);
-
-                          setTimeout(() => {
-                            setAnimatingId(null);
-                          }, 350);
-                        }}
-                      >
-                        <i
-                          className={`fa-${
-                            wishList[item.id] ? "solid" : "regular"
-                          } fa-heart position-absolute ${
-                            animatingId === item.id ? "is-animating" : ""
-                          }`}
-                          style={{
-                            right: "16px",
-                            top: "16px",
-                            fontSize: "18px",
-                          }}
-                        ></i>
-                      </button>
-                      <div className="card-body p-0">
-                        <h4 className="mb-0 mt-3">
-                          <a
-                            href="#"
+              ) : (
+                <>
+                  {products?.map((item) => {
+                    return (
+                      <div className="col-md-6 card-hover" key={item.id}>
+                        <div className="card img-hover border-0 mb-4 position-relative position-relative">
+                          <img
+                            src={item.imageUrl}
+                            className="card-img-top rounded-0"
+                            alt={item.title}
+                            style={{
+                              height: "350px",
+                              objectFit: "cover",
+                            }}
                             onClick={(e) => handleViewDetail(e, item.id)}
-                          >
-                            {item.title}
-                          </a>
-                        </h4>
-                        <div className="py-3">
+                          />
                           <button
                             type="button"
-                            className="text-nowrap btn btn-dark w-20 p-2"
-                            onClick={(e) => handleAddCart(e, item.id)}
+                            className="p-0 border-0 bg-transparent text-dark"
+                            onClick={() => {
+                              dispatch(toggleWishlistItem(item.id));
+
+                              setAnimatingId(item.id);
+
+                              setTimeout(() => {
+                                setAnimatingId(null);
+                              }, 350);
+                            }}
                           >
-                            加入購物車
+                            <i
+                              className={`fa-${
+                                wishList[item.id] ? "solid" : "regular"
+                              } fa-heart position-absolute ${
+                                animatingId === item.id ? "is-animating" : ""
+                              }`}
+                              style={{
+                                right: "16px",
+                                top: "16px",
+                                fontSize: "18px",
+                              }}
+                            ></i>
                           </button>
+                          <div className="card-body p-0">
+                            <h4 className="mb-0 mt-3">
+                              <a
+                                href="#"
+                                onClick={(e) => handleViewDetail(e, item.id)}
+                              >
+                                {item.title}
+                              </a>
+                            </h4>
+                            <div className="py-3">
+                              <button
+                                type="button"
+                                className="text-nowrap btn btn-dark w-20 p-2"
+                                onClick={(e) => handleAddCart(e, item.id)}
+                              >
+                                加入購物車
+                              </button>
+                            </div>
+                          </div>
+                          <p className="card-text mb-0">
+                            NT${item.price}{" "}
+                            <span className="text-muted ">
+                              <del>NT${item.origin_price}</del>
+                            </span>
+                          </p>
+                          <p className="text-muted mt-3">{item.description}</p>
                         </div>
                       </div>
-                      <p className="card-text mb-0">
-                        NT${item.price}{" "}
-                        <span className="text-muted ">
-                          <del>NT${item.origin_price}</del>
-                        </span>
-                      </p>
-                      <p className="text-muted mt-3">{item.description}</p>
-                    </div>
-                  </div>
-                );
-              })}
+                    );
+                  })}
+                </>
+              )}
             </div>
             <br />
             {/* 頁碼區 */}
