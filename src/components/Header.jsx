@@ -49,7 +49,10 @@ const Header = () => {
             />
           </NavLink>
           {/* 右：購物車（關鍵！） */}
-          <div className="position-absolute end-0 me-3">
+          <div className="d-flex">
+            <NavLink to="/wishlist">
+              <i className="fa-solid fa-heart me-5"></i>
+            </NavLink>
             <NavLink to="/cart">
               <div className="position-relative">
                 <i className="fas fa-shopping-cart"></i>

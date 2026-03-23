@@ -13,6 +13,7 @@ import AdminOrders from "../views/admin/AdminOrders";
 import NotFound from "../views/NotFound";
 import ProtectedRoute from "../components/ProtectedRoute";
 import AboutWe from "../views/front/AboutWe";
+import WishList from "../views/front/WishList";
 
 export const router = createHashRouter([
   {
@@ -42,6 +43,10 @@ export const router = createHashRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/wishlist",
+        element: <WishList />,
       },
       {
         path: "/orderSuccess",
