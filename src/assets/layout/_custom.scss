@@ -1,15 +1,23 @@
 html,
 body {
   max-width: 100%;
-  overflow-x: hidden;
   margin: 0;
 }
 
 .navbar-custom-scroll::-webkit-scrollbar {
   display: none;
 }
-.navbar-custom-scroll {
-  -ms-overflow-style: none;
+.sticky-top.scrolled {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: rgba(187, 186, 186, 0.95);
+  backdrop-filter: blur(6px);
+}
+.sticky-top {
+  transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 @include media-breakpoint-down(md) {
@@ -20,10 +28,3 @@ body {
     right: 0;
   }
 }
-
-// .custom-header-md-open {
-//     position: absolute;
-//     top: 100%;
-//     right: 0px;
-//     left: 0px;
-//   }

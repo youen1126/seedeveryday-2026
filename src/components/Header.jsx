@@ -9,13 +9,27 @@ const Header = () => {
   const carts = useSelector((state) => state.cart.carts);
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     dispatch(createAsyncGetCart());
   }, [dispatch]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className="bg-white sticky-top">
+    <div className={`bg-white sticky-top ${scrolled ? "scrolled" : ""}`}>
       <div className="container">
         <nav className="navbar px-0 navbar-expand-lg navbar-light bg-white">
           {/* 左：漢堡 */}
