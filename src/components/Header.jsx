@@ -55,12 +55,7 @@ const Header = () => {
               top: "50%",
             }}
           >
-            <img
-              src={logoImg}
-              style={{
-                height: "200px",
-              }}
-            />
+            <img src={logoImg} className="logo" alt="logo" />
           </NavLink>
           {/* 右：購物車（關鍵！） */}
           <div className="d-flex">

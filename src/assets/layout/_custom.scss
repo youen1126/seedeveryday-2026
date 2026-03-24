@@ -4,6 +4,24 @@ body {
   margin: 0;
 }
 
+.logo {
+  height: 150px;
+  width: auto;
+  flex-shrink: 0;
+}
+
+@media (min-width: 568px) {
+  .logo {
+    height: 160px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .logo {
+    height: 180px;
+  }
+}
+
 .navbar-custom-scroll::-webkit-scrollbar {
   display: none;
 }
@@ -18,6 +36,28 @@ body {
 
 .navbar.scrolled {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hero-img {
+  width: 500px;
+  height: 500px;
+  object-fit: cover;
+}
+
+/* 平板 ≥768px */
+@media (min-width: 992px) {
+  .hero-img {
+    width: 600px;
+    height: 600px;
+  }
+}
+
+/* 桌機 ≥992px */
+@media (min-width: 1200px) {
+  .hero-img {
+    width: 650px;
+    height: 650px;
+  }
 }
 
 @include media-breakpoint-down(md) {
