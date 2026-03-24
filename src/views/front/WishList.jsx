@@ -3,6 +3,7 @@ import { toggleWishlistItem } from "../../slice/wishlistSlice";
 import { Link } from "react-router";
 import { createAsyncAddCart } from "../../slice/cartSlice";
 import useMessage from "../../hooks/useMessage";
+import YoumaylikeSwiper from "../../components/YoumaylikeSwiper";
 
 export default function WishList() {
   const dispatch = useDispatch();
@@ -30,76 +31,79 @@ export default function WishList() {
   };
 
   return (
-    <div className="container py-5">
-      <h2 className="mb-4 text-center">收藏列表</h2>
+    <>
+      <div className="container py-5">
+        <h2 className="mb-4 text-center">收藏列表</h2>
 
-      {/* 空狀態 */}
-      {wishListItems.length === 0 && (
-        <div className="text-center py-5">
-          <h1>
-            <i class="fa-sharp fa-regular fa-heart text-secondary"></i>
-          </h1>
-          <p>目前還沒有收藏任何商品</p>
-          <Link to="/product" className="btn btn-dark mt-3">
-            去逛逛
-          </Link>
-        </div>
-      )}
+        {/* 空狀態 */}
+        {wishListItems.length === 0 && (
+          <div className="text-center py-5">
+            <h1>
+              <i className="fa-sharp fa-regular fa-heart text-secondary"></i>
+            </h1>
+            <p>目前還沒有收藏任何商品</p>
+            <Link to="/product" className="btn btn-dark mt-3">
+              去逛逛
+            </Link>
+          </div>
+        )}
 
-      {/* 有資料 */}
-      <div className="row">
-        {wishListItems.map((item) => (
-          <div className="col-md-3 mb-4" key={item.id}>
-            <div className="card h-100 position-relative">
-              {/* 收藏按鈕 */}
-              <button
-                type="button"
-                className="p-0 border-0 bg-transparent"
-                onClick={() => dispatch(toggleWishlistItem(item.id))}
-                style={{
-                  position: "absolute",
-                  top: "10px",
-                  right: "10px",
-                  zIndex: 2,
-                }}
-              >
-                <i className="fa-solid fa-heart"></i>
-              </button>
+        {/* 有資料 */}
+        <div className="row">
+          {wishListItems.map((item) => (
+            <div className="col-md-3 mb-4" key={item.id}>
+              <div className="card h-100 position-relative">
+                {/* 收藏按鈕 */}
+                <button
+                  type="button"
+                  className="p-0 border-0 bg-transparent"
+                  onClick={() => dispatch(toggleWishlistItem(item.id))}
+                  style={{
+                    position: "absolute",
+                    top: "10px",
+                    right: "10px",
+                    zIndex: 2,
+                  }}
+                >
+                  <i className="fa-solid fa-heart"></i>
+                </button>
 
-              {/* 商品圖片 */}
+                {/* 商品圖片 */}
 
-              <Link to={`/product/${item.id}`}>
-                <div className="img-hover">
-                  <img
-                    src={item.imageUrl}
-                    className="card-img-top rounded-0"
-                    style={{
-                      height: "100px",
-                      objectFit: "cover",
-                    }}
-                    alt={item.title}
-                  />
-                </div>
-              </Link>
+                <Link to={`/product/${item.id}`}>
+                  <div className="img-hover">
+                    <img
+                      src={item.imageUrl}
+                      className="card-img-top rounded-0"
+                      style={{
+                        height: "100px",
+                        objectFit: "cover",
+                      }}
+                      alt={item.title}
+                    />
+                  </div>
+                </Link>
 
-              {/* 商品資訊 */}
-              <div className="card-body">
-                <h5 className="card-title">{item.title}</h5>
-                <p className="card-text">NT$ {item.price}</p>
-                <div className="py-3">
-                  <button
-                    type="button"
-                    className="text-nowrap btn btn-dark w-20 p-2"
-                    onClick={(e) => handleAddCart(e, item.id)}
-                  >
-                    加入購物車
-                  </button>
+                {/* 商品資訊 */}
+                <div className="card-body">
+                  <h5 className="card-title">{item.title}</h5>
+                  <p className="card-text">NT$ {item.price}</p>
+                  <div className="py-3">
+                    <button
+                      type="button"
+                      className="text-nowrap btn btn-dark w-20 p-2"
+                      onClick={(e) => handleAddCart(e, item.id)}
+                    >
+                      加入購物車
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
+      <YoumaylikeSwiper />
+    </>
   );
 }
