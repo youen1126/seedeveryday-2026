@@ -42,13 +42,15 @@ export default function Hotspot() {
                 alt={product.title}
               />
               <div className="card-body p-0">
-                <h4 className="mb-0 mt-4">{product.title}</h4>
-                <div className="d-flex justify-content-between mt-3">
+                <h4 className="mt-4">{product.title}</h4>
+
+                <div className="d-flex justify-content-between mt-3 align-items-start">
                   <p className="card-text text-muted mb-0 w-75">
                     {product.description}
                   </p>
+
                   <button
-                    className="btn btn-outline-dark rounded-0 text-nowrap"
+                    className="btn btn-outline-dark rounded-0 text-nowrap align-self-start"
                     onClick={(e) => handleViewDetail(e, product.id)}
                   >
                     暸解詳細
