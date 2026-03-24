@@ -2,15 +2,18 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import { useNavigate } from "react-router";
 import "swiper/css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { toggleWishlistItem } from "../slice/wishlistSlice";
 
 export default function YoumaylikeSwiper() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [animatingId, setAnimatingId] = useState(null);
   const { products } = useSelector((state) => state.products);
+  const wishList = useSelector((state) => state.wishlist.items);
 
-  const handmadeProducts = products.filter(
-    (item) => item.category === "種子小物",
-  );
+  const reversedProducts = [...products].reverse();
 
   //進入商品詳細頁
   const handleViewDetail = (e, id) => {
@@ -24,9 +27,7 @@ export default function YoumaylikeSwiper() {
         <h3 className="fw-bold">你可能也喜歡. . . . . .</h3>
         <div className="swiper mt-4 mb-5">
           <div className="swiper-wrapper">
-            {handmadeProducts.length === 0 ? (
-              <p>Loading...</p>
-            ) : handmadeProducts.length === 0 ? (
+            {reversedProducts.length === 0 ? (
               <p>目前沒有相關商品</p>
             ) : (
               <Swiper
@@ -35,17 +36,17 @@ export default function YoumaylikeSwiper() {
                   delay: 2500,
                   disableOnInteraction: false,
                 }}
-                slidesPerView={Math.min(handmadeProducts.length, 2)}
+                slidesPerView={Math.min(reversedProducts.length, 2)}
                 spaceBetween={10}
-                loop={handmadeProducts.length >= 3}
+                loop={reversedProducts.length >= 3}
                 breakpoints={{
                   767: {
-                    slidesPerView: Math.min(handmadeProducts.length, 3),
+                    slidesPerView: Math.min(reversedProducts.length, 3),
                     spaceBetween: 5,
                   },
                 }}
               >
-                {handmadeProducts.map((item) => (
+                {reversedProducts.map((item) => (
                   <SwiperSlide key={item.id}>
                     <div className="card border-0 mb-4 position-relative img-hover">
                       <img
@@ -58,6 +59,30 @@ export default function YoumaylikeSwiper() {
                         alt={item.title}
                         onClick={(e) => handleViewDetail(e, item.id)}
                       />
+                      <button
+                        type="button"
+                        className="p-0 border-0 bg-transparent text-dark"
+                        onClick={() => {
+                          dispatch(toggleWishlistItem(item.id));
+                          setAnimatingId(item.id);
+                          setTimeout(() => {
+                            setAnimatingId(null);
+                          }, 350);
+                        }}
+                      >
+                        <i
+                          className={`fa-${
+                            wishList[item.id] ? "solid" : "regular"
+                          } fa-heart position-absolute ${
+                            animatingId === item.id ? "is-animating" : ""
+                          }`}
+                          style={{
+                            right: "16px",
+                            top: "16px",
+                            fontSize: "18px",
+                          }}
+                        ></i>
+                      </button>
                       <div className="card-body p-3 mb-3">
                         <h4 className="mb-0 mt-3">
                           <a

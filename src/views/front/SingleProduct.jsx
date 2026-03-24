@@ -1,21 +1,23 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createAsyncAddCart } from "../../slice/cartSlice";
 import { getThisProductApi } from "../../services/product";
 import BackToTop from "@/components/BackToTop";
 import useMessage from "../../hooks/useMessage";
 import { Oval } from "react-loader-spinner";
 import YoumaylikeSwiper from "../../components/YoumaylikeSwiper";
+import { toggleWishlistItem } from "../../slice/wishlistSlice";
 
 export default function SingleProducts() {
   const { id } = useParams();
   const [product, setProduct] = useState({ imagesUrl: [] });
   const dispatch = useDispatch();
   const { showSuccess, showError } = useMessage();
-  //const { loading } = useSelector((state) => state.products);
+  const wishList = useSelector((state) => state.wishlist.items);
   const [qty, setQty] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [animatingId, setAnimatingId] = useState(null);
 
   useEffect(() => {
     const getProduct = async (id) => {
@@ -63,7 +65,7 @@ export default function SingleProducts() {
               className="carousel slide"
               data-ride="carousel"
             >
-              <div className="my-4 img-hover">
+              <div className="my-4 img-hover position-relative">
                 {loading ? (
                   <div className="login-loading">
                     <Oval
@@ -109,7 +111,31 @@ export default function SingleProducts() {
                 </li>
               </ol>
             </nav>
-            <h2 className="fw-bold h1 mb-1">{product.title}</h2>
+            <div className="d-flex align-items-center justify-content-between gap-3">
+              <h2 className="fw-bold h1 mb-1">{product.title}</h2>
+              <button
+                type="button"
+                className="p-0 border-0 bg-transparent d-inline-flex align-items-center justify-content-center"
+                aria-label="加入收藏"
+                onClick={() => {
+                  dispatch(toggleWishlistItem(product.id));
+                  setAnimatingId(product.id);
+                  setTimeout(() => {
+                    setAnimatingId(null);
+                  }, 350);
+                }}
+              >
+                <i
+                  className={`fa-${
+                    wishList[product.id] ? "solid" : "regular"
+                  } fa-heart ${animatingId === product.id ? "is-animating" : ""}`}
+                  style={{
+                    color: wishList[product.id] ? "#ff7a15ff" : "#212529",
+                    fontSize: "20px",
+                  }}
+                ></i>
+              </button>
+            </div>
             <br />
             <div className="col-md-12">
               <p>{product.description}</p>
