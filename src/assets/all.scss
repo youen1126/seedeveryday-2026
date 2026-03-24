@@ -1,13 +1,21 @@
-@import "../../node_modules/bootstrap/scss/functions";
-@import "helpers/variables";
-@import "../../node_modules/bootstrap/scss/mixins";
+@use "helpers/variables";
+@use "../../node_modules/bootstrap/scss/bootstrap" with (
+  $gray-100: variables.$gray-100,
+  $gray-900: variables.$gray-900,
+  $link-color: variables.$link-color,
+  $link-decoration: variables.$link-decoration,
+  $link-hover-decoration: variables.$link-hover-decoration,
+  $border-color: variables.$border-color,
+  $component-active-bg: variables.$component-active-bg,
+  $text-muted: variables.$text-muted,
+  $font-family-sans-serif: variables.$font-family-sans-serif,
+  $spacers: variables.$spacers
+);
 
-@import "../../node_modules/bootstrap/scss/bootstrap";
-
-@import "./layout/custom";
-@import "./layout/notfound";
-@import "./layout/backtotop";
-@import "./layout/loading";
-@import "./layout/footer";
-@import "./layout/components";
-@import "./layout/faheart";
+@use "./layout/custom";
+@use "./layout/notfound";
+@use "./layout/backtotop";
+@use "./layout/loading";
+@use "./layout/footer";
+@use "./layout/components";
+@use "./layout/faheart";

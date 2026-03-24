@@ -60,7 +60,7 @@ body {
   }
 }
 
-@include media-breakpoint-down(md) {
+@media (max-width: 767.98px) {
   .custom-header-md-open {
     position: fixed;
     top: 60px; // navbar 高度
