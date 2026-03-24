@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useCallback, useEffect, useState, useRef } from "react";
 import axios from "axios";
 import ProductModal from "../../components/ProductModal";
 import Pagination from "../../components/Pagination";
@@ -38,27 +38,30 @@ function AdminProducts() {
   const { showSuccess, showError } = useMessage();
 
   //取得遠端products data
-  const getProducts = async (page = 1) => {
-    setLoading(true);
-    try {
-      const res = await axios.get(
-        `${API_BASE}/api/${API_PATH}/admin/products?page=${page}`,
-      );
-      setProducts(res.data.products);
-      setPagination(res.data.pagination);
-      showSuccess("產品data取得成功");
-    } catch (error) {
-      console.error("catch失敗", error);
-      showError("產品data取得失敗");
-    } finally {
-      setLoading(false);
-    }
-  };
+  const getProducts = useCallback(
+    async (page = 1) => {
+      setLoading(true);
+      try {
+        const res = await axios.get(
+          `${API_BASE}/api/${API_PATH}/admin/products?page=${page}`,
+        );
+        setProducts(res.data.products);
+        setPagination(res.data.pagination);
+        showSuccess("產品data取得成功");
+      } catch (error) {
+        console.error("catch失敗", error);
+        showError("產品data取得失敗");
+      } finally {
+        setLoading(false);
+      }
+    },
+    [showError, showSuccess],
+  );
 
   useEffect(() => {
     getProducts();
     productModalRef.current = new Modal("#productModal");
-  }, []);
+  }, [getProducts]);
 
   const openModal = (type, product) => {
     setModalType(type);

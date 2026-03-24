@@ -35,7 +35,7 @@ export default function ProtectedRoute({ children }) {
       }
     }
     checkLogin();
-  }, []);
+  }, [showError, showSuccess]);
 
   if (loading) return <RotatingTriangles />;
   if (!isAuth) return <Navigate to="/login" />;
