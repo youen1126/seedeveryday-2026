@@ -6,14 +6,9 @@ export default function HomeHero() {
       <div className="col-md-6">
         <img
           src="https://i.pinimg.com/1200x/7d/6b/90/7d6b90ef382a67ec60646a95feab02ec.jpg"
-          className="img-fluid "
+          className="img-fluid hero-img"
           data-aos="fade-down"
           alt="天然種子手作裝飾 松果藝術 擺飾"
-          style={{
-            height: "650px",
-            width: "650px",
-            objectFit: "cover",
-          }}
         />
       </div>
       <div className="col-md-6 d-flex flex-column justify-content-center mt-md-0 mt-3">
