@@ -1,6 +1,6 @@
-# 六角 2025-2026 React專班 個人專題 電商平台「種子日常Seed everyday」
+# 個人專題 電商平台「種子日常Seed everyday」
 
-# 此專案作業使用 React + Vite
+## 六角 2025-2026 React專班
 
 ## 核心技術
 
