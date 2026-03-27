@@ -30,7 +30,8 @@ dist-ssr
 
 # env variables (very important)
 
-
+*.env
+.env
 
 # 以下是單檔不想add . 
 
