@@ -10,6 +10,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const closeMenu = () => setIsOpen(false);
 
   useEffect(() => {
     dispatch(createAsyncGetCart());
@@ -34,16 +35,16 @@ const Header = () => {
         <nav className="navbar px-0 navbar-expand-lg navbar-light bg-white">
           {/* 左：漢堡 */}
           <button
-            className="navbar-toggler"
+            className={`navbar-toggler custom-menu-toggle ${isOpen ? "is-open" : ""}`}
             type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
             aria-controls="navbarNav"
-            aria-expanded="false"
+            aria-expanded={isOpen}
             aria-label="Toggle navigation"
             onClick={() => setIsOpen(!isOpen)}
           >
-            <span className="navbar-toggler-icon"></span>
+            <span className="custom-menu-toggle__line"></span>
+            <span className="custom-menu-toggle__line"></span>
+            <span className="custom-menu-toggle__line"></span>
           </button>
           {/* 中：logo */}
           <NavLink
@@ -73,23 +74,23 @@ const Header = () => {
           </div>
           {/* collapse（獨立一層） */}
           <div
-            className="collapse navbar-collapse bg-white custom-header-md-open"
+            className={`navbar-collapse bg-white custom-header-md-open ${
+              isOpen ? "is-open" : ""
+            }`}
             id="navbarNav"
           >
-            <div className={`collapse navbar-collapse ${isOpen ? "show" : ""}`}>
-              <ul className="navbar-nav">
-                <li className="nav-item active">
-                  <NavLink className="nav-link ps-0" to="/product">
-                    找商品
-                  </NavLink>
-                </li>
-                <li className="nav-item active">
-                  <NavLink className="nav-link ps-0" to="/aboutwe">
-                    品牌故事
-                  </NavLink>
-                </li>
-              </ul>
-            </div>
+            <ul className="navbar-nav">
+              <li className="nav-item active">
+                <NavLink className="nav-link ps-0" to="/product" onClick={closeMenu}>
+                  找商品
+                </NavLink>
+              </li>
+              <li className="nav-item active">
+                <NavLink className="nav-link ps-0" to="/aboutwe" onClick={closeMenu}>
+                  品牌故事
+                </NavLink>
+              </li>
+            </ul>
           </div>
         </nav>
       </div>
