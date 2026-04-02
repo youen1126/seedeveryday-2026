@@ -10,6 +10,12 @@ body {
   flex-shrink: 0;
 }
 
+.checkoutList .container {
+  max-width: 100%;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
 @media (min-width: 568px) {
   .logo {
     height: 160px;

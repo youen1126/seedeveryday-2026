@@ -1,0 +1,27 @@
+.cart-item-info {
+  min-width: 0;
+}
+
+.cart-item-top,
+.cart-item-bottom {
+  gap: 8px;
+}
+
+.cart-item-title {
+  min-width: 0;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cart-item-qty {
+  flex-shrink: 0;
+}
+
+@media (max-width: 1000px) {
+  .cart-item-total {
+    width: 100%;
+    margin-top: 4px;
+  }
+}

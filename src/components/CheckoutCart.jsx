@@ -7,8 +7,9 @@ export default function CheckoutCart() {
   const total = useSelector(selectCartTotal);
   return (
     <div className="col-md-4">
-      <div className="border p-4 mb-4">
-        <h4 className="mb-4">購買項目</h4>
+      <div className="border p-2 mb-4 bg-gray">
+        <h4 className="mb-2 mt-2 text-center">購買項目</h4>
+        <hr />
         {carts.map((item) => {
           return (
             <div className="d-flex p-2" key={item.id}>
@@ -17,16 +18,16 @@ export default function CheckoutCart() {
                 alt={item.product.title}
                 className="img-size-sm"
               />
-              <div className="w-100">
-                <div className="d-flex justify-content-between fw-bold">
-                  <p className="mb-0">{item.product.title}</p>
-                  <p className="mb-0">{item.qty}</p>
+              <div className="w-100 cart-item-info">
+                <div className="d-flex justify-content-between fw-bold cart-item-top">
+                  <p className="mb-0 cart-item-title">{item.product.title}</p>
+                  <p className="mb-0 cart-item-qty">{item.qty}</p>
                 </div>
-                <div className="d-flex justify-content-between">
+                <div className="d-flex justify-content-between flex-wrap cart-item-price-row">
                   <p className="text-muted mb-0">
                     <small>NT${curryency(item.product.price)}</small>
                   </p>
-                  <p className="mb-0">
+                  <p className="mb-0 cart-item-total">
                     NT${curryency(item.qty * item.product.price)}
                   </p>
                 </div>
@@ -34,7 +35,7 @@ export default function CheckoutCart() {
             </div>
           );
         })}
-        <table className="table mt-4 border-top border-bottom text-muted">
+        <table className="table mt-2 border-top border-bottom text-muted">
           <tbody>
             <tr>
               <th scope="row" className="border-0 px-0 pt-4 font-weight-normal">

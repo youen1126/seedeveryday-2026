@@ -1,4 +1,4 @@
-import CheckoutCart from "../../components/checkoutCart";
+import CheckoutCart from "@/components/checkoutCart";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { emailValidation } from "@/utils/emailValidation";
@@ -59,7 +59,7 @@ export default function Checkout() {
   }, []);
 
   return (
-    <div className="bg-light pt-5 pb-7">
+    <div className="bg-light pt-3 pb-5 checkoutList">
       <CheckoutFlow currentStep={2} />
       <div className="container">
         <div className="row justify-content-center flex-md-row flex-column-reverse">
@@ -179,7 +179,7 @@ export default function Checkout() {
                   </a>
                   <button
                     type="submit"
-                    className="btn btn-dark py-3 px-7 rounded-0"
+                    className="btn btn-dark py-2 px-3 rounded-0"
                     disabled={!isValid}
                   >
                     送出訂單
