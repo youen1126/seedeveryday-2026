@@ -1,14 +1,15 @@
-import CheckoutCart from "@/components/checkoutCart";
+import { useEffect } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { emailValidation } from "@/utils/emailValidation";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { createAsyncGetCart } from "../../slice/cartSlice";
-import useMessage from "../../hooks/useMessage";
-import CheckoutFlow from "../../components/CheckoutFlow";
-import { scrollToTop } from "../../utils/scrollToTop";
-import { useEffect } from "react";
+
+import CheckoutCart from "@/components/checkoutCart";
+import CheckoutFlow from "@/components/CheckoutFlow";
+import useMessage from "@/hooks/useMessage";
+import { createAsyncGetCart } from "@/slice/cartSlice";
+import { emailValidation } from "@/utils/emailValidation";
+import { scrollToTop } from "@/utils/scrollToTop";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
 const API_PATH = import.meta.env.VITE_API_PATH;

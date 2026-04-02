@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import { selectCartTotal } from "../slice/cartSlice";
-import { curryency } from "../utils/filter";
+import { selectCartTotal } from "@/slice/cartSlice";
+import { curryency } from "@/utils/filter";
 
 export default function CheckoutCart() {
   const carts = useSelector((state) => state.cart.carts);

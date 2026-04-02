@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import "swiper/css";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { toggleWishlistItem } from "../slice/wishlistSlice";
+import { toggleWishlistItem } from "@/slice/wishlistSlice";
 
 export default function YoumaylikeSwiper() {
   const navigate = useNavigate();

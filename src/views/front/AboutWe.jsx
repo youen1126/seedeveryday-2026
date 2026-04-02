@@ -1,8 +1,9 @@
-import { Link } from "react-router";
-import BackToTop from "@/components/BackToTop";
 import { useEffect } from "react";
-import YoumaylikeSwiper from "../../components/YoumaylikeSwiper";
-import { scrollToTop } from "../../utils/scrollToTop";
+import { Link } from "react-router";
+
+import BackToTop from "@/components/BackToTop";
+import YoumaylikeSwiper from "@/components/YoumaylikeSwiper";
+import { scrollToTop } from "@/utils/scrollToTop";
 
 export default function AboutWe() {
   useEffect(() => {

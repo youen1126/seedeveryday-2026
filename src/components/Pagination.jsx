@@ -1,4 +1,4 @@
-import { scrollToTop } from "../utils/scrollToTop";
+import { scrollToTop } from "@/utils/scrollToTop";
 
 export default function Pagination({ pagination, onChangePage }) {
   if (!pagination || !pagination.total_pages) return null;

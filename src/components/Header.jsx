@@ -1,9 +1,9 @@
-import { NavLink } from "react-router";
-import logoImg from "../../public/seed-everydayicon-Header.png";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { createAsyncGetCart } from "../slice/cartSlice";
-import { useState } from "react";
+import { NavLink } from "react-router";
+
+import logoImg from "../../public/seed-everydayicon-Header.png";
+import { createAsyncGetCart } from "@/slice/cartSlice";
 
 const Header = () => {
   const carts = useSelector((state) => state.cart.carts);

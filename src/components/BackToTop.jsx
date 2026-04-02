@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { scrollToTop } from "../utils/scrollToTop";
+import { scrollToTop } from "@/utils/scrollToTop";
 
 export default function BackToTop() {
   const [visible, setVisible] = useState(false);

@@ -1,11 +1,12 @@
-import { useCallback, useEffect, useState, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import axios from "axios";
-import ProductModal from "../../components/ProductModal";
-import Pagination from "../../components/Pagination";
-import { Oval } from "react-loader-spinner";
-import useMessage from "@/hooks/useMessage";
 import { Modal } from "bootstrap";
-import { scrollToTop } from "../../utils/scrollToTop";
+import { Oval } from "react-loader-spinner";
+
+import Pagination from "@/components/Pagination";
+import ProductModal from "@/components/ProductModal";
+import useMessage from "@/hooks/useMessage";
+import { scrollToTop } from "@/utils/scrollToTop";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
 const API_PATH = import.meta.env.VITE_API_PATH;

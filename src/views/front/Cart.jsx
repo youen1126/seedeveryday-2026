@@ -1,21 +1,22 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router";
+
+import CheckoutFlow from "@/components/CheckoutFlow";
+import EmptyCart from "@/components/EmptyCart";
+import YoumaylikeSwiper from "@/components/YoumaylikeSwiper";
+import useMessage from "@/hooks/useMessage";
+import { DelAllCartApi } from "@/services/carts";
+import { getProductAllApi } from "@/services/product";
 import {
   createAsyncAddCart,
   createAsyncDelCart,
-  selectCartTotal,
-  createAsyncUpdataItemNum,
   createAsyncGetCart,
-} from "../../slice/cartSlice";
-import { DelAllCartApi } from "../../services/carts";
-import { Link, useNavigate } from "react-router";
-import EmptyCart from "../../components/EmptyCart";
-import useMessage from "../../hooks/useMessage";
-import CheckoutFlow from "../../components/CheckoutFlow";
-import YoumaylikeSwiper from "../../components/YoumaylikeSwiper";
-import { toggleWishlistItem } from "../../slice/wishlistSlice";
-import { getProductAllApi } from "../../services/product";
-import { scrollToTop } from "../../utils/scrollToTop";
+  createAsyncUpdataItemNum,
+  selectCartTotal,
+} from "@/slice/cartSlice";
+import { toggleWishlistItem } from "@/slice/wishlistSlice";
+import { scrollToTop } from "@/utils/scrollToTop";
 
 export default function Cart() {
   const carts = useSelector((state) => state.cart.carts);
