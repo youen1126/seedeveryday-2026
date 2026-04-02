@@ -51,11 +51,7 @@ export default function YoumaylikeSwiper() {
                     <div className="card border-0 mb-4 position-relative img-hover">
                       <img
                         src={item.imageUrl}
-                        style={{
-                          height: "350px",
-                          objectFit: "cover",
-                        }}
-                        className="card-img-top rounded-0"
+                        className="card-img-top rounded-0 img-size-large"
                         alt={item.title}
                         onClick={(e) => handleViewDetail(e, item.id)}
                       />

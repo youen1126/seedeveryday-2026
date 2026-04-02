@@ -74,11 +74,7 @@ export default function WishList() {
                   <div className="img-hover">
                     <img
                       src={item.imageUrl}
-                      className="card-img-top rounded-0"
-                      style={{
-                        height: "100px",
-                        objectFit: "cover",
-                      }}
+                      className="card-img-top rounded-0 img-size-middle"
                       alt={item.title}
                     />
                   </div>

@@ -15,8 +15,7 @@ export default function CheckoutCart() {
               <img
                 src={item.product.imageUrl}
                 alt={item.product.title}
-                className="me-2"
-                style={{ width: "48px", height: "48px", objectFit: "cover" }}
+                className="img-size-sm"
               />
               <div className="w-100">
                 <div className="d-flex justify-content-between fw-bold">

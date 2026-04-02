@@ -64,11 +64,7 @@ export default function Home() {
             <img
               src="https://i.pinimg.com/1200x/57/af/03/57af030b81bfb337f624f636cffbcde2.jpg"
               alt="無患子照片"
-              style={{
-                width: "100px",
-                height: "100px",
-                objectFit: "cover",
-              }}
+              className="img-size-sm3"
               data-aos="flip-left"
               loading="lazy"
             />
@@ -83,11 +79,7 @@ export default function Home() {
             <img
               src="https://i.pinimg.com/736x/97/eb/bd/97ebbd44d102b0bee444cb9d4648cebe.jpg"
               alt="橡實照片"
-              style={{
-                width: "100px",
-                height: "100px",
-                objectFit: "cover",
-              }}
+              className="img-size-sm3"
               data-aos="flip-left"
               loading="lazy"
             />
@@ -103,11 +95,7 @@ export default function Home() {
             <img
               src="https://i.pinimg.com/1200x/f0/76/3a/f0763a55979173e09d01922b9211d259.jpg"
               alt="菩提子照片"
-              style={{
-                width: "100px",
-                height: "100px",
-                objectFit: "cover",
-              }}
+              className="img-size-sm3"
               data-aos="flip-left"
               loading="lazy"
             />

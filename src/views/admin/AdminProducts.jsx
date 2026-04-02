@@ -179,12 +179,8 @@ function AdminProducts() {
               <div className="card m-3">
                 <img
                   src={seeProduct.imageUrl}
-                  className="card-img-top"
+                  className="card-img-top img-size-large"
                   alt={seeProduct.title}
-                  style={{
-                    height: "400px",
-                    objectFit: "cover",
-                  }}
                 />
                 <div className="card-body">
                   <h5 className="card-title">
@@ -204,12 +200,12 @@ function AdminProducts() {
                     元 / {seeProduct.price} 元
                   </div>
                   <h5 className="mt-3">更多圖片：</h5>
-                  <div className="p-2">
+                  <div className="row p-2">
                     {seeProduct.imagesUrl?.map((i, idx) => (
-                      <div className="p-2" key={i + idx}>
+                      <div className="col p-2" key={i + idx}>
                         <img
                           src={i}
-                          style={{ height: "100px", borderRadius: 8 }}
+                          className="img-size-middle"
                           alt="其他配圖"
                         />
                       </div>

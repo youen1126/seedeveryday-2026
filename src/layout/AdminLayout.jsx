@@ -18,7 +18,7 @@ export default function AdminLayout() {
       <header
         className="align-items-center text-white"
         style={{
-          minHeight: "5vh",
+          minHeight: "50px",
           backgroundColor: "#c5ab89",
         }}
       >

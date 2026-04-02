@@ -92,13 +92,8 @@ export default function Login() {
           <div className="col-md-6">
             <img
               src="https://i.pinimg.com/736x/0c/90/c6/0c90c6192e90dc7eb25121b3f9eb669e.jpg"
-              className="img-fluid"
+              className="img-fluid img-size-Xlarge"
               data-aos="fade-down"
-              style={{
-                height: "500px",
-                width: "500px",
-                objectFit: "cover",
-              }}
               alt="手作氛圍的裝飾品，如松果、木製小樹葉等等"
             />
           </div>

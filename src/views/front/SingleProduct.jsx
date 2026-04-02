@@ -80,13 +80,8 @@ export default function SingleProducts() {
                   <>
                     <img
                       src={product.imageUrl}
-                      style={{
-                        height: "500px",
-                        width: "500px",
-                        objectFit: "cover",
-                      }}
                       alt={product.title}
-                      className="img-fluid mt-4"
+                      className="img-fluid mt-4 img-size-Xlarge"
                     />
                   </>
                 )}
@@ -191,13 +186,8 @@ export default function SingleProducts() {
               <div className="my-4 img-hover" key={index}>
                 <img
                   src={item}
-                  style={{
-                    height: "500px",
-                    width: "500px",
-                    objectFit: "cover",
-                  }}
                   alt="其他附圖"
-                  className="img-fluid mt-4"
+                  className="img-fluid mt-4 img-size-Xlarge"
                   loading="lazy"
                 />
               </div>

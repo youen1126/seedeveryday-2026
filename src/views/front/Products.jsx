@@ -126,12 +126,8 @@ export default function Products() {
                         <div className="card img-hover border-0 mb-4 position-relative position-relative">
                           <img
                             src={item.imageUrl}
-                            className="card-img-top rounded-0"
+                            className="card-img-top rounded-0 img-size-large"
                             alt={item.title}
-                            style={{
-                              height: "350px",
-                              objectFit: "cover",
-                            }}
                             onClick={(e) => handleViewDetail(e, item.id)}
                           />
                           <button

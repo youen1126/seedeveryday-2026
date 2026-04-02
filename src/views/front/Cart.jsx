@@ -155,15 +155,11 @@ export default function Cart() {
                   <>
                     {carts.map((item) => {
                       return (
-                        <div className="d-flex mt-3 bg-light" key={item.id}>
+                        <div className="d-flex mt-3 bg-light " key={item.id}>
                           <img
                             src={item.product.imageUrl}
                             alt={item.product.title}
-                            style={{
-                              width: "100px",
-                              height: "80px",
-                              objectFit: "cover",
-                            }}
+                            className="img-size-sm3"
                           />
                           <div className="w-100 p-3 position-relative">
                             <a

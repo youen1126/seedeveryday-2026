@@ -1,0 +1,30 @@
+.img-size-sm {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.img-size-sm3 {
+  height: 120px;
+  width: 120px;
+  object-fit: cover;
+}
+
+.img-size-middle {
+  height: 250px;
+  object-fit: cover;
+  border-radius: 8;
+}
+
+.img-size-large {
+  height: 350px;
+  //   width: 350px;
+  object-fit: cover;
+}
+
+.img-size-Xlarge {
+  height: 500px;
+  width: 500px;
+  object-fit: cover;
+}
