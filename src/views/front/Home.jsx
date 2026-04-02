@@ -38,6 +38,7 @@ export default function Home() {
                         height: "160px",
                         objectFit: "cover",
                       }}
+                      loading="lazy"
                     />
                     <div className="d-flex flex-column">
                       <p className="h5 link-hover">在忙碌的生活裡</p>
@@ -55,27 +56,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      {/* section 找不出的section暫時留著 */}
-      <div className="carousel-item">
-        <div className="row justify-content-center py-7">
-          <div className="col-md-8 d-flex">
-            <img
-              src="https://i.pinimg.com/avif/1200x/ff/f4/21/fff421ec047a1f8ce38666d80d8a6cf3.avf"
-              alt="一張高質感的種子照片，能看到種子的細節"
-              className="rounded-circle me-5"
-              style={{
-                width: "160px",
-                height: "160px",
-                objectFit: "cover",
-              }}
-            />
-            <div className="d-flex flex-column">
-              <p className="h5">檢查內容</p>
-              <p className="mt-auto text-muted">檢查內容</p>
-            </div>
-          </div>
-        </div>
-      </div>
+
       {/* section 4 小圖-標題-文字  */}
       <div className="container my-7">
         <div className="row">
@@ -89,6 +70,7 @@ export default function Home() {
                 objectFit: "cover",
               }}
               data-aos="flip-left"
+              loading="lazy"
             />
             <h4 className="mt-4">無患子｜守護與平安</h4>
             <p className="text-muted">
@@ -107,6 +89,7 @@ export default function Home() {
                 objectFit: "cover",
               }}
               data-aos="flip-left"
+              loading="lazy"
             />
             <h4 className="mt-4">橡實｜力量與成長</h4>
             <p className="text-muted">
@@ -126,6 +109,7 @@ export default function Home() {
                 objectFit: "cover",
               }}
               data-aos="flip-left"
+              loading="lazy"
             />
             <h4 className="mt-4">菩提子｜覺察與智慧</h4>
             <p className="text-muted">
