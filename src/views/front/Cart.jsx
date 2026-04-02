@@ -15,6 +15,7 @@ import CheckoutFlow from "../../components/CheckoutFlow";
 import YoumaylikeSwiper from "../../components/YoumaylikeSwiper";
 import { toggleWishlistItem } from "../../slice/wishlistSlice";
 import { getProductAllApi } from "../../services/product";
+import { scrollToTop } from "../../utils/scrollToTop";
 
 export default function Cart() {
   const carts = useSelector((state) => state.cart.carts);
@@ -38,10 +39,7 @@ export default function Cart() {
     };
 
     getWishListProducts();
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    scrollToTop();
   }, []);
 
   const collectedItems = wishListProducts.filter((item) => wishList[item.id]);

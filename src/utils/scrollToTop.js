@@ -1,0 +1,8 @@
+//回到頂部
+
+export function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+}

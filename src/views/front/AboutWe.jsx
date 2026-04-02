@@ -2,12 +2,11 @@ import { Link } from "react-router";
 import BackToTop from "@/components/BackToTop";
 import { useEffect } from "react";
 import YoumaylikeSwiper from "../../components/YoumaylikeSwiper";
+import { scrollToTop } from "../../utils/scrollToTop";
+
 export default function AboutWe() {
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    scrollToTop();
   }, []);
   return (
     <div className="about-page">

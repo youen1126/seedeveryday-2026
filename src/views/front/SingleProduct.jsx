@@ -8,6 +8,7 @@ import useMessage from "../../hooks/useMessage";
 import { Oval } from "react-loader-spinner";
 import YoumaylikeSwiper from "../../components/YoumaylikeSwiper";
 import { toggleWishlistItem } from "../../slice/wishlistSlice";
+import { scrollToTop } from "../../utils/scrollToTop";
 
 export default function SingleProducts() {
   const { id } = useParams();
@@ -33,10 +34,7 @@ export default function SingleProducts() {
       }
     };
     getProduct(id);
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    scrollToTop();
   }, [id, showError]);
 
   const handleAddCart = (e, id, qty = 1) => {

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { scrollToTop } from "../utils/scrollToTop";
 
 export default function BackToTop() {
   const [visible, setVisible] = useState(false);
@@ -19,12 +20,9 @@ export default function BackToTop() {
     };
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
+  useEffect(() => {
+    scrollToTop();
+  }, []);
 
   return (
     visible && (

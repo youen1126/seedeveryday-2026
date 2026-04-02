@@ -3,13 +3,11 @@ import Hotspot from "./Hotspot";
 import HomeHero from "./HomeHero";
 import BackToTop from "@/components/BackToTop";
 import { useEffect } from "react";
+import { scrollToTop } from "../../utils/scrollToTop";
 
 export default function Home() {
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    scrollToTop();
   }, []);
   return (
     <>
