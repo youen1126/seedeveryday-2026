@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
-import { createAsyncAddCart } from "../../slice/cartSlice";
-import { getThisProductApi } from "../../services/product";
-import BackToTop from "@/components/BackToTop";
-import useMessage from "../../hooks/useMessage";
 import { Oval } from "react-loader-spinner";
-import YoumaylikeSwiper from "../../components/YoumaylikeSwiper";
-import { toggleWishlistItem } from "../../slice/wishlistSlice";
-import { scrollToTop } from "../../utils/scrollToTop";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useParams } from "react-router";
+
+import BackToTop from "@/components/BackToTop";
+import YoumaylikeSwiper from "@/components/YoumaylikeSwiper";
+import useMessage from "@/hooks/useMessage";
+import { getThisProductApi } from "@/services/product";
+import { createAsyncAddCart } from "@/slice/cartSlice";
+import { toggleWishlistItem } from "@/slice/wishlistSlice";
+import { scrollToTop } from "@/utils/scrollToTop";
 
 export default function SingleProducts() {
   const { id } = useParams();

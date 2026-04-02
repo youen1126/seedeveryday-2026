@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { Oval } from "react-loader-spinner";
 import { useDispatch, useSelector } from "react-redux";
-import { createAsyncAddCart } from "../../slice/cartSlice";
+import { useNavigate } from "react-router";
+
 import BackToTop from "@/components/BackToTop";
+import Pagination from "@/components/Pagination";
+import useMessage from "@/hooks/useMessage";
+
+import { createAsyncAddCart } from "@/slice/cartSlice";
 import {
   createAsyncGetAllProducts,
   createAsyncGetProducts,
-} from "../../slice/productsSlice";
-import { setCategory } from "../../slice/productsSlice";
-import Pagination from "../../components/Pagination";
-import useMessage from "../../hooks/useMessage";
-import { Oval } from "react-loader-spinner";
-import { toggleWishlistItem } from "../../slice/wishlistSlice";
+  setCategory,
+} from "@/slice/productsSlice";
+import { toggleWishlistItem } from "@/slice/wishlistSlice";
 
 export default function Products() {
   const navigate = useNavigate();

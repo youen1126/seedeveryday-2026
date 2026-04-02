@@ -1,9 +1,10 @@
-import { useSelector, useDispatch } from "react-redux";
-import { toggleWishlistItem } from "../../slice/wishlistSlice";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router";
-import { createAsyncAddCart } from "../../slice/cartSlice";
-import useMessage from "../../hooks/useMessage";
-import YoumaylikeSwiper from "../../components/YoumaylikeSwiper";
+
+import YoumaylikeSwiper from "@/components/YoumaylikeSwiper";
+import useMessage from "@/hooks/useMessage";
+import { createAsyncAddCart } from "@/slice/cartSlice";
+import { toggleWishlistItem } from "@/slice/wishlistSlice";
 
 export default function WishList() {
   const dispatch = useDispatch();

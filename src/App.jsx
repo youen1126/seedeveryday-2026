@@ -9,9 +9,9 @@ import MessageToast from "./components/MessageToast";
 export default function App() {
   useEffect(() => {
     AOS.init({
-      duration: 800, // 動畫時間
-      once: true, // 是否只播一次
-      offset: 120, // 提前多少開始觸發
+      duration: 800,
+      once: true,
+      offset: 120,
       easing: "ease-out-cubic",
     });
   }, []);

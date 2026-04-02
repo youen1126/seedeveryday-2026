@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { createAsyncGetProducts } from "../../slice/productsSlice";
+import { createAsyncGetProducts } from "@/slice/productsSlice";
 
 export default function Hotspot() {
   const dispatch = useDispatch();
