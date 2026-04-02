@@ -58,10 +58,10 @@ const Header = () => {
           >
             <img src={logoImg} className="logo" alt="Seed everydat logo" />
           </NavLink>
-          {/* 右：購物車（關鍵！） */}
+          {/* 右：收藏和購物車 */}
           <div className="d-flex">
             <NavLink to="/wishlist">
-              <i className="fa-sharp fa-solid fa-heart me-5"></i>
+              <i className="fa-sharp fa-solid fa-heart me-4"></i>
             </NavLink>
             <NavLink to="/cart">
               <div className="position-relative  me-5">
@@ -72,7 +72,7 @@ const Header = () => {
               </div>
             </NavLink>
           </div>
-          {/* collapse（獨立一層） */}
+          {/* collapse */}
           <div
             className={`navbar-collapse bg-white custom-header-md-open ${
               isOpen ? "is-open" : ""
