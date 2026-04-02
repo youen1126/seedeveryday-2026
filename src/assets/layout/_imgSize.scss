@@ -19,12 +19,17 @@
 
 .img-size-large {
   height: 350px;
-  //   width: 350px;
   object-fit: cover;
 }
 
 .img-size-Xlarge {
   height: 500px;
+  width: 500px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.img-size-Xlarge-w {
   width: 500px;
   object-fit: cover;
 }

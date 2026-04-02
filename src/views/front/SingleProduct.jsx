@@ -187,7 +187,7 @@ export default function SingleProducts() {
                 <img
                   src={item}
                   alt="其他附圖"
-                  className="img-fluid mt-4 img-size-Xlarge"
+                  className="img-fluid mt-4 img-size-Xlarge-w"
                   loading="lazy"
                 />
               </div>
