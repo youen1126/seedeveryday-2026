@@ -24,13 +24,14 @@ export default function MessageToast() {
               ></button>
             </div>
             <div className="toast-body">
-              <img
+              {/* <img
                 src={message.img}
                 className="rounded me-2"
-                alt="Cute Cat GIF"
+                alt="Cute pictrue"
                 style={{ height: "50px" }}
-              />
+              /> */}
               {message.text}
+              {message.emoji}
             </div>
           </div>
         );

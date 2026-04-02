@@ -13,6 +13,8 @@ export const messageSlice = createSlice({
         img: action.payload.success
           ? "https://media1.tenor.com/m/SsPt6Ko9mnAAAAAd/cat-cute-cat.gif"
           : "https://media1.tenor.com/m/cxTH4XWKUVIAAAAC/cat.gif",
+        icon: action.payload.success ? "bi bi-check-all" : "bi bi-clipboard-x",
+        emoji: action.payload.success ? "😇" : "😵",
       });
     },
     removeMessage(state, action) {
