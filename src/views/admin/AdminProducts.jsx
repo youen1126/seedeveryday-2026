@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Modal } from "bootstrap";
-import { Oval } from "react-loader-spinner";
 
 import Pagination from "@/components/Pagination";
 import ProductModal from "@/components/ProductModal";
 import useMessage from "@/hooks/useMessage";
+import LoadingSpinner from "@/components/LoadingSpinner";
+
 import { scrollToTop } from "@/utils/scrollToTop";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
@@ -161,17 +162,7 @@ function AdminProducts() {
                   ))}
                 </tbody>
               </table>
-              {loading && (
-                <div className="login-loading">
-                  <Oval
-                    height={50}
-                    width={50}
-                    color="#ff7a15ff"
-                    secondaryColor="#ccc"
-                    strokeWidth={4}
-                  />
-                </div>
-              )}
+              {loading && <LoadingSpinner />}
             </div>
             {/* 頁碼 */}
             <div className="m-3">

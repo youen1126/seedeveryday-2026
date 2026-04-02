@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { Oval } from "react-loader-spinner";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router";
 
 import BackToTop from "@/components/BackToTop";
 import YoumaylikeSwiper from "@/components/YoumaylikeSwiper";
 import useMessage from "@/hooks/useMessage";
+import LoadingSpinner from "@/components/LoadingSpinner";
 import { getThisProductApi } from "@/services/product";
 import { createAsyncAddCart } from "@/slice/cartSlice";
 import { toggleWishlistItem } from "@/slice/wishlistSlice";
@@ -66,15 +66,7 @@ export default function SingleProducts() {
             >
               <div className="my-4 img-hover position-relative">
                 {loading ? (
-                  <div className="login-loading">
-                    <Oval
-                      height={50}
-                      width={50}
-                      color="#ff7a15ff"
-                      secondaryColor="#ccc"
-                      strokeWidth={4}
-                    />
-                  </div>
+                  <LoadingSpinner />
                 ) : (
                   <>
                     <img

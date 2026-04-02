@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Oval } from "react-loader-spinner";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
 const API_PATH = import.meta.env.VITE_API_PATH;
@@ -67,17 +67,7 @@ export default function AdminOrders() {
                 })}
               </thead>
             </table>
-            {loading && (
-              <div className="login-loading">
-                <Oval
-                  height={50}
-                  width={50}
-                  color="#ff7a15ff"
-                  secondaryColor="#ccc"
-                  strokeWidth={4}
-                />
-              </div>
-            )}
+            {loading && <LoadingSpinner />}
           </div>
         </div>
       </div>

@@ -2,10 +2,12 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import axios from "axios";
-import { Oval } from "react-loader-spinner";
+
+import useMessage from "@/hooks/useMessage";
+import LoadingSpinner from "@/components/LoadingSpinner";
+
+import { logout } from "@/utils/logout";
 import { emailValidation } from "@/utils/emailValidation";
-import useMessage from "../hooks/useMessage";
-import { logout } from "../utils/logout";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
 
@@ -76,17 +78,7 @@ export default function Login() {
 
   return (
     <>
-      {loading && (
-        <div className="login-loading p-2">
-          <Oval
-            height={50}
-            width={50}
-            color="#fa7007ff"
-            secondaryColor="#ccc"
-            strokeWidth={4}
-          />
-        </div>
-      )}
+      {loading && <LoadingSpinner />}
       <div className="container login p-5 text-center m-5">
         <div className="row">
           <div className="col-md-6">

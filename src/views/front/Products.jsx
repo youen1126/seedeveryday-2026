@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { Oval } from "react-loader-spinner";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
 import BackToTop from "@/components/BackToTop";
 import Pagination from "@/components/Pagination";
 import useMessage from "@/hooks/useMessage";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 import { createAsyncAddCart } from "@/slice/cartSlice";
 import {
@@ -120,15 +120,12 @@ export default function Products() {
             <div className="row">
               {/* 產品列表 */}
               {loading ? (
-                <div className="login-loading">
-                  <Oval
-                    height={50}
-                    width={50}
-                    color="#ff7a15ff"
-                    secondaryColor="#ccc"
-                    strokeWidth={4}
-                  />
-                </div>
+                <LoadingSpinner
+                  height={80}
+                  width={80}
+                  color="#333"
+                  secondaryColor="#ddd"
+                />
               ) : (
                 <>
                   {products?.map((item) => {
