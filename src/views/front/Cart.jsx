@@ -38,6 +38,10 @@ export default function Cart() {
     };
 
     getWishListProducts();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   }, []);
 
   const collectedItems = wishListProducts.filter((item) => wishList[item.id]);
