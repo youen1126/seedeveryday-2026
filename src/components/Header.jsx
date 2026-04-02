@@ -56,7 +56,7 @@ const Header = () => {
               top: "50%",
             }}
           >
-            <img src={logoImg} className="logo" alt="logo" />
+            <img src={logoImg} className="logo" alt="Seed everydat logo" />
           </NavLink>
           {/* 右：購物車（關鍵！） */}
           <div className="d-flex">
@@ -81,12 +81,20 @@ const Header = () => {
           >
             <ul className="navbar-nav">
               <li className="nav-item active">
-                <NavLink className="nav-link ps-0" to="/product" onClick={closeMenu}>
+                <NavLink
+                  className="nav-link ps-0"
+                  to="/product"
+                  onClick={closeMenu}
+                >
                   找商品
                 </NavLink>
               </li>
               <li className="nav-item active">
-                <NavLink className="nav-link ps-0" to="/aboutwe" onClick={closeMenu}>
+                <NavLink
+                  className="nav-link ps-0"
+                  to="/aboutwe"
+                  onClick={closeMenu}
+                >
                   品牌故事
                 </NavLink>
               </li>

@@ -99,7 +99,7 @@ export default function Login() {
                 width: "500px",
                 objectFit: "cover",
               }}
-              alt="附圖"
+              alt="手作氛圍的裝飾品，如松果、木製小樹葉等等"
             />
           </div>
           <div className="col-md-6" data-aos="zoom-in-left">

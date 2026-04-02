@@ -85,7 +85,7 @@ export default function SingleProducts() {
                         width: "500px",
                         objectFit: "cover",
                       }}
-                      alt="主圖"
+                      alt={product.title}
                       className="img-fluid mt-4"
                     />
                   </>
@@ -196,7 +196,7 @@ export default function SingleProducts() {
                     width: "500px",
                     objectFit: "cover",
                   }}
-                  alt="附圖"
+                  alt="其他附圖"
                   className="img-fluid mt-4"
                 />
               </div>

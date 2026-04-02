@@ -180,7 +180,7 @@ function AdminProducts() {
                 <img
                   src={seeProduct.imageUrl}
                   className="card-img-top"
-                  alt="主圖"
+                  alt={seeProduct.title}
                   style={{
                     height: "400px",
                     objectFit: "cover",
@@ -210,6 +210,7 @@ function AdminProducts() {
                         <img
                           src={i}
                           style={{ height: "100px", borderRadius: 8 }}
+                          alt="其他配圖"
                         />
                       </div>
                     ))}
