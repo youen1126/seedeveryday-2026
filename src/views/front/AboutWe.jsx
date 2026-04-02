@@ -116,6 +116,7 @@ export default function AboutWe() {
                   height: "350px",
                   objectFit: "cover",
                 }}
+                loading="lazy"
               />
               <h5>挑選種子</h5>
               <p className="text-muted">每一顆種子都經過細心挑選</p>
@@ -131,6 +132,7 @@ export default function AboutWe() {
                   height: "350px",
                   objectFit: "cover",
                 }}
+                loading="lazy"
               />
               <h5>手工製作</h5>
               <p className="text-muted">保留自然紋理與形狀</p>
@@ -146,6 +148,7 @@ export default function AboutWe() {
                   height: "350px",
                   objectFit: "cover",
                 }}
+                loading="lazy"
               />
               <h5>完成作品</h5>
               <p className="text-muted">成為生活中的祝福</p>

@@ -198,6 +198,7 @@ export default function SingleProducts() {
                   }}
                   alt="其他附圖"
                   className="img-fluid mt-4"
+                  loading="lazy"
                 />
               </div>
             );
