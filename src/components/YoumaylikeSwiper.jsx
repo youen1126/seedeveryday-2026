@@ -74,7 +74,7 @@ export default function YoumaylikeSwiper() {
                           }`}
                           style={{
                             right: "16px",
-                            top: "16px",
+                            top: "30px",
                             fontSize: "18px",
                           }}
                         ></i>

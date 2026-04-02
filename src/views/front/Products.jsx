@@ -56,22 +56,31 @@ export default function Products() {
   return (
     <>
       <div
-        className="position-relative d-flex align-items-center justify-content-center"
-        style={{ minHeight: "150px" }}
+        className="position-relative d-flex align-items-center justify-content-center overflow-hidden"
+        style={{ minHeight: "200px" }}
       >
         <div
-          className="position-absolute"
+          className="position-absolute w-100 h-100"
           style={{
-            top: "0",
-            bottom: "0",
-            left: "0",
-            right: "0",
             backgroundImage:
-              "url(https://images.unsplash.com/photo-1592150621744-aca64f48394a?q=80&w=2382&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
-            opacity: "0.5",
+              "url(https://i.pinimg.com/1200x/84/51/d6/8451d67354799415e49c1f0217269403.jpg)",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+            opacity: 0.8,
+            filter: "blur(6px)",
+            transform: "scale(1.08)",
+            zIndex: 0,
           }}
         ></div>
-        <h4 className="fw-bold">把祝福帶進每一天</h4>
+        <div className="flex text-center" style={{ opacity: 0.7 }}>
+          <h4 className="fw-bold position-relative z-1 mb-0">
+            把祝福帶進每一天
+          </h4>
+          <p className="position-relative z-1 mb-0">
+            Bring blessings into every day
+          </p>
+        </div>
       </div>
       <div className="container mt-md-5 mt-3 mb-7">
         <div className="row">
@@ -126,7 +135,7 @@ export default function Products() {
                         <div className="card img-hover border-0 mb-4 position-relative position-relative">
                           <img
                             src={item.imageUrl}
-                            className="card-img-top rounded-0 img-size-large"
+                            className="card-img-top img-size-large"
                             alt={item.title}
                             onClick={(e) => handleViewDetail(e, item.id)}
                           />
@@ -151,7 +160,7 @@ export default function Products() {
                               }`}
                               style={{
                                 right: "16px",
-                                top: "16px",
+                                top: "35px",
                                 fontSize: "18px",
                               }}
                             ></i>

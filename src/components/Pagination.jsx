@@ -1,12 +1,11 @@
+import { scrollToTop } from "../utils/scrollToTop";
+
 export default function Pagination({ pagination, onChangePage }) {
   if (!pagination || !pagination.total_pages) return null;
   const handleClick = (e, page) => {
     e.preventDefault();
     onChangePage(page);
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    scrollToTop();
   };
 
   return (
