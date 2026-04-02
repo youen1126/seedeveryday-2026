@@ -7,6 +7,9 @@ import { useNavigate } from "react-router";
 import { createAsyncGetCart } from "../../slice/cartSlice";
 import useMessage from "../../hooks/useMessage";
 import CheckoutFlow from "../../components/CheckoutFlow";
+import { scrollToTop } from "../../utils/scrollToTop";
+import { useEffect } from "react";
+
 const API_BASE = import.meta.env.VITE_API_BASE;
 const API_PATH = import.meta.env.VITE_API_PATH;
 
@@ -50,6 +53,10 @@ export default function Checkout() {
     e.preventDefault();
     navigate(-1);
   };
+
+  useEffect(() => {
+    scrollToTop();
+  }, []);
 
   return (
     <div className="bg-light pt-5 pb-7">

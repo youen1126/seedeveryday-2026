@@ -1,7 +1,12 @@
 import { Link } from "react-router";
 import CheckoutFlow from "./CheckoutFlow";
+import { scrollToTop } from "../utils/scrollToTop";
+import { useEffect } from "react";
 
 function OrderSuccess() {
+  useEffect(() => {
+    scrollToTop();
+  }, []);
   return (
     <div className="container text-center py-5">
       <CheckoutFlow currentStep={3} />

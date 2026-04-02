@@ -5,6 +5,7 @@ import Pagination from "../../components/Pagination";
 import { Oval } from "react-loader-spinner";
 import useMessage from "@/hooks/useMessage";
 import { Modal } from "bootstrap";
+import { scrollToTop } from "../../utils/scrollToTop";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
 const API_PATH = import.meta.env.VITE_API_PATH;
@@ -76,6 +77,9 @@ function AdminProducts() {
     productModalRef.current.hide();
     document.activeElement.blur();
   };
+  useEffect(() => {
+    scrollToTop();
+  }, []);
 
   return (
     <>
