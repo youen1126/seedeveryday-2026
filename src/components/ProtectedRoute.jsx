@@ -1,10 +1,10 @@
 //路由守衛：通過才會顯示後台
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { RotatingTriangles } from "react-loader-spinner";
-import LoadingSpinner from "@/components/LoadingSpinner";
 import { Navigate } from "react-router";
+
 import useMessage from "@/hooks/useMessage";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
 const API_PATH = import.meta.env.VITE_API_PATH;
@@ -27,10 +27,10 @@ export default function ProtectedRoute({ children }) {
     async function checkLogin() {
       try {
         const res = await axios.post(`${API_BASE}/api/user/check`);
-        showSuccess(`有取得token,成功登入:${res.status}`);
+        showSuccess(`登入成功:${res.status} `);
         setIsAuth(true);
       } catch (error) {
-        showError(`登入失敗，:${error.response?.data.message}`);
+        showError(`登入失敗，:${error.response?.data.message} `);
       } finally {
         setLoading(false);
       }
@@ -42,8 +42,8 @@ export default function ProtectedRoute({ children }) {
     return (
       <LoadingSpinner
         fullScreen
-        height={80}
-        width={80}
+        height={100}
+        width={100}
         color="#333"
         secondaryColor="#ddd"
       />
