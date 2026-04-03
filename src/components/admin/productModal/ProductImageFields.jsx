@@ -1,4 +1,4 @@
-//編輯和新增商品表單的左側圖片區
+//後台：編輯和新增商品表單的左側圖片區
 
 export default function ProductImageFields({
   isUploading,
