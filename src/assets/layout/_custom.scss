@@ -5,7 +5,7 @@ body {
 }
 
 .logo {
-  height: 150px;
+  height: 90px;
   width: auto;
   flex-shrink: 0;
 }
@@ -18,13 +18,13 @@ body {
 
 @media (min-width: 568px) {
   .logo {
-    height: 160px;
+    height: 80px;
   }
 }
 
 @media (min-width: 1000px) {
   .logo {
-    height: 180px;
+    height: 100px;
   }
 }
 
