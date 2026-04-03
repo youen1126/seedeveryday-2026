@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getTokenFromCookie } from "@/utils/auth";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
 export const API_PATH = import.meta.env.VITE_API_PATH;
@@ -15,14 +16,13 @@ export const adminApi = axios.create({
 
 adminApi.interceptors.request.use(
   (config) => {
-    const token = document.cookie
-      .split("; ")
-      .find((row) => row.startsWith("myToken="))
-      ?.split("=")[1];
+    const token = getTokenFromCookie();
+
     if (token) {
       config.headers = config.headers || {};
       config.headers.Authorization = token;
     }
+
     return config;
   },
   (error) => Promise.reject(error),
