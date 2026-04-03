@@ -1,4 +1,4 @@
-//編輯和新增商品表單的右側主要內容
+//編輯和新增商品表單：引入左側圖區＋右側主要內容
 
 import ProductImageFields from "./ProductImageFields";
 

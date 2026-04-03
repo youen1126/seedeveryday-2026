@@ -1,3 +1,5 @@
+//表單資料轉換功能
+
 export const defaultProduct = {
   title: "",
   category: "",

@@ -14,7 +14,7 @@ const API_PATH = import.meta.env.VITE_API_PATH;
 
 export default function ProductModal({
   modalType,
-  templeteProduct,
+  templateProduct,
   closeModal,
   getProducts,
 }) {
@@ -42,12 +42,12 @@ export default function ProductModal({
   const imagesUrl = watch("imagesUrl");
 
   useEffect(() => {
-    if (templeteProduct) {
-      reset(mapProductToFormValues(templeteProduct));
+    if (templateProduct) {
+      reset(mapProductToFormValues(templateProduct));
     } else {
       reset(defaultProduct);
     }
-  }, [templeteProduct, reset]);
+  }, [templateProduct, reset]);
 
   const delProduct = async (id) => {
     try {
@@ -153,7 +153,7 @@ export default function ProductModal({
               {modalType === "delete" ? (
                 <p className="fs-4">
                   確定要刪除
-                  <span className="text-danger">{templeteProduct?.title}</span>
+                  <span className="text-danger">{templateProduct?.title}</span>
                   嗎？
                 </p>
               ) : (
@@ -187,7 +187,7 @@ export default function ProductModal({
                 <button
                   type="button"
                   className="btn btn-danger"
-                  onClick={() => delProduct(templeteProduct.id)}
+                  onClick={() => delProduct(templateProduct.id)}
                 >
                   刪除
                 </button>
