@@ -3,7 +3,7 @@ import { Oval } from "react-loader-spinner";
 export default function LoadingSpinner({
   height = 50,
   width = 50,
-  color = "#ff7a15ff",
+  color = "#ab8c83",
   secondaryColor = "#ccc",
   strokeWidth = 4,
   wrapperClass = "",
