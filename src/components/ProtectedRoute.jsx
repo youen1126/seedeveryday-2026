@@ -3,30 +3,27 @@ import { useEffect, useState } from "react";
 import { Navigate } from "react-router";
 
 import LoadingSpinner from "@/components/LoadingSpinner";
-import useMessage from "@/hooks/useMessage";
 import { checkUserAuthApi } from "@/services/auth";
 
 export default function ProtectedRoute({ children }) {
   const [isAuth, setIsAuth] = useState(false);
   const [loading, setLoading] = useState(true);
-  const { showSuccess, showError } = useMessage();
 
   useEffect(() => {
     async function checkLogin() {
       try {
-        const res = await checkUserAuthApi();
-        showSuccess(`登入成功：${res.status}`);
+        await checkUserAuthApi();
         setIsAuth(true);
       } catch (error) {
-        showError(`登入失敗：${error.response?.data.message}`);
         setIsAuth(false);
+        console.error(error);
       } finally {
         setLoading(false);
       }
     }
 
     checkLogin();
-  }, [showError, showSuccess]);
+  }, []);
 
   if (loading) {
     return (
@@ -40,7 +37,7 @@ export default function ProtectedRoute({ children }) {
     );
   }
 
-  if (!isAuth) return <Navigate to="/login" />;
+  if (!isAuth) return <Navigate to="/login" replace />;
 
   return children;
 }
