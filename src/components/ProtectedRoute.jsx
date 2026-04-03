@@ -2,6 +2,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { RotatingTriangles } from "react-loader-spinner";
+import LoadingSpinner from "@/components/LoadingSpinner";
 import { Navigate } from "react-router";
 import useMessage from "@/hooks/useMessage";
 
@@ -37,7 +38,16 @@ export default function ProtectedRoute({ children }) {
     checkLogin();
   }, [showError, showSuccess]);
 
-  if (loading) return <RotatingTriangles />;
+  if (loading)
+    return (
+      <LoadingSpinner
+        fullScreen
+        height={80}
+        width={80}
+        color="#333"
+        secondaryColor="#ddd"
+      />
+    );
   if (!isAuth) return <Navigate to="/login" />;
 
   return children;
