@@ -186,11 +186,16 @@ export default function ProductForm({
           className="btn btn-outline-secondary"
           data-bs-dismiss="modal"
           onClick={closeModal}
-          disabled={isSubmitting}
+          disabled={isSubmitting || isUploading}
         >
           取消
         </button>
-        <button type="submit" className="btn btn-info" disabled={isSubmitting}>
+
+        <button
+          type="submit"
+          className="btn btn-info"
+          disabled={isSubmitting || isUploading}
+        >
           {isSubmitting ? "儲存中..." : "確認"}
         </button>
       </div>
