@@ -58,7 +58,7 @@ export default function Products() {
   return (
     <>
       <div
-        className="position-relative d-flex align-items-center justify-content-center overflow-hidden"
+        className="position-relative d-flex align-items-center justify-content-center overflow-hidden mt-2"
         style={{ minHeight: "200px" }}
       >
         <div

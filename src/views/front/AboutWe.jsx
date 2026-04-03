@@ -3,6 +3,7 @@ import { Link } from "react-router";
 
 import BackToTop from "@/components/BackToTop";
 import YoumaylikeSwiper from "@/components/YoumaylikeSwiper";
+import bannerImg from "/public/seed-everyday- Stamp Logo-compression.png";
 import { scrollToTop } from "@/utils/scrollToTop";
 
 export default function AboutWe() {
@@ -12,7 +13,7 @@ export default function AboutWe() {
   return (
     <div className="about-page">
       {/* HERO */}
-      <section className="about-hero position-relative text-center py-5">
+      <section className="about-hero position-relative text-center py-5 mt-2">
         <div
           className="position-absolute w-100 h-100"
           style={{
@@ -21,12 +22,11 @@ export default function AboutWe() {
             backgroundImage:
               "url(https://i.pinimg.com/1200x/8c/38/39/8c3839dcb4661963056fa7ee7b56a6d8.jpg)",
             backgroundSize: "cover",
-            backgroundPosition: "center",
-            opacity: 0.15,
+            opacity: 0.9,
           }}
         ></div>
 
-        <div className="container position-relative">
+        <div className="container position-relative text-white">
           <h1 className="mb-3" data-aos="zoom-in">
             關於 種子日常
           </h1>
@@ -37,12 +37,12 @@ export default function AboutWe() {
       </section>
 
       {/* 品牌故事 */}
-      <section className="py-5">
+      <section className="py-5 brand-story">
         <div className="container">
           <div className="row align-items-center">
             <div className="col-md-6 mb-4">
               <img
-                src="https://i.pinimg.com/736x/0a/e8/7d/0ae87dc790167246f3b23815c679d132.jpg"
+                src={bannerImg}
                 className="img-fluid rounded"
                 alt="由各式植物的種子、乾燥葉所組成的意象圖"
                 data-aos="zoom-out"
