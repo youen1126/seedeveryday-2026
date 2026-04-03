@@ -22,7 +22,8 @@ export default function ProductModal({
   getProducts,
 }) {
   const { showSuccess, showError } = useMessage();
-  const [uploadLoading, setUploadLoading] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
     register,
@@ -69,7 +70,7 @@ export default function ProductModal({
     if (!file) return;
 
     try {
-      setUploadLoading(true);
+      setIsUploading(true);
 
       const formData = new FormData();
       formData.append("file-to-upload", file);
@@ -82,7 +83,7 @@ export default function ProductModal({
       showError("上傳圖片失敗");
       console.error(error.response || error);
     } finally {
-      setUploadLoading(false);
+      setIsUploading(false);
     }
   };
 
@@ -90,7 +91,7 @@ export default function ProductModal({
     const productData = mapFormValuesToProductPayload(formData);
 
     try {
-      setUploadLoading(true);
+      setIsSubmitting(true);
 
       if (modalType === "edit") {
         await updateAdminProductApi(formData.id, productData);
@@ -105,13 +106,13 @@ export default function ProductModal({
       console.error(error.response || error);
       showError("產品儲存失敗");
     } finally {
-      setUploadLoading(false);
+      setIsSubmitting(false);
     }
   };
 
   return (
     <>
-      {uploadLoading && (
+      {(isUploading || isSubmitting) && (
         <div className="text-center mt-2">
           <div className="spinner-border text-primary"></div>
         </div>
@@ -161,7 +162,8 @@ export default function ProductModal({
                   errors={errors}
                   onSubmit={onSubmit}
                   closeModal={closeModal}
-                  uploadLoading={uploadLoading}
+                  isUploading={isUploading}
+                  isSubmitting={isSubmitting}
                   uploadImage={uploadImage}
                   imageUrl={imageUrl}
                   fields={fields}

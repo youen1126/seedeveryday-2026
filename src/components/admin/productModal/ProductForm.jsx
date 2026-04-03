@@ -8,7 +8,8 @@ export default function ProductForm({
   errors,
   onSubmit,
   closeModal,
-  uploadLoading,
+  isUploading,
+  isSubmitting,
   uploadImage,
   imageUrl,
   fields,
@@ -20,7 +21,7 @@ export default function ProductForm({
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="row">
         <ProductImageFields
-          uploadLoading={uploadLoading}
+          isUploading={isUploading}
           uploadImage={uploadImage}
           register={register}
           imageUrl={imageUrl}
@@ -185,11 +186,12 @@ export default function ProductForm({
           className="btn btn-outline-secondary"
           data-bs-dismiss="modal"
           onClick={closeModal}
+          disabled={isSubmitting}
         >
           取消
         </button>
-        <button type="submit" className="btn btn-info">
-          確認
+        <button type="submit" className="btn btn-info" disabled={isSubmitting}>
+          {isSubmitting ? "儲存中..." : "確認"}
         </button>
       </div>
     </form>

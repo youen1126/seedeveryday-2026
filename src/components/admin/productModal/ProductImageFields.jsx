@@ -1,7 +1,7 @@
 //編輯和新增商品表單的左側圖片區
 
 export default function ProductImageFields({
-  uploadLoading,
+  isUploading,
   uploadImage,
   register,
   imageUrl,
@@ -22,7 +22,7 @@ export default function ProductImageFields({
           id="fileUpload"
           accept=".jpg,.jpeg,.png"
           onChange={uploadImage}
-          disabled={uploadLoading}
+          disabled={isUploading}
         />
       </div>
 
