@@ -38,7 +38,7 @@ function AdminProducts() {
   const productModalRef = useRef(null);
 
   const [loading, setLoading] = useState(false);
-  const { showSuccess, showError } = useMessage();
+  const { showError } = useMessage();
 
   //取得遠端products data
   const getProducts = useCallback(
@@ -50,7 +50,6 @@ function AdminProducts() {
         );
         setProducts(res.data.products);
         setPagination(res.data.pagination);
-        showSuccess("產品data取得成功");
       } catch (error) {
         console.error("catch失敗", error);
         showError("產品data取得失敗");
@@ -58,7 +57,7 @@ function AdminProducts() {
         setLoading(false);
       }
     },
-    [showError, showSuccess],
+    [showError],
   );
 
   useEffect(() => {
