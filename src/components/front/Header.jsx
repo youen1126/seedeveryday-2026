@@ -56,7 +56,7 @@ const Header = () => {
               top: "50%",
             }}
           >
-            <img src={logoImg} className="logo" alt="Seed everydat logo" />
+            <img src={logoImg} className="logo" alt="Seed everyday logo" />
           </NavLink>
           {/* 右：收藏和購物車 */}
           <div className="d-flex">
