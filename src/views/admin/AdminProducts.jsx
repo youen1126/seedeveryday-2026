@@ -31,7 +31,7 @@ function AdminProducts() {
   const [seeProduct, setSeeProduct] = useState(null);
   const [pagination, setPagination] = useState({});
 
-  const [templeteProduct, setTempleteProduct] = useState(INITIAL_TEMPLATE_DATA);
+  const [templateProduct, setTemplateProduct] = useState(INITIAL_TEMPLATE_DATA);
 
   const [modalType, setModalType] = useState();
 
@@ -68,7 +68,7 @@ function AdminProducts() {
 
   const openModal = (type, product) => {
     setModalType(type);
-    setTempleteProduct((pre) => ({
+    setTemplateProduct((pre) => ({
       ...pre,
       ...product,
     }));
@@ -221,7 +221,7 @@ function AdminProducts() {
       {/* Modal */}
       <ProductModal
         modalType={modalType}
-        templeteProduct={templeteProduct}
+        templateProduct={templateProduct}
         closeModal={closeModal}
         getProducts={getProducts}
       />
