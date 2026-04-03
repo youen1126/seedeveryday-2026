@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 
 import CheckoutCart from "@/components/front/checkoutCart";
-import CheckoutFlow from "@/components/CheckoutFlow";
+import CheckoutFlow from "@/components/front/CheckoutFlow";
 import useMessage from "@/hooks/useMessage";
 import { createAsyncGetCart } from "@/slice/cartSlice";
 import { emailValidation } from "@/utils/emailValidation";
