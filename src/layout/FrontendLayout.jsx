@@ -1,5 +1,5 @@
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Header from "../components/front/Header";
+import Footer from "../components/front/Footer";
 import { Outlet } from "react-router";
 
 export default function FrontendLayout() {

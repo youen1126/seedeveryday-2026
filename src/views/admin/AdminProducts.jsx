@@ -3,7 +3,7 @@ import axios from "axios";
 import { Modal } from "bootstrap";
 
 import Pagination from "@/components/Pagination";
-import ProductModal from "@/components/ProductModal";
+import ProductModal from "@/components/admin/ProductModal";
 import useMessage from "@/hooks/useMessage";
 import LoadingSpinner from "@/components/LoadingSpinner";
 

@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router";
 
-import CheckoutFlow from "@/components/CheckoutFlow";
-import EmptyCart from "@/components/EmptyCart";
-import YoumaylikeSwiper from "@/components/YoumaylikeSwiper";
+import CheckoutFlow from "@/components/front/CheckoutFlow";
+import EmptyCart from "@/components/front/EmptyCart";
+import YoumaylikeSwiper from "@/components/front/YoumaylikeSwiper";
 import useMessage from "@/hooks/useMessage";
 import { DelAllCartApi } from "@/services/carts";
 import { getProductAllApi } from "@/services/product";

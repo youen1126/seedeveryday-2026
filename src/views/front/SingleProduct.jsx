@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router";
 
 import BackToTop from "@/components/BackToTop";
-import YoumaylikeSwiper from "@/components/YoumaylikeSwiper";
+import YoumaylikeSwiper from "@/components/front/YoumaylikeSwiper";
 import useMessage from "@/hooks/useMessage";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { getThisProductApi } from "@/services/product";

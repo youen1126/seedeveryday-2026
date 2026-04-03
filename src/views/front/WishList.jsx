@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router";
 
-import YoumaylikeSwiper from "@/components/YoumaylikeSwiper";
+import YoumaylikeSwiper from "@/components/front/YoumaylikeSwiper";
 import useMessage from "@/hooks/useMessage";
 import { createAsyncAddCart } from "@/slice/cartSlice";
 import { toggleWishlistItem } from "@/slice/wishlistSlice";

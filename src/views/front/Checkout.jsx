@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 
-import CheckoutCart from "@/components/checkoutCart";
+import CheckoutCart from "@/components/front/checkoutCart";
 import CheckoutFlow from "@/components/CheckoutFlow";
 import useMessage from "@/hooks/useMessage";
 import { createAsyncGetCart } from "@/slice/cartSlice";
