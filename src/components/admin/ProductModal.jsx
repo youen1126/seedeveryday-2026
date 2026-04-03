@@ -24,6 +24,7 @@ export default function ProductModal({
   const { showSuccess, showError } = useMessage();
   const [isUploading, setIsUploading] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const {
     register,
@@ -55,6 +56,7 @@ export default function ProductModal({
 
   const delProduct = async (id) => {
     try {
+      setIsDeleting(true);
       await deleteAdminProductApi(id);
       await getProducts();
       showSuccess("刪除成功");
@@ -62,6 +64,8 @@ export default function ProductModal({
     } catch (error) {
       console.error("沒刪除成功，請查看 error", error);
       showError("刪除失敗");
+    } finally {
+      setIsDeleting(false);
     }
   };
 
@@ -145,6 +149,7 @@ export default function ProductModal({
                 className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
+                disabled={isUploading || isSubmitting || isDeleting}
               ></button>
             </div>
 
@@ -181,15 +186,19 @@ export default function ProductModal({
                   className="btn btn-outline-secondary"
                   data-bs-dismiss="modal"
                   onClick={closeModal}
+                  disabled={isUploading || isSubmitting || isDeleting}
                 >
                   取消
                 </button>
                 <button
                   type="button"
                   className="btn btn-danger"
-                  onClick={() => delProduct(templateProduct.id)}
+                  onClick={() =>
+                    templateProduct?.id && delProduct(templateProduct.id)
+                  }
+                  disabled={isUploading || isSubmitting || isDeleting}
                 >
-                  刪除
+                  {isDeleting ? "刪除中..." : "刪除"}
                 </button>
               </div>
             )}

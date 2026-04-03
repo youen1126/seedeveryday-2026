@@ -24,6 +24,17 @@ export default function ProductImageFields({
           onChange={uploadImage}
           disabled={isUploading}
         />
+
+        {isUploading && (
+          <div className="d-flex align-items-center gap-2 mt-2 text-secondary">
+            <div
+              className="spinner-border spinner-border-sm"
+              role="status"
+              aria-hidden="true"
+            ></div>
+            <span>圖片上傳中...</span>
+          </div>
+        )}
       </div>
 
       <div className="mb-3">
@@ -69,6 +80,7 @@ export default function ProductImageFields({
             type="button"
             className="btn btn-outline-info btn-sm d-block w-100"
             onClick={() => append("")}
+            disabled={isUploading}
           >
             新增圖片
           </button>
@@ -81,6 +93,7 @@ export default function ProductImageFields({
             type="button"
             className="btn btn-outline-warning btn-sm d-block w-100"
             onClick={() => remove(fields.length - 1)}
+            disabled={isUploading}
           >
             刪除圖片
           </button>
