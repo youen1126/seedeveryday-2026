@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { useForm, useFieldArray } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
+
 import useMessage from "@/hooks/useMessage";
 import ProductForm from "./productModal/ProductForm";
+import {
+  createAdminProductApi,
+  deleteAdminProductApi,
+  updateAdminProductApi,
+  uploadAdminProductImageApi,
+} from "@/services/adminProduct";
 import {
   defaultProduct,
   mapFormValuesToProductPayload,
   mapProductToFormValues,
 } from "@/utils/admin/productFormAdapter";
-
-const API_BASE = import.meta.env.VITE_API_BASE;
-const API_PATH = import.meta.env.VITE_API_PATH;
 
 export default function ProductModal({
   modalType,
@@ -51,7 +54,7 @@ export default function ProductModal({
 
   const delProduct = async (id) => {
     try {
-      await axios.delete(`${API_BASE}/api/${API_PATH}/admin/product/${id}`);
+      await deleteAdminProductApi(id);
       await getProducts();
       showSuccess("刪除成功");
       closeModal();
@@ -71,10 +74,7 @@ export default function ProductModal({
       const formData = new FormData();
       formData.append("file-to-upload", file);
 
-      const res = await axios.post(
-        `${API_BASE}/api/${API_PATH}/admin/upload`,
-        formData,
-      );
+      const res = await uploadAdminProductImageApi(formData);
 
       setValue("imageUrl", res.data.imageUrl);
       showSuccess("圖片上傳成功");
@@ -87,19 +87,17 @@ export default function ProductModal({
   };
 
   const onSubmit = async (formData) => {
-    let url = `${API_BASE}/api/${API_PATH}/admin/product`;
-    let method = "post";
-
-    if (modalType === "edit") {
-      url = `${API_BASE}/api/${API_PATH}/admin/product/${formData.id}`;
-      method = "put";
-    }
-
     const productData = mapFormValuesToProductPayload(formData);
 
     try {
       setUploadLoading(true);
-      await axios[method](url, productData);
+
+      if (modalType === "edit") {
+        await updateAdminProductApi(formData.id, productData);
+      } else {
+        await createAdminProductApi(productData);
+      }
+
       await getProducts();
       showSuccess("產品已儲存");
       closeModal();
