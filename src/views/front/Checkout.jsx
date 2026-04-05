@@ -4,8 +4,8 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 
-import CheckoutCart from "@/components/front/checkoutCart";
-import CheckoutFlow from "@/components/front/CheckoutFlow";
+import CheckoutCart from "@/components/front/checkoutCart.jsx";
+import CheckoutFlow from "@/components/front/CheckoutFlow.jsx";
 import useMessage from "@/hooks/useMessage";
 import { createAsyncGetCart } from "@/slice/cartSlice";
 import { emailValidation } from "@/utils/emailValidation";
