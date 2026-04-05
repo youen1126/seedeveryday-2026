@@ -80,6 +80,17 @@ src/
 - API 相關設定透過 `VITE_API_BASE` 與 `VITE_API_PATH` 管理
 - Vite 設有 `@` alias 指向 `src`
 
+## GitHub Actions 基本 CI 設定
+
+在 GitHub Actions 設定了一個最小可用的 CI workflow。
+
+目前流程包含：
+
+- push / pull request 到 main 時自動觸發
+- 自動安裝依賴
+- 自動執行 lint
+- 自動執行 build
+
 ## 頁面優化紀錄 4/3
 
 - 針對圖片資源進行基本優化，避免載入過大的素材影響頁面速度。
