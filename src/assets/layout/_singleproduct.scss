@@ -198,6 +198,23 @@
     border-radius: 0.1rem;
   }
 
+  .single-product-description-text {
+    line-height: 2;
+  }
+
+  .single-product-description-paragraph {
+    margin-bottom: 1.5rem;
+  }
+
+  .single-product-description-paragraph:last-child {
+    margin-bottom: 0;
+  }
+
+  .single-product-description-line {
+    display: block;
+    padding: 0.2rem 0;
+  }
+
   .single-product-shipping-payment {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));

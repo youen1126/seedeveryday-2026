@@ -16,6 +16,20 @@ import { createAsyncAddCart } from "@/slice/cartSlice";
 import { toggleWishlistItem } from "@/slice/wishlistSlice";
 import { scrollToTop } from "@/utils/scrollToTop";
 
+function formatDescriptionText(text) {
+  return (text || "")
+    .split(/(?<=[。.])/)
+    .map((sentence) => sentence.trim())
+    .filter(Boolean)
+    .map((sentence, sentenceIndex) => ({
+      id: `sentence-${sentenceIndex}`,
+      lines: sentence
+        .split(/(?<=[，,])/)
+        .map((line) => line.trim())
+        .filter(Boolean),
+    }));
+}
+
 export default function SingleProducts() {
   const { id } = useParams();
   const [product, setProduct] = useState({ imagesUrl: [] });
@@ -94,6 +108,7 @@ export default function SingleProducts() {
     (product.description || "").length > 20
       ? `${product.description.slice(0, 43)} . . . . 詳見下方商品介紹`
       : product.description;
+  const formattedDescription = formatDescriptionText(product.description);
 
   return (
     <div className="single-product-page">
@@ -316,7 +331,23 @@ export default function SingleProducts() {
                         ))}
                       </div>
                     ) : null}
-                    <p className="mb-0 p-5">{product.description}</p>
+                    <div className="single-product-description-text p-5 text-center">
+                      {formattedDescription.map((sentence) => (
+                        <p
+                          key={sentence.id}
+                          className="single-product-description-paragraph mb-0"
+                        >
+                          {sentence.lines.map((line, index) => (
+                            <span
+                              key={`${sentence.id}-${index}`}
+                              className="single-product-description-line"
+                            >
+                              {line}
+                            </span>
+                          ))}
+                        </p>
+                      ))}
+                    </div>
                   </div>
                 ) : null}
                 {activeTab === "spec" ? (
