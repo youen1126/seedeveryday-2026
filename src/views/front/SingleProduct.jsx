@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -27,6 +27,8 @@ export default function SingleProducts() {
   const [loading, setLoading] = useState(false);
   const [animatingId, setAnimatingId] = useState(null);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const addToCartButtonRef = useRef(null);
+  const [showFloatingAddCart, setShowFloatingAddCart] = useState(false);
 
   useEffect(() => {
     const getProduct = async (id) => {
@@ -45,6 +47,23 @@ export default function SingleProducts() {
     scrollToTop();
     setActiveTab("description");
   }, [id, showError]);
+
+  useEffect(() => {
+    const targetButton = addToCartButtonRef.current;
+    if (!targetButton) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setShowFloatingAddCart(!entry.isIntersecting);
+      },
+      {
+        threshold: 0.2,
+      },
+    );
+
+    observer.observe(targetButton);
+    return () => observer.disconnect();
+  }, [product.id]);
 
   const handleAddCart = (e, id, qty = 1) => {
     e.preventDefault();
@@ -66,9 +85,8 @@ export default function SingleProducts() {
     product.imageUrl,
     ...(Array.isArray(product.imagesUrl) ? product.imagesUrl : []),
   ].filter(Boolean);
-  const descriptionImages = (Array.isArray(product.imagesUrl)
-    ? product.imagesUrl
-    : []
+  const descriptionImages = (
+    Array.isArray(product.imagesUrl) ? product.imagesUrl : []
   )
     .filter(Boolean)
     .slice(0, 3);
@@ -234,6 +252,7 @@ export default function SingleProducts() {
                   {/* 加入購物車按鈕 */}
                   <div className="col-6">
                     <button
+                      ref={addToCartButtonRef}
                       type="button"
                       className="text-nowrap btn btn-dark w-100 py-2"
                       onClick={(e) => handleAddCart(e, product.id, qty)}
@@ -266,7 +285,7 @@ export default function SingleProducts() {
                   }`}
                   onClick={() => setActiveTab("spec")}
                 >
-                  規格說明
+                  規格說明 / 常見問題
                 </button>
                 <button
                   type="button"
@@ -297,12 +316,77 @@ export default function SingleProducts() {
                     <p className="mb-0">{product.description}</p>
                   </div>
                 ) : null}
-                {activeTab === "spec" ? <p>{product.content}</p> : null}
+                {activeTab === "spec" ? (
+                  <div className="single-product-tab-spec">
+                    <p className="single-product-tab-spec-content mb-0">
+                      {product.content}
+                    </p>
+                    <section
+                      className="single-product-faq"
+                      aria-label="常見問題"
+                    >
+                      <h3 className="single-product-faq-title">常見問題</h3>
+                      <ul className="single-product-faq-list mb-0">
+                        <li className="single-product-faq-item">
+                          <p className="single-product-faq-question">
+                            商品出貨後是否會通知？
+                          </p>
+                          <p className="single-product-faq-answer mb-0">
+                            商品出貨後，系統將會發送「出貨通知信」至您訂購時所留存的聯絡E-mail。
+                          </p>
+                        </li>
+                        <li className="single-product-faq-item">
+                          <p className="single-product-faq-question">
+                            退換貨說明？
+                          </p>
+                          <p className="single-product-faq-answer mb-0">
+                            如需要退換貨，請先聯絡客服，說明退換貨原因。
+                          </p>
+                        </li>
+                        <li className="single-product-faq-item">
+                          <p className="single-product-faq-question">
+                            什麼情況可能無法辦理退貨？
+                          </p>
+                          <ol className="single-product-faq-sublist mb-0">
+                            <li>超過7天鑑賞期。</li>
+                            <li>客製化商品。</li>
+                            <li>
+                              已非全新狀態（外觀不得有刮傷、破損、受潮...等）。
+                            </li>
+                            <li>
+                              沒有完整包裝（商品、附件、外盒、保護袋、配件紙箱、保麗龍、隨貨文件、贈品...等）。
+                            </li>
+                          </ol>
+                        </li>
+                        <li className="single-product-faq-item">
+                          <p className="single-product-faq-question">
+                            如何計算「七天鑑賞期」？
+                          </p>
+                          <p className="single-product-faq-answer mb-0">
+                            由消費者完成簽收取件的隔日開始算起至第7天止。
+                          </p>
+                        </li>
+                        <li className="single-product-faq-item">
+                          <p className="single-product-faq-question">
+                            退款方式？
+                          </p>
+                          <p className="single-product-faq-answer mb-0">
+                            需提供您的匯款資料E-mail
+                            至客服中心，退款申請後預計7-10天(不含假日)退還至您指定的帳戶中。
+                          </p>
+                        </li>
+                      </ul>
+                    </section>
+                  </div>
+                ) : null}
                 {activeTab === "shippingPayment" ? (
                   <div className="single-product-shipping-payment">
                     <div className="single-product-shipping-payment-column">
                       <p className="single-product-tab-section-title mb-2 fw-semibold">
-                        <i className="fa-solid fa-truck-fast" aria-hidden="true"></i>
+                        <i
+                          className="fa-solid fa-truck-fast"
+                          aria-hidden="true"
+                        ></i>
                         <span>送貨方式</span>
                       </p>
                       <ul className="mb-0">
@@ -313,7 +397,10 @@ export default function SingleProducts() {
                     </div>
                     <div className="single-product-shipping-payment-column">
                       <p className="single-product-tab-section-title mb-2 fw-semibold">
-                        <i className="fa-regular fa-credit-card" aria-hidden="true"></i>
+                        <i
+                          className="fa-regular fa-credit-card"
+                          aria-hidden="true"
+                        ></i>
                         <span>付款方式</span>
                       </p>
                       <ul className="mb-0">
@@ -329,6 +416,15 @@ export default function SingleProducts() {
           </div>
         </div>
       </div>
+      {showFloatingAddCart && product?.id ? (
+        <button
+          type="button"
+          className="btn btn-dark single-product-floating-cart-btn"
+          onClick={(e) => handleAddCart(e, product.id, qty)}
+        >
+          加入購物車
+        </button>
+      ) : null}
       <YoumaylikeSwiper />
       <BackToTop />
     </div>

@@ -51,6 +51,16 @@
     margin-bottom: 3rem;
   }
 
+  .single-product-floating-cart-btn {
+    position: fixed;
+    top: 1.25rem;
+    right: 1rem;
+    z-index: 1040;
+    min-width: 132px;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  }
+
   .single-product-info {
     height: 100%;
   }
@@ -113,6 +123,64 @@
     margin-bottom: 0;
   }
 
+  .single-product-tab-spec-content {
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  .single-product-faq {
+    margin-top: 1.5rem;
+  }
+
+  .single-product-faq-title {
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #212529;
+  }
+
+  .single-product-faq-list {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+
+  .single-product-faq-item {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+  }
+
+  .single-product-faq-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .single-product-faq-question {
+    margin-bottom: 0.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.6;
+    color: #212529;
+  }
+
+  .single-product-faq-answer {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #495057;
+  }
+
+  .single-product-faq-sublist {
+    margin-top: 0.25rem;
+    padding-left: 1.25rem;
+  }
+
+  .single-product-faq-sublist li {
+    margin-bottom: 0.25rem;
+  }
+
+  .single-product-faq-sublist li:last-child {
+    margin-bottom: 0;
+  }
+
   .single-product-description-images {
     display: flex;
     justify-content: center;
@@ -164,9 +232,21 @@
   }
 
   @media (max-width: 767.98px) {
+    .single-product-floating-cart-btn {
+      top: auto;
+      right: 0.75rem;
+      bottom: 1rem;
+      min-width: 120px;
+    }
+
     .single-product-shipping-payment {
       grid-template-columns: 1fr;
       gap: 1rem;
+    }
+
+    .single-product-faq-list,
+    .single-product-faq-sublist {
+      padding-left: 1.1rem;
     }
   }
 
