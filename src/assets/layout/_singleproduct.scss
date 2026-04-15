@@ -6,7 +6,6 @@
 
   .single-product-square,
   .single-product-thumb-square {
-    aspect-ratio: 1 / 1;
     width: 100%;
     background: #f8f9fa;
     display: flex;
@@ -32,9 +31,26 @@
   .single-product-thumbs-swiper .swiper-slide-thumb-active {
     opacity: 1;
   }
+
+  .single-product-square {
+    aspect-ratio: 6 / 5;
+  }
+
+  .single-product-thumb-square {
+    aspect-ratio: 1 / 1;
+  }
 }
 
 .single-product-page {
+  .single-product-hero {
+    margin-bottom: 1.5rem;
+  }
+
+  .single-product-tabs-row {
+    margin-top: 1.2rem;
+    margin-bottom: 3rem;
+  }
+
   .single-product-info {
     height: 100%;
   }
@@ -59,6 +75,65 @@
     margin-top: 2rem;
   }
 
+  .single-product-tabs {
+    border: 1px solid #dee2e6;
+  }
+
+  .single-product-tabs-nav {
+    display: flex;
+    border-bottom: 1px solid #dee2e6;
+    overflow-x: auto;
+  }
+
+  .single-product-tab-btn {
+    flex: 1 1 0;
+    border: 0;
+    background: #fff;
+    padding: 0.85rem 1.25rem;
+    color: #6c757d;
+    font-weight: 600;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  .single-product-tab-btn.active {
+    color: #212529;
+    border-bottom-color: #212529;
+  }
+
+  .single-product-tabs-content {
+    padding: 1.25rem;
+    line-height: 1.8;
+    color: #495057;
+  }
+
+  .single-product-tabs-content p:last-child,
+  .single-product-tabs-content ul:last-child {
+    margin-bottom: 0;
+  }
+
+  .single-product-shipping-payment {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .single-product-shipping-payment-column {
+    min-width: 0;
+  }
+
+  .single-product-tab-section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #212529;
+  }
+
+  .single-product-tab-section-title i {
+    color: #212529;
+  }
+
   @media (min-width: 768px) {
     .single-product-info {
       display: flex;
@@ -68,6 +143,13 @@
 
     .single-product-info-bottom {
       margin-top: 0;
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    .single-product-shipping-payment {
+      grid-template-columns: 1fr;
+      gap: 1rem;
     }
   }
 

@@ -19,6 +19,7 @@ import { scrollToTop } from "@/utils/scrollToTop";
 export default function SingleProducts() {
   const { id } = useParams();
   const [product, setProduct] = useState({ imagesUrl: [] });
+  const [activeTab, setActiveTab] = useState("description");
   const dispatch = useDispatch();
   const { showSuccess, showError } = useMessage();
   const wishList = useSelector((state) => state.wishlist.items);
@@ -42,6 +43,7 @@ export default function SingleProducts() {
     };
     getProduct(id);
     scrollToTop();
+    setActiveTab("description");
   }, [id, showError]);
 
   const handleAddCart = (e, id, qty = 1) => {
@@ -68,7 +70,7 @@ export default function SingleProducts() {
   return (
     <div className="single-product-page">
       <div className="container">
-        <div className="row align-items-stretch">
+        <div className="row align-items-stretch single-product-hero">
           <div className="col-md-7">
             <div className="my-4 position-relative single-product-gallery">
               {loading ? <LoadingSpinner /> : null}
@@ -238,7 +240,73 @@ export default function SingleProducts() {
             </div>
           </div>
         </div>
-        <div className="row my-5"></div>
+        <div className="row single-product-tabs-row">
+          <div className="col-12">
+            <section className="single-product-tabs">
+              <div className="single-product-tabs-nav" role="tablist">
+                <button
+                  type="button"
+                  className={`single-product-tab-btn ${
+                    activeTab === "description" ? "active" : ""
+                  }`}
+                  onClick={() => setActiveTab("description")}
+                >
+                  商品介紹
+                </button>
+                <button
+                  type="button"
+                  className={`single-product-tab-btn ${
+                    activeTab === "spec" ? "active" : ""
+                  }`}
+                  onClick={() => setActiveTab("spec")}
+                >
+                  規格說明
+                </button>
+                <button
+                  type="button"
+                  className={`single-product-tab-btn ${
+                    activeTab === "shippingPayment" ? "active" : ""
+                  }`}
+                  onClick={() => setActiveTab("shippingPayment")}
+                >
+                  送貨和付款方式
+                </button>
+              </div>
+              <div className="single-product-tabs-content">
+                {activeTab === "description" ? (
+                  <p>{product.description}</p>
+                ) : null}
+                {activeTab === "spec" ? <p>{product.content}</p> : null}
+                {activeTab === "shippingPayment" ? (
+                  <div className="single-product-shipping-payment">
+                    <div className="single-product-shipping-payment-column">
+                      <p className="single-product-tab-section-title mb-2 fw-semibold">
+                        <i className="fa-solid fa-truck-fast" aria-hidden="true"></i>
+                        <span>送貨方式</span>
+                      </p>
+                      <ul className="mb-0">
+                        <li>外島郵寄(中華郵政)</li>
+                        <li>全家 取貨付款 (B2C)</li>
+                        <li>7-11 取貨付款 (B2C)</li>
+                      </ul>
+                    </div>
+                    <div className="single-product-shipping-payment-column">
+                      <p className="single-product-tab-section-title mb-2 fw-semibold">
+                        <i className="fa-regular fa-credit-card" aria-hidden="true"></i>
+                        <span>付款方式</span>
+                      </p>
+                      <ul className="mb-0">
+                        <li>宅配貨到付款</li>
+                        <li>7-11 取貨付款</li>
+                        <li>信用卡付款</li>
+                      </ul>
+                    </div>
+                  </div>
+                ) : null}
+              </div>
+            </section>
+          </div>
+        </div>
       </div>
       <YoumaylikeSwiper />
       <BackToTop />
