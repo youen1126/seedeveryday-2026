@@ -8,12 +8,14 @@ import "swiper/css/free-mode";
 import "swiper/css/thumbs";
 
 import BackToTop from "@/components/BackToTop";
+import ProductSpecList from "@/components/front/ProductSpecList";
 import YoumaylikeSwiper from "@/components/front/YoumaylikeSwiper";
 import useMessage from "@/hooks/useMessage";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { getThisProductApi } from "@/services/product";
 import { createAsyncAddCart } from "@/slice/cartSlice";
 import { toggleWishlistItem } from "@/slice/wishlistSlice";
+import { parseProductSpec } from "@/utils/parseProductSpec";
 import { scrollToTop } from "@/utils/scrollToTop";
 
 function formatDescriptionText(text) {
@@ -109,6 +111,7 @@ export default function SingleProducts() {
       ? `${product.description.slice(0, 43)} . . . . 詳見下方商品介紹`
       : product.description;
   const formattedDescription = formatDescriptionText(product.description);
+  const spec = parseProductSpec(product.content);
 
   return (
     <div className="single-product-page">
@@ -352,9 +355,7 @@ export default function SingleProducts() {
                 ) : null}
                 {activeTab === "spec" ? (
                   <div className="single-product-tab-spec">
-                    <p className="single-product-tab-spec-content mb-0">
-                      {product.content}
-                    </p>
+                    <ProductSpecList spec={spec} />
                     <section
                       className="single-product-faq"
                       aria-label="常見問題"
