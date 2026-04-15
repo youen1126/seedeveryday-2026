@@ -66,6 +66,12 @@ export default function SingleProducts() {
     product.imageUrl,
     ...(Array.isArray(product.imagesUrl) ? product.imagesUrl : []),
   ].filter(Boolean);
+  const descriptionImages = (Array.isArray(product.imagesUrl)
+    ? product.imagesUrl
+    : []
+  )
+    .filter(Boolean)
+    .slice(0, 3);
 
   return (
     <div className="single-product-page">
@@ -274,7 +280,22 @@ export default function SingleProducts() {
               </div>
               <div className="single-product-tabs-content">
                 {activeTab === "description" ? (
-                  <p>{product.description}</p>
+                  <div className="single-product-tab-description">
+                    {descriptionImages.length > 0 ? (
+                      <div className="single-product-description-images">
+                        {descriptionImages.map((image, index) => (
+                          <img
+                            key={`${image}-${index}`}
+                            src={image}
+                            alt={`${product.title || "商品介紹圖片"}-${index + 1}`}
+                            className="single-product-description-image"
+                            loading="lazy"
+                          />
+                        ))}
+                      </div>
+                    ) : null}
+                    <p className="mb-0">{product.description}</p>
+                  </div>
                 ) : null}
                 {activeTab === "spec" ? <p>{product.content}</p> : null}
                 {activeTab === "shippingPayment" ? (
