@@ -184,6 +184,11 @@ export default function SingleProducts() {
                   <p>{product.description}</p>
                   <p className="mb-0">{product.content}</p>
                 </div>
+                <div className="single-product-promo">
+                  <p className="mb-2">全店，滿千免運</p>
+                  <p className="mb-2">全店，國際運輸滿3500免運費</p>
+                  <p className="mb-0">全店，滿2500送贈品</p>
+                </div>
               </div>
               <div className="single-product-info-bottom">
                 <p className="mb-0 text-muted text-end">
