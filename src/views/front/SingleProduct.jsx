@@ -68,7 +68,7 @@ export default function SingleProducts() {
   return (
     <div className="single-product-page">
       <div className="container">
-        <div className="row align-items-center">
+        <div className="row align-items-stretch">
           <div className="col-md-7">
             <div className="my-4 position-relative single-product-gallery">
               {loading ? <LoadingSpinner /> : null}
@@ -136,95 +136,99 @@ export default function SingleProducts() {
             </div>
           </div>
           <div className="col-md-5">
-            <nav aria-label="breadcrumb">
-              <ol className="breadcrumb bg-white px-0 mb-0 py-3">
-                <li className="breadcrumb-item">
-                  <Link className="text-muted" to="/">
-                    Home
-                  </Link>
-                </li>
-                <li className="breadcrumb-item">
-                  <Link className="text-muted" to="/product">
-                    Products
-                  </Link>
-                </li>
-                <li className="breadcrumb-item active" aria-current="page">
-                  Detail
-                </li>
-              </ol>
-            </nav>
-            <div className="d-flex align-items-center justify-content-between gap-3">
-              <h2 className="fw-bold h1 mb-1">{product.title}</h2>
-              <button
-                type="button"
-                className="p-0 border-0 bg-transparent d-inline-flex align-items-center justify-content-center"
-                aria-label="加入收藏"
-                onClick={() => {
-                  dispatch(toggleWishlistItem(product.id));
-                  setAnimatingId(product.id);
-                  setTimeout(() => {
-                    setAnimatingId(null);
-                  }, 350);
-                }}
-              >
-                <i
-                  className={`fa-${
-                    wishList[product.id] ? "solid" : "regular"
-                  } fa-heart ${animatingId === product.id ? "is-animating" : ""}`}
-                  style={{
-                    color: wishList[product.id] ? "#ff7a15ff" : "#212529",
-                    fontSize: "20px",
-                  }}
-                ></i>
-              </button>
-            </div>
-            <br />
-            <div className="col-md-12">
-              <p>{product.description}</p>
-              <p>{product.content}</p>
-            </div>
-            <p className="mb-0 text-muted text-end">
-              <del>NT${product.origin_price}</del>
-            </p>
-
-            <p className="h4 fw-bold text-end">NT${product.price}</p>
-            <div className="row align-items-center">
-              {/* 數量選擇 */}
-              <div className="col-6">
-                <div className="input-group my-3 bg-light rounded">
-                  <div className="input-group-prepend">
-                    <button
-                      className="btn btn-outline-dark border-0 py-2"
-                      type="button"
-                      disabled={qty === 1}
-                      onClick={() => handleNum(qty - 1)}
-                    >
-                      -
-                    </button>
+            <div className="single-product-info my-4">
+              <div className="single-product-info-top">
+                <nav aria-label="breadcrumb">
+                  <ol className="breadcrumb bg-white px-0 mb-0 py-3">
+                    <li className="breadcrumb-item">
+                      <Link className="text-muted" to="/">
+                        Home
+                      </Link>
+                    </li>
+                    <li className="breadcrumb-item">
+                      <Link className="text-muted" to="/product">
+                        Products
+                      </Link>
+                    </li>
+                    <li className="breadcrumb-item active" aria-current="page">
+                      Detail
+                    </li>
+                  </ol>
+                </nav>
+                <div className="d-flex align-items-center justify-content-between gap-3">
+                  <h2 className="fw-bold h1 mb-1">{product.title}</h2>
+                  <button
+                    type="button"
+                    className="p-0 border-0 bg-transparent d-inline-flex align-items-center justify-content-center"
+                    aria-label="加入收藏"
+                    onClick={() => {
+                      dispatch(toggleWishlistItem(product.id));
+                      setAnimatingId(product.id);
+                      setTimeout(() => {
+                        setAnimatingId(null);
+                      }, 350);
+                    }}
+                  >
+                    <i
+                      className={`fa-${
+                        wishList[product.id] ? "solid" : "regular"
+                      } fa-heart ${animatingId === product.id ? "is-animating" : ""}`}
+                      style={{
+                        color: wishList[product.id] ? "#ff7a15ff" : "#212529",
+                        fontSize: "20px",
+                      }}
+                    ></i>
+                  </button>
+                </div>
+                <div className="single-product-description">
+                  <p>{product.description}</p>
+                  <p className="mb-0">{product.content}</p>
+                </div>
+              </div>
+              <div className="single-product-info-bottom">
+                <p className="mb-0 text-muted text-end">
+                  <del>NT${product.origin_price}</del>
+                </p>
+                <p className="h4 fw-bold text-end">NT${product.price}</p>
+                <div className="row align-items-center">
+                  {/* 數量選擇 */}
+                  <div className="col-6">
+                    <div className="input-group my-3 bg-light rounded">
+                      <div className="input-group-prepend">
+                        <button
+                          className="btn btn-outline-dark border-0 py-2"
+                          type="button"
+                          disabled={qty === 1}
+                          onClick={() => handleNum(qty - 1)}
+                        >
+                          -
+                        </button>
+                      </div>
+                      <span className="qty-number form-control border-0 text-center my-auto shadow-none bg-light">
+                        {qty}
+                      </span>
+                      <div className="input-group-append">
+                        <button
+                          className="btn btn-outline-dark border-0 py-2"
+                          type="button"
+                          onClick={() => handleNum(qty + 1)}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                  <span className="qty-number form-control border-0 text-center my-auto shadow-none bg-light">
-                    {qty}
-                  </span>
-                  <div className="input-group-append">
+                  {/* 加入購物車按鈕 */}
+                  <div className="col-6">
                     <button
-                      className="btn btn-outline-dark border-0 py-2"
                       type="button"
-                      onClick={() => handleNum(qty + 1)}
+                      className="text-nowrap btn btn-dark w-100 py-2"
+                      onClick={(e) => handleAddCart(e, product.id, qty)}
                     >
-                      +
+                      加入購物車
                     </button>
                   </div>
                 </div>
-              </div>
-              {/* 加入購物車按鈕 */}
-              <div className="col-6">
-                <button
-                  type="button"
-                  className="text-nowrap btn btn-dark w-100 py-2"
-                  onClick={(e) => handleAddCart(e, product.id, qty)}
-                >
-                  加入購物車
-                </button>
               </div>
             </div>
           </div>
