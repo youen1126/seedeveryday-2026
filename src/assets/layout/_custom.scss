@@ -91,6 +91,10 @@ body {
   object-fit: cover;
 }
 
+.home-quote-copy {
+  min-height: 160px;
+}
+
 /* 平板 ≥768px */
 @media (min-width: 992px) {
   .hero-img {
