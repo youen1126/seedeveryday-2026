@@ -90,6 +90,10 @@ export default function SingleProducts() {
   )
     .filter(Boolean)
     .slice(0, 3);
+  const shortDescription =
+    (product.description || "").length > 20
+      ? `${product.description.slice(0, 43)} . . . . 詳見下方商品介紹`
+      : product.description;
 
   return (
     <div className="single-product-page">
@@ -207,8 +211,7 @@ export default function SingleProducts() {
                   </button>
                 </div>
                 <div className="single-product-description">
-                  <p>{product.description}</p>
-                  <p className="mb-0">{product.content}</p>
+                  <p>{shortDescription}</p>
                 </div>
                 <div className="single-product-promo">
                   <p className="mb-2">全店，滿千免運</p>
@@ -313,7 +316,7 @@ export default function SingleProducts() {
                         ))}
                       </div>
                     ) : null}
-                    <p className="mb-0">{product.description}</p>
+                    <p className="mb-0 p-5">{product.description}</p>
                   </div>
                 ) : null}
                 {activeTab === "spec" ? (
