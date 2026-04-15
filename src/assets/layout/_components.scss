@@ -66,3 +66,65 @@ img {
 .swiper {
   overflow: hidden; // 必加
 }
+
+.single-product-gallery {
+  .single-product-main-swiper,
+  .single-product-thumbs-swiper {
+    width: 100%;
+  }
+
+  .single-product-square,
+  .single-product-thumb-square {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .single-product-main-image,
+  .single-product-thumb-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+  }
+
+  .single-product-thumbs-swiper .swiper-slide {
+    opacity: 0.55;
+    cursor: pointer;
+  }
+
+  .single-product-thumbs-swiper .swiper-slide-thumb-active {
+    opacity: 1;
+  }
+}
+
+.single-product-page {
+  .img-hover img,
+  .card-hover,
+  .link-hover::after,
+  .icon-hover {
+    transition: none;
+  }
+
+  .img-hover:hover img {
+    transform: none;
+  }
+
+  .card-hover:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .link-hover:hover::after {
+    width: 0;
+  }
+
+  .icon-hover:hover {
+    transform: none;
+  }
+}

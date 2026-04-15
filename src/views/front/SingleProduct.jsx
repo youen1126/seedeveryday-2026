@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode, Thumbs } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/thumbs";
 
 import BackToTop from "@/components/BackToTop";
 import YoumaylikeSwiper from "@/components/front/YoumaylikeSwiper";
@@ -20,6 +25,7 @@ export default function SingleProducts() {
   const [qty, setQty] = useState(1);
   const [loading, setLoading] = useState(false);
   const [animatingId, setAnimatingId] = useState(null);
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   useEffect(() => {
     const getProduct = async (id) => {
@@ -54,29 +60,79 @@ export default function SingleProducts() {
     setQty(newQty);
   };
 
+  const galleryImages = [
+    product.imageUrl,
+    ...(Array.isArray(product.imagesUrl) ? product.imagesUrl : []),
+  ].filter(Boolean);
+
   return (
-    <div>
+    <div className="single-product-page">
       <div className="container">
         <div className="row align-items-center">
           <div className="col-md-7">
-            <div
-              id="carouselExampleControls"
-              className="carousel slide"
-              data-ride="carousel"
-            >
-              <div className="my-4 img-hover position-relative">
-                {loading ? (
-                  <LoadingSpinner />
-                ) : (
-                  <>
-                    <img
-                      src={product.imageUrl}
-                      alt={product.title}
-                      className="img-fluid mt-4 img-size-Xlarge"
-                    />
-                  </>
+            <div className="my-4 position-relative single-product-gallery">
+              {loading ? <LoadingSpinner /> : null}
+              <Swiper
+                modules={[Thumbs]}
+                thumbs={{
+                  swiper:
+                    thumbsSwiper && !thumbsSwiper.destroyed
+                      ? thumbsSwiper
+                      : null,
+                }}
+                className="single-product-main-swiper"
+              >
+                {(galleryImages.length > 0 ? galleryImages : [""]).map(
+                  (image, index) => (
+                    <SwiperSlide key={`${image}-${index}`}>
+                      <div className="single-product-square">
+                        {image ? (
+                          <img
+                            src={image}
+                            alt={`${product.title || "商品圖片"}-${index + 1}`}
+                            className="single-product-main-image"
+                            loading="lazy"
+                          />
+                        ) : null}
+                      </div>
+                    </SwiperSlide>
+                  ),
                 )}
-              </div>
+              </Swiper>
+              <Swiper
+                onSwiper={setThumbsSwiper}
+                modules={[FreeMode, Thumbs]}
+                freeMode
+                watchSlidesProgress
+                slidesPerView={4}
+                spaceBetween={12}
+                className="single-product-thumbs-swiper mt-3"
+                breakpoints={{
+                  0: {
+                    slidesPerView: 3,
+                  },
+                  768: {
+                    slidesPerView: 4,
+                  },
+                }}
+              >
+                {(galleryImages.length > 0 ? galleryImages : [""]).map(
+                  (image, index) => (
+                    <SwiperSlide key={`thumb-${image}-${index}`}>
+                      <div className="single-product-thumb-square">
+                        {image ? (
+                          <img
+                            src={image}
+                            alt={`${product.title || "商品縮圖"}-${index + 1}`}
+                            className="single-product-thumb-image"
+                            loading="lazy"
+                          />
+                        ) : null}
+                      </div>
+                    </SwiperSlide>
+                  ),
+                )}
+              </Swiper>
             </div>
           </div>
           <div className="col-md-5">
@@ -172,18 +228,6 @@ export default function SingleProducts() {
               </div>
             </div>
           </div>
-          {product.imagesUrl?.map((item, index) => {
-            return (
-              <div className="my-4 img-hover" key={index}>
-                <img
-                  src={item}
-                  alt="其他附圖"
-                  className="img-fluid mt-4 img-size-Xlarge-w"
-                  loading="lazy"
-                />
-              </div>
-            );
-          })}
         </div>
         <div className="row my-5"></div>
       </div>
