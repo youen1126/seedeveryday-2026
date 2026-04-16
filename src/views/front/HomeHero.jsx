@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 export default function HomeHero() {
   return (
-    <div className="row flex-md-row-reverse flex-column m-2">
+    <div className="row flex-md-row-reverse flex-column m-4">
       <div className="col-md-6">
         <img
           src="https://yunicrafts.com/cdn/shop/files/the-forest-chime-handcrafted-natural-seed-pod-bell-mobile-4998382.jpg?v=1772537851&width=2560"

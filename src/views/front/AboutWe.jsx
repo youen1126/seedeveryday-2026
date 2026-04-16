@@ -4,6 +4,7 @@ import { Link } from "react-router";
 import BackToTop from "@/components/BackToTop";
 import YoumaylikeSwiper from "@/components/front/YoumaylikeSwiper";
 import bannerImg from "/public/seed-everyday- Stamp Logo-compression.png";
+import SeedIntroduction from "./SeedIntroduction";
 import { scrollToTop } from "@/utils/scrollToTop";
 
 export default function AboutWe() {
@@ -70,35 +71,8 @@ export default function AboutWe() {
           </div>
         </div>
       </section>
-
       {/* 種子的祝福 */}
-      <section className="bg-light py-5">
-        <div className="container text-center">
-          <h2 className="mb-5">每一顆種子，都有自己的祝福</h2>
-
-          <div className="row">
-            <div className="col-md-3 mb-4">
-              <h5>相思豆</h5>
-              <p className="text-muted">象徵思念與情感</p>
-            </div>
-
-            <div className="col-md-3 mb-4">
-              <h5>無患子</h5>
-              <p className="text-muted">象徵平安守護</p>
-            </div>
-
-            <div className="col-md-3 mb-4">
-              <h5>橡實</h5>
-              <p className="text-muted">象徵力量與勇氣</p>
-            </div>
-
-            <div className="col-md-3 mb-4">
-              <h5>菩提子</h5>
-              <p className="text-muted">象徵智慧與覺察</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <SeedIntroduction />
 
       {/* 手作過程 */}
       <section className="py-5">

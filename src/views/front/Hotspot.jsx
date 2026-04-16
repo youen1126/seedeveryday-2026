@@ -7,6 +7,12 @@ export default function Hotspot() {
   const dispatch = useDispatch();
   const { products, currentCategory } = useSelector((state) => state.products);
   const navigate = useNavigate();
+  const descriptionClampStyle = {
+    display: "-webkit-box",
+    WebkitBoxOrient: "vertical",
+    WebkitLineClamp: 3,
+    overflow: "hidden",
+  };
 
   useEffect(() => {
     dispatch(
@@ -28,6 +34,7 @@ export default function Hotspot() {
   };
   return (
     <div className="row mt-5">
+      <h2 className="mb-1 text-center">熱門商品</h2>
       {handmadeProducts.map((product) => {
         return (
           <div className="col-md-6 mt-md-4" key={product.id}>
@@ -41,7 +48,10 @@ export default function Hotspot() {
                 <h4 className="mt-4">{product.title}</h4>
 
                 <div className="d-flex justify-content-between mt-3 align-items-start">
-                  <p className="card-text text-muted mb-0 w-75">
+                  <p
+                    className="card-text text-muted mb-0 w-75"
+                    style={descriptionClampStyle}
+                  >
                     {product.description}
                   </p>
 
