@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { selectCartTotal } from "@/slice/cartSlice";
 import { curryency } from "@/utils/filter";
+import CartThresholdNotice from "@/components/front/CartThresholdNotice";
 
 export default function CheckoutCart() {
   const carts = useSelector((state) => state.cart.carts);
@@ -53,6 +54,7 @@ export default function CheckoutCart() {
           <p className="mb-0 h4 fw-bold">總金額</p>
           <p className="mb-0 h4 fw-bold">NT${curryency(total)}</p>
         </div>
+        <CartThresholdNotice total={total} />
       </div>
     </div>
   );

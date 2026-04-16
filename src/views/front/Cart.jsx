@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router";
 
 import CheckoutFlow from "@/components/front/CheckoutFlow";
 import EmptyCart from "@/components/front/EmptyCart";
+import CartThresholdNotice from "@/components/front/CartThresholdNotice";
 import YoumaylikeSwiper from "@/components/front/YoumaylikeSwiper";
 import useMessage from "@/hooks/useMessage";
 import { DelAllCartApi } from "@/services/carts";
@@ -94,6 +95,7 @@ export default function Cart() {
     if (carts.length === 0) return;
     navigate(`/checkout`);
   };
+
   return (
     <>
       <div className="container">
@@ -244,6 +246,7 @@ export default function Cart() {
                   <p className="mb-0 h4 fw-bold font-zh-display">總金額</p>
                   <p className="mb-0 h4 fw-bold font-zh-display">NT${total}</p>
                 </div>
+                <CartThresholdNotice total={total} />
                 <button
                   type="button"
                   className={`btn btn-block mt-4 rounded-0 py-3 ${
