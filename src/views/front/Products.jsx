@@ -189,7 +189,7 @@ export default function Products() {
                               <del>NT${item.origin_price}</del>
                             </span>
                           </p>
-                          <p className="text-muted mt-3">{item.description}</p>
+                          {/* <p className="text-muted mt-3">{item.description}</p> */}
                         </div>
                       </div>
                     );
