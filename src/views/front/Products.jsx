@@ -16,12 +16,22 @@ import {
 } from "@/slice/productsSlice";
 import { toggleWishlistItem } from "@/slice/wishlistSlice";
 
+function getDeterministicRank(value, seed) {
+  const input = `${value}-${seed}`;
+  let hash = 0;
+  for (let i = 0; i < input.length; i += 1) {
+    hash = (hash * 31 + input.charCodeAt(i)) >>> 0;
+  }
+  return hash;
+}
+
 export default function Products() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { showSuccess } = useMessage();
   const [animatingId, setAnimatingId] = useState(null);
   const [sortType, setSortType] = useState("highToLow");
+  const [randomSeed, setRandomSeed] = useState(1);
   const wishList = useSelector((state) => state.wishlist.items);
 
   const { products, pagination, currentCategory, categories, loading } =
@@ -39,6 +49,13 @@ export default function Products() {
       }),
     );
   }, [dispatch, currentCategory]);
+
+  const handleSortChange = (value) => {
+    setSortType(value);
+    if (value === "random") {
+      setRandomSeed((prev) => prev + 1);
+    }
+  };
 
   //進入商品詳細頁
   const handleViewDetail = (e, id) => {
@@ -65,16 +82,12 @@ export default function Products() {
     if (sortType === "lowToHigh") {
       return productList.sort((a, b) => a.price - b.price);
     }
-    // Fisher-Yates shuffle for random ordering
-    for (let i = productList.length - 1; i > 0; i -= 1) {
-      const randomIndex = Math.floor(Math.random() * (i + 1));
-      [productList[i], productList[randomIndex]] = [
-        productList[randomIndex],
-        productList[i],
-      ];
-    }
-    return productList;
-  }, [products, sortType]);
+    return productList.sort(
+      (a, b) =>
+        getDeterministicRank(a.id, randomSeed) -
+        getDeterministicRank(b.id, randomSeed),
+    );
+  }, [products, sortType, randomSeed]);
 
   return (
     <>
@@ -138,7 +151,7 @@ export default function Products() {
             </div>
           </div>
           <div className="col-md-8">
-            <ProductSortSelect value={sortType} onChange={setSortType} />
+            <ProductSortSelect value={sortType} onChange={handleSortChange} />
             <div className="row">
               {/* 產品列表 */}
               {loading ? (
