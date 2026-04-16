@@ -45,10 +45,18 @@ export default function Home() {
                       loading="lazy"
                     />
                     <div className="home-quote-copy d-flex flex-column justify-content-between">
-                      <p className="h5 link-hover">在忙碌的生活裡</p>
-                      <p className="h5 link-hover">我們希望留下一點安靜</p>
-                      <p className="h5 link-hover">一顆小小的種子</p>
-                      <p className="h5 link-hover">也許就是一份祝福</p>
+                      <p className="h5 link-hover font-zh-display">
+                        在忙碌的生活裡
+                      </p>
+                      <p className="h5 link-hover font-zh-display">
+                        我們希望留下一點安靜
+                      </p>
+                      <p className="h5 link-hover font-zh-display">
+                        一顆小小的種子
+                      </p>
+                      <p className="h5 link-hover font-zh-display">
+                        也許就是一份祝福
+                      </p>
                       <p className="text-muted link-hover mb-0">
                         A little seed for everyday blessings.
                       </p>

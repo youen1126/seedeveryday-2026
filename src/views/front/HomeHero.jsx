@@ -13,7 +13,7 @@ export default function HomeHero() {
         {/* https://i.pinimg.com/1200x/7d/6b/90/7d6b90ef382a67ec60646a95feab02ec.jpg */}
       </div>
       <div className="col-md-6 d-flex flex-column justify-content-center mt-md-0 mt-3">
-        <h2 className="fw-bold link-hover" data-aos="fade-up">
+        <h2 className="fw-bold link-hover font-zh-display" data-aos="fade-up">
           來自天然種子手作飾品與祝福小物
         </h2>
         <h5 className="font-weight-normal text-muted mt-2" data-aos="fade-up">
