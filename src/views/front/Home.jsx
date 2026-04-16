@@ -16,11 +16,15 @@ export default function Home() {
     <>
       <div className="container">
         <HomeHero />
-        <hr></hr>
+      </div>
+      <div className="bg-light mt-1 p-1">
         <HotCategories />
-        <hr></hr>
+      </div>
+      <div className="container">
+        {" "}
         <Hotspot />
       </div>
+
       {/* section 3 箴言 */}
       <div className="bg-light mt-7">
         <div className="container">
