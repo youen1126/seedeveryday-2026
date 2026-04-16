@@ -240,11 +240,11 @@
     .single-product-info {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: flex-start;
     }
 
     .single-product-info-bottom {
-      margin-top: 0;
+      margin-top: 1.5rem;
     }
   }
 

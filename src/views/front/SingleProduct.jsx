@@ -152,7 +152,7 @@ export default function SingleProducts() {
                 modules={[FreeMode, Thumbs]}
                 freeMode
                 watchSlidesProgress
-                slidesPerView={4}
+                slidesPerView={7}
                 spaceBetween={12}
                 className="single-product-thumbs-swiper mt-3"
                 breakpoints={{
@@ -160,7 +160,10 @@ export default function SingleProducts() {
                     slidesPerView: 3,
                   },
                   768: {
-                    slidesPerView: 4,
+                    slidesPerView: 7,
+                  },
+                  1200: {
+                    slidesPerView: 8,
                   },
                 }}
               >

@@ -48,7 +48,7 @@ const Header = () => {
           </button>
           {/* 中：logo */}
           <NavLink
-            className="navbar-brand position-absolute"
+            className="position-absolute"
             to="/"
             style={{
               left: "50%",
