@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
@@ -6,6 +6,7 @@ import BackToTop from "@/components/BackToTop";
 import Pagination from "@/components/Pagination";
 import useMessage from "@/hooks/useMessage";
 import LoadingSpinner from "@/components/LoadingSpinner";
+import ProductSortSelect from "@/components/front/ProductSortSelect";
 
 import { createAsyncAddCart } from "@/slice/cartSlice";
 import {
@@ -20,6 +21,7 @@ export default function Products() {
   const dispatch = useDispatch();
   const { showSuccess } = useMessage();
   const [animatingId, setAnimatingId] = useState(null);
+  const [sortType, setSortType] = useState("highToLow");
   const wishList = useSelector((state) => state.wishlist.items);
 
   const { products, pagination, currentCategory, categories, loading } =
@@ -54,6 +56,25 @@ export default function Products() {
     );
     showSuccess("成功加入購物車");
   };
+
+  const sortedProducts = useMemo(() => {
+    const productList = [...(products || [])];
+    if (sortType === "highToLow") {
+      return productList.sort((a, b) => b.price - a.price);
+    }
+    if (sortType === "lowToHigh") {
+      return productList.sort((a, b) => a.price - b.price);
+    }
+    // Fisher-Yates shuffle for random ordering
+    for (let i = productList.length - 1; i > 0; i -= 1) {
+      const randomIndex = Math.floor(Math.random() * (i + 1));
+      [productList[i], productList[randomIndex]] = [
+        productList[randomIndex],
+        productList[i],
+      ];
+    }
+    return productList;
+  }, [products, sortType]);
 
   return (
     <>
@@ -117,6 +138,7 @@ export default function Products() {
             </div>
           </div>
           <div className="col-md-8">
+            <ProductSortSelect value={sortType} onChange={setSortType} />
             <div className="row">
               {/* 產品列表 */}
               {loading ? (
@@ -128,7 +150,7 @@ export default function Products() {
                 />
               ) : (
                 <>
-                  {products?.map((item) => {
+                  {sortedProducts?.map((item) => {
                     return (
                       <div className="col-md-6 card-hover" key={item.id}>
                         <div className="card img-hover border-0 mb-4 position-relative position-relative">
