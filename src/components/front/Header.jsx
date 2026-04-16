@@ -86,7 +86,7 @@ const Header = () => {
                   to="/product"
                   onClick={closeMenu}
                 >
-                  找商品
+                  熱門商品
                 </NavLink>
               </li>
               <li className="nav-item active">

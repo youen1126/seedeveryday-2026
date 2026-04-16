@@ -60,11 +60,18 @@ export default function AboutWe() {
               </p>
               <div className="p-3">
                 <Link
+                  className="btn btn-dark rounded-0 m-2"
                   to="/product"
-                  className="btn btn-dark px-5 py-2"
-                  data-aos="zoom-out-left"
+                  data-aos="fade-right"
                 >
-                  前往商品頁
+                  立即選購
+                </Link>
+                <Link
+                  className="btn btn-dark rounded-0"
+                  to="/product"
+                  data-aos="fade-right"
+                >
+                  看看送禮靈感
                 </Link>
               </div>
             </div>
@@ -104,9 +111,9 @@ export default function AboutWe() {
 
             <div className="col-md-4 mb-4 card-hover">
               <img
-                src="https://i.pinimg.com/1200x/c5/3a/1b/c53a1bf67f769d8cf6195442c48731ed.jpg"
+                src="https://i.pinimg.com/736x/b0/1f/b7/b01fb7d26523055136bef6de3f34be49.jpg"
                 className="img-fluid rounded mb-3  mt-3 img-size-large"
-                alt="由真實的松果與針勾的松果製作的工藝創作品"
+                alt="由夏威夷果核和迷你菇裝飾物製作的工藝創作品"
                 loading="lazy"
               />
               <h5>完成作品</h5>
@@ -127,11 +134,18 @@ export default function AboutWe() {
           </p>
 
           <Link
+            className="btn btn-dark rounded-0 m-2"
             to="/product"
-            className="btn btn-dark px-4 py-2"
-            data-aos="fade-down"
+            data-aos="fade-right"
           >
-            前往商品頁
+            立即選購
+          </Link>
+          <Link
+            className="btn btn-dark rounded-0"
+            to="/product"
+            data-aos="fade-right"
+          >
+            看看送禮靈感
           </Link>
         </div>
       </section>
