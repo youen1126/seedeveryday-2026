@@ -11,6 +11,12 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const closeMenu = () => setIsOpen(false);
+  const getNavLinkClass = ({ isActive }) =>
+    `nav-link ps-0 font-zh-display header-nav-link ${
+      isActive ? "is-active" : ""
+    }`;
+  const getIconLinkClass = ({ isActive }) =>
+    `header-icon-link ${isActive ? "is-active" : ""}`;
 
   useEffect(() => {
     dispatch(createAsyncGetCart());
@@ -48,8 +54,13 @@ const Header = () => {
           </button>
           {/* 中：logo */}
           <NavLink
-            className="position-absolute"
+            className={({ isActive }) =>
+              `position-absolute header-logo-link ${
+                isActive ? "is-active" : ""
+              }`
+            }
             to="/"
+            end
             style={{
               left: "50%",
               transform: "translate(-50%, -50%)",
@@ -60,10 +71,10 @@ const Header = () => {
           </NavLink>
           {/* 右：收藏和購物車 */}
           <div className="d-flex">
-            <NavLink to="/wishlist">
+            <NavLink to="/wishlist" className={getIconLinkClass}>
               <i className="fa-sharp fa-solid fa-heart me-4"></i>
             </NavLink>
-            <NavLink to="/cart">
+            <NavLink to="/cart" className={getIconLinkClass}>
               <div className="position-relative  me-5">
                 <i className="fas fa-shopping-cart "></i>
                 <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -82,7 +93,7 @@ const Header = () => {
             <ul className="navbar-nav">
               <li className="nav-item active">
                 <NavLink
-                  className="nav-link ps-0 font-zh-display"
+                  className={getNavLinkClass}
                   to="/product"
                   onClick={closeMenu}
                 >
@@ -91,7 +102,7 @@ const Header = () => {
               </li>
               <li className="nav-item active">
                 <NavLink
-                  className="nav-link ps-0 font-zh-display"
+                  className={getNavLinkClass}
                   to="/aboutwe"
                   onClick={closeMenu}
                 >

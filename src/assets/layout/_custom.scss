@@ -55,6 +55,67 @@ body {
   transition: all 0.3s ease;
 }
 
+.header-logo-link {
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.header-logo-link:hover {
+  opacity: 0.88;
+}
+
+.header-logo-link.is-active {
+  opacity: 1;
+}
+
+.header-icon-link {
+  color: #212529;
+  text-decoration: none;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.header-icon-link:hover {
+  color: #495057;
+  transform: translateY(-1px);
+}
+
+.header-icon-link.is-active {
+  color: #000;
+}
+
+.header-nav-link {
+  position: relative;
+  color: #6c757d;
+  transition: color 0.2s ease;
+}
+
+.header-nav-link:hover {
+  color: #212529;
+}
+
+.header-nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0.2rem;
+  width: 0;
+  height: 2px;
+  background: #212529;
+  transition: width 0.22s ease;
+}
+
+.header-nav-link:hover::after,
+.header-nav-link.is-active::after {
+  width: 100%;
+}
+
+.header-nav-link.is-active {
+  color: #212529;
+  font-weight: 700;
+}
+
 .custom-menu-toggle {
   display: inline-flex;
   flex-direction: column;
