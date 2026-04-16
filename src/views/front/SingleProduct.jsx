@@ -286,6 +286,13 @@ export default function SingleProducts() {
                       加入購物車
                     </button>
                   </div>
+                  <div className="col-12 text-end">
+                    <div>
+                      <p className="mb-0 small text-muted">
+                        庫存：超過 10 件（下單超過 10 件請先聯絡客服）
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
