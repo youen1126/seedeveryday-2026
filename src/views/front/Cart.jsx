@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router";
 import CheckoutFlow from "@/components/front/CheckoutFlow";
 import EmptyCart from "@/components/front/EmptyCart";
 import CartThresholdNotice from "@/components/front/CartThresholdNotice";
+import OrderSavingsNotice from "@/components/front/OrderSavingsNotice";
 import YoumaylikeSwiper from "@/components/front/YoumaylikeSwiper";
 import useMessage from "@/hooks/useMessage";
 import { DelAllCartApi } from "@/services/carts";
@@ -232,7 +233,13 @@ export default function Cart() {
                                 </div>
                               </div>
                               <p className="mb-0 ms-auto font-zh-display">
-                                NT${item.product.price * item.qty}
+                                NT${item.product.price * item.qty}{" "}
+                                <span className="text-muted">
+                                  <del>
+                                    NT$
+                                    {item.product.origin_price * item.qty}
+                                  </del>
+                                </span>
                               </p>
                             </div>
                           </div>
@@ -246,6 +253,7 @@ export default function Cart() {
                   <p className="mb-0 h4 fw-bold font-zh-display">總金額</p>
                   <p className="mb-0 h4 fw-bold font-zh-display">NT${total}</p>
                 </div>
+                <OrderSavingsNotice carts={carts} total={total} />
                 <CartThresholdNotice total={total} />
                 <button
                   type="button"

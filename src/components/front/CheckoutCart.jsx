@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { selectCartTotal } from "@/slice/cartSlice";
 import { curryency } from "@/utils/filter";
 import CartThresholdNotice from "@/components/front/CartThresholdNotice";
+import OrderSavingsNotice from "@/components/front/OrderSavingsNotice";
 
 export default function CheckoutCart() {
   const carts = useSelector((state) => state.cart.carts);
@@ -28,10 +29,10 @@ export default function CheckoutCart() {
                 </div>
                 <div className="d-flex justify-content-between flex-wrap cart-item-price-row">
                   <p className="text-muted mb-0">
-                    <small>NT${curryency(item.product.price)}</small>
-                  </p>
-                  <p className="mb-0 cart-item-total">
-                    NT${curryency(item.qty * item.product.price)}
+                    <small>
+                      NT${curryency(item.product.price)}{" "}
+                      <del>NT${curryency(item.product.origin_price)}</del>
+                    </small>
                   </p>
                 </div>
               </div>
@@ -54,6 +55,7 @@ export default function CheckoutCart() {
           <p className="mb-0 h4 fw-bold">總金額</p>
           <p className="mb-0 h4 fw-bold">NT${curryency(total)}</p>
         </div>
+        <OrderSavingsNotice carts={carts} total={total} />
         <CartThresholdNotice total={total} />
       </div>
     </div>
