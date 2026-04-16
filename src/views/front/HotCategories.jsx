@@ -1,7 +1,7 @@
 export default function HotCategories() {
   return (
     <div className="container my-5">
-      <h2 className="mb-5 text-center">熱門分類</h2>
+      <h2 className="mb-5 text-center font-zh-display fw-bold ">熱門分類</h2>
       <div className="row">
         <div className="col-md-4 mb-4 card-hover">
           <div className="hot-category-card ">
@@ -12,7 +12,9 @@ export default function HotCategories() {
               data-aos="flip-left"
               loading="lazy"
             />
-            <h4 className="hot-category-title">種子飾品</h4>
+            <h4 className="hot-category-title font-zh-display fw-bold ">
+              種子飾品
+            </h4>
             <p className="text-muted hot-category-text">
               以天然種子串製而成，保留大地色澤與自然紋理，呈現素雅輕盈的手作氣質。
             </p>
@@ -27,7 +29,9 @@ export default function HotCategories() {
               data-aos="flip-left"
               loading="lazy"
             />
-            <h4 className="hot-category-title">種子小物</h4>
+            <h4 className="hot-category-title font-zh-display fw-bold ">
+              種子小物
+            </h4>
             <p className="text-muted hot-category-text">
               將天然種子做成各式裝飾物，適合當作無負擔又富含心意的小禮物
             </p>
@@ -42,7 +46,9 @@ export default function HotCategories() {
               data-aos="flip-left"
               loading="lazy"
             />
-            <h4 className="hot-category-title">壓花</h4>
+            <h4 className="hot-category-title font-zh-display fw-bold ">
+              壓花
+            </h4>
             <p className="text-muted hot-category-text">
               我們挑選花形與色澤各具特色的植物，留下花瓣自然的紋理，
               適合作為桌面小物、送給喜歡自然與手作的人。

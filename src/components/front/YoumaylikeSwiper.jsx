@@ -24,7 +24,7 @@ export default function YoumaylikeSwiper() {
   return (
     <section className="section-gray py-5">
       <div className="container">
-        <h3 className="fw-bold">你可能也喜歡. . . . . .</h3>
+        <h3 className="fw-bold font-zh-display">你可能也喜歡</h3>
         <div className="swiper mt-4 mb-5">
           <div className="swiper-wrapper">
             {reversedProducts.length === 0 ? (
@@ -80,7 +80,7 @@ export default function YoumaylikeSwiper() {
                         ></i>
                       </button>
                       <div className="card-body p-3 mb-3">
-                        <h4 className="mb-0 mt-3">
+                        <h4 className="mb-0 mt-3 font-zh-display fw-bold ">
                           <a
                             href="#"
                             onClick={(e) => handleViewDetail(e, item.id)}
@@ -88,10 +88,10 @@ export default function YoumaylikeSwiper() {
                             {item.title}
                           </a>
                         </h4>
-                        <p className="card-text mb-0">
-                          NT${item.orign_price}
-                          <span className="text-muted">
-                            <del>NT${item.price}</del>
+                        <p className="card-text mb-0 mt-1 font-zh-display">
+                          NT${item.price}
+                          <span className="text-muted font-zh-display-sm mx-1">
+                            <del>NT${item.origin_price}</del>
                           </span>
                         </p>
                       </div>

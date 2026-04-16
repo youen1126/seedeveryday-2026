@@ -67,7 +67,7 @@ export default function Checkout() {
           <div className="col-md-6">
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="bg-white p-4">
-                <h4 className="fw-bold">填寫收件資料</h4>
+                <h4 className="fw-bold font-zh-display">填寫收件資料</h4>
 
                 <div className="mb-2">
                   <label
@@ -139,7 +139,7 @@ export default function Checkout() {
               </div>
 
               <div className="bg-white p-4 mt-3">
-                <h4 className="fw-bold">收件地址和備註</h4>
+                <h4 className="fw-bold font-zh-display">收件地址和備註</h4>
 
                 <label htmlFor="address" className="mt-4 mb-3">
                   收件地址
@@ -173,7 +173,7 @@ export default function Checkout() {
                 <div className="d-flex flex-column-reverse flex-md-row mt-4 justify-content-between align-items-md-center align-items-end  w-100">
                   <a
                     href="#"
-                    className="text-dark mt-md-0 mt-3"
+                    className="text-dark mt-md-0 mt-3 font-zh-display"
                     onClick={(e) => handleBackToPage(e)}
                   >
                     <i className="fas fa-chevron-left me-2"></i> 回上一頁

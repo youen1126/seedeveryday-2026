@@ -187,7 +187,7 @@ export default function SingleProducts() {
             <div className="single-product-info my-4">
               <div className="single-product-info-top">
                 <nav aria-label="breadcrumb">
-                  <ol className="breadcrumb bg-white px-0 mb-0 py-3">
+                  <ol className="breadcrumb bg-white px-0 mb-0 py-3 font-zh-display">
                     <li className="breadcrumb-item">
                       <Link className="text-muted" to="/">
                         Home
@@ -204,7 +204,9 @@ export default function SingleProducts() {
                   </ol>
                 </nav>
                 <div className="d-flex align-items-center justify-content-between gap-3">
-                  <h2 className="fw-bold h1 mb-1">{product.title}</h2>
+                  <h2 className="fw-bold h1 mb-1 font-zh-display fw-bold">
+                    {product.title}
+                  </h2>
                   <button
                     type="button"
                     className="p-0 border-0 bg-transparent d-inline-flex align-items-center justify-content-center"
@@ -289,7 +291,10 @@ export default function SingleProducts() {
         <div className="row single-product-tabs-row">
           <div className="col-12">
             <section className="single-product-tabs">
-              <div className="single-product-tabs-nav" role="tablist">
+              <div
+                className="single-product-tabs-nav font-zh-display fw-bold"
+                role="tablist"
+              >
                 <button
                   type="button"
                   className={`single-product-tab-btn ${

@@ -44,24 +44,16 @@ export default function Home() {
                       }}
                       loading="lazy"
                     />
-                    <div className="home-quote-copy d-flex flex-column justify-content-between">
-                      <p className="h5 link-hover font-zh-display">
-                        在忙碌的生活裡
-                      </p>
-                      <p className="h5 link-hover font-zh-display">
-                        我們希望留下一點安靜
-                      </p>
-                      <p className="h5 link-hover font-zh-display">
-                        一顆小小的種子
-                      </p>
-                      <p className="h5 link-hover font-zh-display">
-                        也許就是一份祝福
-                      </p>
-                      <p className="text-muted link-hover mb-0">
+                    <div className="home-quote-copy d-flex flex-column justify-content-between font-zh-display-sm">
+                      <p className="link-hover">在忙碌的生活裡</p>
+                      <p className="link-hover">我們希望留下一點安靜</p>
+                      <p className="link-hover">一顆小小的種子</p>
+                      <p className="link-hover">也許就是一份祝福</p>
+                      <p className="text-muted link-hover">
                         A little seed for everyday blessings.
                       </p>
                     </div>
-                    <div className="d-flex flex-column m-4 ">
+                    <div className="d-flex flex-column m-4">
                       {" "}
                       <NavLink
                         to="/aboutwe"

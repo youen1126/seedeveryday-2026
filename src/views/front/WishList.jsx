@@ -34,7 +34,7 @@ export default function WishList() {
   return (
     <>
       <div className="container py-5">
-        <h2 className="mb-4 text-center">收藏列表</h2>
+        <h2 className="mb-4 text-center font-zh-display fw-bold">收藏列表</h2>
 
         {/* 空狀態 */}
         {wishListItems.length === 0 && (
@@ -72,7 +72,7 @@ export default function WishList() {
                 {/* 商品圖片 */}
 
                 <Link to={`/product/${item.id}`}>
-                  <div className="img-hover">
+                  <div className="img-hover ">
                     <img
                       src={item.imageUrl}
                       className="card-img-top rounded-0 img-size-middle"
@@ -82,7 +82,7 @@ export default function WishList() {
                 </Link>
 
                 {/* 商品資訊 */}
-                <div className="card-body">
+                <div className="card-body font-zh-display">
                   <h5 className="card-title">{item.title}</h5>
                   <p className="card-text">NT$ {item.price}</p>
                   <div className="py-3">

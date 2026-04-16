@@ -13,7 +13,7 @@ export default function CheckoutFlow({ currentStep = 1 }) {
         <div className="row justify-content-center">
           <div className="col-md-10">
             <nav className="navbar navbar-expand-lg navbar-light px-0">
-              <h2 className="navbar-brand">
+              <h2 className="navbar-brand font-zh-display fw-bold">
                 結帳流程 <i className="bi bi-chevron-right"></i>
               </h2>
               <ul className="list-unstyled mb-0 ms-md-auto d-flex align-items-center justify-content-between justify-content-md-end w-100 mt-md-0 mt-4">

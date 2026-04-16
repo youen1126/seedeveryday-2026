@@ -14,7 +14,7 @@ function OrderSuccess() {
         <i className="bi bi-check-circle-fill text-success fs-1"></i>
       </div>
 
-      <h2 className="mb-3">訂單送出成功</h2>
+      <h2 className="mb-3 font-zh-display">訂單送出成功</h2>
 
       <p className="text-muted">感謝你的購買，我們已收到你的訂單。</p>
 

@@ -20,7 +20,9 @@ export default function Pagination({ pagination, onChangePage }) {
               handleClick(e, pagination.current_page - 1);
             }}
           >
-            <span aria-hidden="true">上一頁</span>
+            <span aria-hidden="true" className="font-zh-display fw-bold ">
+              上一頁
+            </span>
           </a>
         </li>
         {Array.from({ length: pagination.total_pages }, (_, index) => (
@@ -49,7 +51,9 @@ export default function Pagination({ pagination, onChangePage }) {
               handleClick(e, pagination.current_page + 1);
             }}
           >
-            <span aria-hidden="true">下一頁</span>
+            <span aria-hidden="true" className="font-zh-display fw-bold ">
+              下一頁
+            </span>
           </a>
         </li>
       </ul>

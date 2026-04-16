@@ -34,7 +34,7 @@ export default function Hotspot() {
   };
   return (
     <div className="row mt-5">
-      <h2 className="mb-1 text-center">熱門商品</h2>
+      <h2 className="mb-1 text-center font-zh-display fw-bold ">熱門商品</h2>
       {handmadeProducts.map((product) => {
         return (
           <div className="col-md-6 mt-md-4" key={product.id}>
@@ -45,7 +45,9 @@ export default function Hotspot() {
                 alt={product.title}
               />
               <div className="card-body p-0">
-                <h4 className="mt-4">{product.title}</h4>
+                <h4 className="mt-4 font-zh-display fw-bold ">
+                  {product.title}
+                </h4>
 
                 <div className="d-flex justify-content-between mt-3 align-items-start">
                   <p

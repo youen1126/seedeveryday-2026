@@ -107,7 +107,7 @@ export default function Cart() {
           >
             <div className="d-flex justify-content-between align-items-center flex-wrap gap-3">
               <div>
-                <h2 className="mt-2 mb-3">購物車</h2>
+                <h2 className="mt-2 mb-3 font-zh-display fw-bold">購物車</h2>
                 <div
                   className="btn-group"
                   role="tablist"
@@ -137,7 +137,7 @@ export default function Cart() {
                 {activeTab === "cart" && (
                   <button
                     type="button"
-                    className="btn btn-outline-danger"
+                    className="btn btn-outline-danger font-zh-display"
                     onClick={deleteAll}
                     disabled={!carts || carts.length === 0}
                   >
@@ -172,7 +172,9 @@ export default function Cart() {
                             >
                               <i className="fas fa-times"></i>
                             </a>
-                            <p className="mb-0 fw-bold">{item.product.title}</p>
+                            <p className="mb-0 fw-bold font-zh-display">
+                              {item.product.title}
+                            </p>
                             <div className="d-flex justify-content-between align-items-center w-100">
                               <div className="input-group w-50 align-items-center p-1">
                                 <div
@@ -227,7 +229,7 @@ export default function Cart() {
                                   </button>
                                 </div>
                               </div>
-                              <p className="mb-0 ms-auto">
+                              <p className="mb-0 ms-auto font-zh-display">
                                 NT${item.product.price * item.qty}
                               </p>
                             </div>
@@ -239,8 +241,8 @@ export default function Cart() {
                 )}
                 <table className="table mt-4 text-muted"></table>
                 <div className="d-flex justify-content-between mt-4">
-                  <p className="mb-0 h4 fw-bold">總金額</p>
-                  <p className="mb-0 h4 fw-bold">NT${total}</p>
+                  <p className="mb-0 h4 fw-bold font-zh-display">總金額</p>
+                  <p className="mb-0 h4 fw-bold font-zh-display">NT${total}</p>
                 </div>
                 <button
                   type="button"

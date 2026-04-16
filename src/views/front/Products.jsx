@@ -76,10 +76,10 @@ export default function Products() {
           }}
         ></div>
         <div className="flex text-center" style={{ opacity: 0.7 }}>
-          <h4 className="fw-bold position-relative z-1 mb-0">
+          <h4 className="fw-bold position-relative z-1 mb-0 font-zh-display fw-bold ">
             把祝福帶進每一天
           </h4>
-          <p className="position-relative z-1 mb-0">
+          <p className="position-relative z-1 mb-0 font-zh-display">
             Bring blessings into every day
           </p>
         </div>
@@ -100,7 +100,7 @@ export default function Products() {
                         <li key={category}>
                           <a
                             href="#"
-                            className={`py-2 d-block text-muted icon-hover ${currentCategory === category ? "text-dark fw-bold" : "text-muted"}`}
+                            className={`py-2 d-block text-muted icon-hover ${currentCategory === category ? "text-dark fw-bold font-zh-display" : "text-muted font-zh-display"}`}
                             onClick={(e) => {
                               e.preventDefault();
                               dispatch(setCategory(category));
@@ -165,7 +165,7 @@ export default function Products() {
                             ></i>
                           </button>
                           <div className="card-body p-0">
-                            <h4 className="mb-0 mt-3">
+                            <h4 className="mb-0 mt-3  font-zh-display fw-bold ">
                               <a
                                 href="#"
                                 onClick={(e) => handleViewDetail(e, item.id)}
@@ -183,7 +183,7 @@ export default function Products() {
                               </button>
                             </div>
                           </div>
-                          <p className="card-text mb-0">
+                          <p className="card-text mb-0  font-zh-display">
                             NT${item.price}{" "}
                             <span className="text-muted ">
                               <del>NT${item.origin_price}</del>

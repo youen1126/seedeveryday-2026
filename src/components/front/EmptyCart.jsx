@@ -5,7 +5,7 @@ export default function EmptyCart() {
     <div className="text-center py-5 my-5">
       <i className="bi bi-cart-x fs-1 text-muted"></i>
 
-      <h3 className="mt-3">購物車是空的</h3>
+      <h3 className="mt-3 font-zh-display">購物車是空的</h3>
 
       <p className="text-muted">還沒有加入任何商品</p>
 

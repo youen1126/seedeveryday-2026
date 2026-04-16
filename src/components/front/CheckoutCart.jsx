@@ -8,7 +8,9 @@ export default function CheckoutCart() {
   return (
     <div className="col-md-4">
       <div className="border p-2 mb-4 bg-gray">
-        <h4 className="mb-2 mt-2 text-center">購買項目</h4>
+        <h4 className="mb-2 mt-2 text-center font-zh-display fw-bold">
+          購買項目
+        </h4>
         <hr />
         {carts.map((item) => {
           return (
@@ -18,7 +20,7 @@ export default function CheckoutCart() {
                 alt={item.product.title}
                 className="img-size-sm"
               />
-              <div className="w-100 cart-item-info">
+              <div className="w-100 cart-item-info font-zh-display">
                 <div className="d-flex justify-content-between fw-bold cart-item-top">
                   <p className="mb-0 cart-item-title">{item.product.title}</p>
                   <p className="mb-0 cart-item-qty">{item.qty}</p>
@@ -35,7 +37,7 @@ export default function CheckoutCart() {
             </div>
           );
         })}
-        <table className="table mt-2 border-top border-bottom text-muted">
+        <table className="table mt-2 border-top border-bottom text-muted font-zh-display">
           <tbody>
             <tr>
               <th scope="row" className="border-0 px-0 pt-4 font-weight-normal">
@@ -47,7 +49,7 @@ export default function CheckoutCart() {
             </tr>
           </tbody>
         </table>
-        <div className="d-flex justify-content-between mt-4">
+        <div className="d-flex justify-content-between mt-4 font-zh-display">
           <p className="mb-0 h4 fw-bold">總金額</p>
           <p className="mb-0 h4 fw-bold">NT${curryency(total)}</p>
         </div>

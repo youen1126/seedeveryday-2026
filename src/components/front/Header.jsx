@@ -82,7 +82,7 @@ const Header = () => {
             <ul className="navbar-nav">
               <li className="nav-item active">
                 <NavLink
-                  className="nav-link ps-0"
+                  className="nav-link ps-0 font-zh-display"
                   to="/product"
                   onClick={closeMenu}
                 >
@@ -91,7 +91,7 @@ const Header = () => {
               </li>
               <li className="nav-item active">
                 <NavLink
-                  className="nav-link ps-0"
+                  className="nav-link ps-0 font-zh-display"
                   to="/aboutwe"
                   onClick={closeMenu}
                 >

@@ -28,10 +28,10 @@ export default function AboutWe() {
         ></div>
 
         <div className="container position-relative text-white">
-          <h1 className="mb-3" data-aos="zoom-in">
+          <h1 className="mb-3 font-zh-display fw-bold " data-aos="zoom-in">
             關於 種子日常
           </h1>
-          <p className="lead" data-aos="zoom-in-right">
+          <p className="lead font-zh-display" data-aos="zoom-in-right">
             每一顆種子，都來自自然。 我們把它變成日常中的祝福。
           </p>
         </div>
@@ -51,7 +51,9 @@ export default function AboutWe() {
             </div>
 
             <div className="col-md-6">
-              <h2 className="mb-3">我們為什麼開始做種子手作</h2>
+              <h2 className="mb-3 font-zh-display fw-bold ">
+                我們為什麼開始做種子手作
+              </h2>
               <p> 在自然裡，每一顆種子都有自己的故事。</p>
               <p> 有些象徵平安，有些代表思念，有些帶來力量。</p>
               <p>
@@ -84,7 +86,9 @@ export default function AboutWe() {
       {/* 手作過程 */}
       <section className="py-5">
         <div className="container">
-          <h2 className="text-center mb-5">每一件作品，都是手作完成</h2>
+          <h2 className="text-center mb-5 font-zh-display fw-bold ">
+            每一件作品，都是手作完成
+          </h2>
 
           <div className="row text-center">
             <div className="col-md-4 mb-4 card-hover">
@@ -126,7 +130,7 @@ export default function AboutWe() {
       {/* 品牌理念 + CTA */}
       <section className="bg-light py-5 text-center">
         <div className="container">
-          <h2 className="mb-4">讓祝福成為日常</h2>
+          <h2 className="mb-4 font-zh-display fw-bold ">讓祝福成為日常</h2>
 
           <p className="mb-4">
             在忙碌的生活裡，我們希望保留一點來自自然的安靜。

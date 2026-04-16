@@ -2,7 +2,9 @@ export default function SeedIntroduction() {
   return (
     <div className="bg-light py-1">
       <div className="container my-5">
-        <h2 className="mb-5 text-center">每一顆種子，都有自己的祝福</h2>
+        <h2 className="mb-5 text-center font-zh-display fw-bold ">
+          每一顆種子，都有自己的祝福
+        </h2>
         <div className="row">
           <div className="col-md-4 card-hover ">
             <img
@@ -12,7 +14,9 @@ export default function SeedIntroduction() {
               data-aos="flip-left"
               loading="lazy"
             />
-            <h4 className="mt-4">無患子｜守護與平安</h4>
+            <h4 className="mt-4 font-zh-display fw-bold ">
+              無患子｜守護與平安
+            </h4>
             <p className="text-muted">
               無患子在東方文化中，一直被視為帶來平安與守護的種子。
               在過去，人們會把無患子製成念珠或護身物，象徵遠離煩惱與不安。
@@ -27,7 +31,7 @@ export default function SeedIntroduction() {
               data-aos="flip-left"
               loading="lazy"
             />
-            <h4 className="mt-4">橡實｜力量與成長</h4>
+            <h4 className="mt-4 font-zh-display fw-bold ">橡實｜力量與成長</h4>
             <p className="text-muted">
               橡樹的種子在許多文化裡，象徵著力量、成長與希望。
               一顆小小的橡實，未來卻可能長成高大的橡樹，陪伴土地與時間走過數十年甚至上百年。
@@ -42,7 +46,9 @@ export default function SeedIntroduction() {
               data-aos="flip-left"
               loading="lazy"
             />
-            <h4 className="mt-4">菩提子｜覺察與智慧</h4>
+            <h4 className="mt-4 font-zh-display fw-bold ">
+              菩提子｜覺察與智慧
+            </h4>
             <p className="text-muted">
               在東方文化中，象徵覺察與智慧。它的外型自然而質樸、紋理不盡相同，像是時間慢慢雕刻出的痕跡。
               相傳佛陀在菩提樹下悟道，菩提成為一種提醒人們向內觀照、保持清明心境的象徵。

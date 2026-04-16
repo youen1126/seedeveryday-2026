@@ -16,10 +16,16 @@ export default function HomeHero() {
         <h2 className="fw-bold link-hover font-zh-display" data-aos="fade-up">
           來自天然種子手作飾品與祝福小物
         </h2>
-        <h5 className="font-weight-normal text-muted mt-2" data-aos="fade-up">
+        <h5
+          className="font-weight-normal text-muted mt-2 font-zh-display"
+          data-aos="fade-up"
+        >
           Carry a seed, carry a blessing.
         </h5>
-        <p className="font-weight-normal text-muted mt-2" data-aos="fade-up">
+        <p
+          className="font-weight-normal text-muted mt-2 font-zh-display"
+          data-aos="fade-up"
+        >
           天然種子、果殼與植物素材手工製作，適合收藏、送禮，也適合留給自己的日常儀式感。
         </p>
         <div className="input-group mb-0 mt-4">
