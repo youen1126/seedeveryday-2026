@@ -1,9 +1,16 @@
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import CheckoutFlow from "./CheckoutFlow";
 import { scrollToTop } from "@/utils/scrollToTop";
 import { useEffect } from "react";
 
 function OrderSuccess() {
+  const location = useLocation();
+  const orderId =
+    location?.state?.orderId ||
+    location?.state?.order?.id ||
+    location?.state?.order_id ||
+    "";
+
   useEffect(() => {
     scrollToTop();
   }, []);
@@ -17,6 +24,17 @@ function OrderSuccess() {
       <h2 className="mb-3 font-zh-display">訂單送出成功</h2>
 
       <p className="text-muted">感謝你的購買，我們已收到你的訂單。</p>
+      <div className="text-muted mt-3">
+        <p className="mb-1">
+          此筆訂單的訂單編號：
+          {orderId || "查詢中（若沒有顯示編號，請聯繫客服信箱）"}
+        </p>
+        <p className="mb-0">
+          訂單後續將用 email 進行通知，如有疑問可聯繫客服信箱
+          {" "}
+          seedevery@sedcontent.com
+        </p>
+      </div>
 
       <div className="mt-4">
         <Link className="btn btn-dark me-3" to="/product">

@@ -14,6 +14,16 @@ import { scrollToTop } from "@/utils/scrollToTop";
 const API_BASE = import.meta.env.VITE_API_BASE;
 const API_PATH = import.meta.env.VITE_API_PATH;
 
+function extractOrderIdFromResponse(response) {
+  return (
+    response?.data?.orderId ||
+    response?.data?.order_id ||
+    response?.data?.order?.id ||
+    response?.data?.order?.orderId ||
+    ""
+  );
+}
+
 export default function Checkout() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -40,9 +50,12 @@ export default function Checkout() {
     try {
       const url = `${API_BASE}/api/${API_PATH}/order`;
       const submitRes = await axios.post(url, { data });
+      const orderId = extractOrderIdFromResponse(submitRes);
       showSuccess("訂單送出成功", submitRes);
       reset();
-      navigate("/orderSuccess");
+      navigate("/orderSuccess", {
+        state: { orderId },
+      });
       dispatch(createAsyncGetCart());
     } catch (error) {
       console.error(error);
