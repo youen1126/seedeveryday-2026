@@ -32,14 +32,14 @@ export default function HomeHero() {
           <div className="input-group-append">
             <Link
               className="btn btn-dark rounded-0 m-2"
-              to="/product"
+              to="/products"
               data-aos="fade-right"
             >
               立即選購
             </Link>
             <Link
               className="btn btn-dark rounded-0"
-              to="/product"
+              to="/products"
               data-aos="fade-right"
             >
               看看送禮靈感

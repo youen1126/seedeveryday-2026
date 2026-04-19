@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 
 import BackToTop from "@/components/BackToTop";
 import Pagination from "@/components/Pagination";
@@ -12,9 +12,11 @@ import { createAsyncAddCart } from "@/slice/cartSlice";
 import {
   createAsyncGetAllProducts,
   createAsyncGetProducts,
-  setCategory,
 } from "@/slice/productsSlice";
 import { toggleWishlistItem } from "@/slice/wishlistSlice";
+
+const ALL_CATEGORY = "全部商品";
+const CATEGORY_QUERY_KEY = "category";
 
 function getDeterministicRank(value, seed) {
   const input = `${value}-${seed}`;
@@ -25,8 +27,30 @@ function getDeterministicRank(value, seed) {
   return hash;
 }
 
+function getCategoryFromSearchParams(searchParams) {
+  return searchParams.get(CATEGORY_QUERY_KEY)?.trim() || "";
+}
+
+function resolveCategoryFromQuery(categoryFromQuery, categories) {
+  if (!categoryFromQuery) {
+    return ALL_CATEGORY;
+  }
+  return categories.includes(categoryFromQuery)
+    ? categoryFromQuery
+    : ALL_CATEGORY;
+}
+
+function buildCategorySearchParams(category) {
+  const nextParams = new URLSearchParams();
+  if (category && category !== ALL_CATEGORY) {
+    nextParams.set(CATEGORY_QUERY_KEY, category);
+  }
+  return nextParams;
+}
+
 export default function Products() {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
   const { showSuccess } = useMessage();
   const [animatingId, setAnimatingId] = useState(null);
@@ -34,8 +58,24 @@ export default function Products() {
   const [randomSeed, setRandomSeed] = useState(1);
   const wishList = useSelector((state) => state.wishlist.items);
 
-  const { products, pagination, currentCategory, categories, loading } =
-    useSelector((state) => state.products);
+  const { products, pagination, categories, loading } = useSelector(
+    (state) => state.products,
+  );
+  const categoryFromQuery = useMemo(
+    () => getCategoryFromSearchParams(searchParams),
+    [searchParams],
+  );
+  const activeCategory = useMemo(
+    () => resolveCategoryFromQuery(categoryFromQuery, categories),
+    [categoryFromQuery, categories],
+  );
+  const hasInvalidCategory = useMemo(
+    () =>
+      Boolean(categoryFromQuery) &&
+      categories.length > 0 &&
+      !categories.includes(categoryFromQuery),
+    [categoryFromQuery, categories],
+  );
 
   useEffect(() => {
     dispatch(createAsyncGetAllProducts());
@@ -45,10 +85,14 @@ export default function Products() {
     dispatch(
       createAsyncGetProducts({
         page: 1,
-        category: currentCategory === "全部商品" ? "" : currentCategory,
+        category: activeCategory === ALL_CATEGORY ? "" : activeCategory,
       }),
     );
-  }, [dispatch, currentCategory]);
+  }, [dispatch, activeCategory]);
+
+  const handleCategoryChange = (category) => {
+    setSearchParams(buildCategorySearchParams(category));
+  };
 
   const handleSortChange = (value) => {
     setSortType(value);
@@ -134,10 +178,10 @@ export default function Products() {
                         <li key={category}>
                           <a
                             href="#"
-                            className={`py-2 d-block text-muted icon-hover ${currentCategory === category ? "text-dark fw-bold font-zh-display" : "text-muted font-zh-display"}`}
+                            className={`py-2 d-block text-muted icon-hover ${activeCategory === category ? "text-dark fw-bold font-zh-display" : "text-muted font-zh-display"}`}
                             onClick={(e) => {
                               e.preventDefault();
-                              dispatch(setCategory(category));
+                              handleCategoryChange(category);
                             }}
                           >
                             {category}
@@ -151,6 +195,11 @@ export default function Products() {
             </div>
           </div>
           <div className="col-md-8">
+            {hasInvalidCategory && (
+              <p className="text-muted mb-3 font-zh-display">
+                查無分類「{categoryFromQuery}」，以下顯示全部商品。
+              </p>
+            )}
             <ProductSortSelect value={sortType} onChange={handleSortChange} />
             <div className="row">
               {/* 產品列表 */}
@@ -241,7 +290,7 @@ export default function Products() {
                   createAsyncGetProducts({
                     page,
                     category:
-                      currentCategory === "全部商品" ? "" : currentCategory,
+                      activeCategory === ALL_CATEGORY ? "" : activeCategory,
                   }),
                 )
               }

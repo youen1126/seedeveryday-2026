@@ -94,7 +94,7 @@ const Header = () => {
               <li className="nav-item active">
                 <NavLink
                   className={getNavLinkClass}
-                  to="/product"
+                  to="/products"
                   onClick={closeMenu}
                 >
                   熱門商品
