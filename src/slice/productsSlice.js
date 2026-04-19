@@ -7,6 +7,7 @@ const productsSlice = createSlice({
     products: [],
     pagination: {},
     categories: [],
+    categoryCounts: {},
     currentCategory: "全部商品",
     loading: false,
     error: null,
@@ -26,6 +27,7 @@ const productsSlice = createSlice({
       .addCase(createAsyncGetAllProducts.fulfilled, (state, action) => {
         state.loading = false;
         state.categories = action.payload.categories;
+        state.categoryCounts = action.payload.categoryCounts;
       })
       .addCase(createAsyncGetAllProducts.rejected, (state, action) => {
         state.loading = false;
@@ -45,14 +47,24 @@ export const createAsyncGetAllProducts = createAsyncThunk(
   "products/createAsyncGetAllProducts",
   async () => {
     const res = await getProductAllApi();
+    const products = res.data.products || [];
+    const categoryCounts = products.reduce((acc, item) => {
+      const category = item.category;
+      acc[category] = (acc[category] || 0) + 1;
+      return acc;
+    }, {});
 
     const categories = [
       "全部商品",
-      ...new Set(res.data.products.map((item) => item.category)),
+      ...new Set(products.map((item) => item.category)),
     ];
 
     return {
       categories,
+      categoryCounts: {
+        ...categoryCounts,
+        全部商品: products.length,
+      },
     };
   },
 );

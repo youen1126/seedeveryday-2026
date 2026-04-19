@@ -58,7 +58,8 @@ export default function Products() {
   const [randomSeed, setRandomSeed] = useState(1);
   const wishList = useSelector((state) => state.wishlist.items);
 
-  const { products, pagination, categories, loading } = useSelector(
+  const { products, pagination, categories, categoryCounts, loading } =
+    useSelector(
     (state) => state.products,
   );
   const categoryFromQuery = useMemo(
@@ -184,7 +185,7 @@ export default function Products() {
                               handleCategoryChange(category);
                             }}
                           >
-                            {category}
+                            {`${category} (${categoryCounts?.[category] ?? 0})`}
                           </a>
                         </li>
                       );
