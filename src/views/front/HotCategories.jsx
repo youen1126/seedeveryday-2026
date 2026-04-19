@@ -4,7 +4,7 @@ const hotCategoryCards = [
   {
     category: "種子串",
     image:
-      "https://i.pinimg.com/736x/89/d9/da/89d9daecc3cc675b98d8f03d0e033e29.jpg",
+      "https://i.pinimg.com/1200x/f3/21/96/f32196edca89092a3324d16ef107a56b.jpg",
     alt: "分類示意圖：種子串",
     description:
       "以天然種子串製而成，保留大地色澤與自然紋理，呈現素雅輕盈的手作氣質。",
@@ -32,7 +32,10 @@ export default function HotCategories() {
       <h2 className="mb-5 text-center font-zh-display fw-bold ">熱門分類</h2>
       <div className="row">
         {hotCategoryCards.map((item) => (
-          <div className="col-md-4 mb-4 card-hover hot-category-card" key={item.category}>
+          <div
+            className="col-md-4 mb-4 card-hover hot-category-card"
+            key={item.category}
+          >
             <Link
               to={`/products?category=${encodeURIComponent(item.category)}`}
               className="text-decoration-none text-dark d-block"
@@ -47,7 +50,9 @@ export default function HotCategories() {
               <h4 className="hot-category-title font-zh-display fw-bold ">
                 {item.category}
               </h4>
-              <p className="text-muted hot-category-text my-3">{item.description}</p>
+              <p className="text-muted hot-category-text my-3">
+                {item.description}
+              </p>
             </Link>
           </div>
         ))}
