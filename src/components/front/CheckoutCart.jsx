@@ -7,6 +7,11 @@ import OrderSavingsNotice from "@/components/front/OrderSavingsNotice";
 export default function CheckoutCart() {
   const carts = useSelector((state) => state.cart.carts);
   const total = useSelector(selectCartTotal);
+  const shippingFee = 120;
+  const showShippingFee = total <= 1000;
+  const showGiftNotice = total > 2500;
+  const finalTotal = total + (showShippingFee ? shippingFee : 0);
+
   return (
     <div className="col-md-4">
       <div className="border p-2 mb-4 bg-gray">
@@ -49,11 +54,37 @@ export default function CheckoutCart() {
                 NT${curryency(total)}
               </td>
             </tr>
+            {showShippingFee && (
+              <tr>
+                <th
+                  scope="row"
+                  className="border-0 px-0 pt-2 font-weight-normal"
+                >
+                  運費
+                </th>
+                <td className="text-end border-0 px-0 pt-2">
+                  NT${curryency(shippingFee)}
+                </td>
+              </tr>
+            )}
+            {showGiftNotice && (
+              <tr>
+                <th
+                  scope="row"
+                  className="border-0 px-0 pt-2 font-weight-normal"
+                >
+                  贈品小禮物
+                </th>
+                <td className="text-end border-0 px-0 pt-2">
+                  NT${curryency(0)}
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
         <div className="d-flex justify-content-between mt-4 font-zh-display">
           <p className="mb-0 h4 fw-bold">總金額</p>
-          <p className="mb-0 h4 fw-bold">NT${curryency(total)}</p>
+          <p className="mb-0 h4 fw-bold">NT${curryency(finalTotal)}</p>
         </div>
         <OrderSavingsNotice carts={carts} total={total} />
         <CartThresholdNotice total={total} />
