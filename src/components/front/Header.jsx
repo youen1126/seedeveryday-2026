@@ -73,6 +73,7 @@ const Header = () => {
           <div className="d-flex">
             <NavLink to="/wishlist" className={getIconLinkClass}>
               <i className="fa-sharp fa-solid fa-heart me-4"></i>
+              <span className="header-icon-tooltip">收藏頁</span>
             </NavLink>
             <NavLink to="/cart" className={getIconLinkClass}>
               <div className="position-relative  me-5">
@@ -81,6 +82,7 @@ const Header = () => {
                   {carts.length}
                 </span>
               </div>
+              <span className="header-icon-tooltip">購物車</span>
             </NavLink>
           </div>
           {/* collapse */}

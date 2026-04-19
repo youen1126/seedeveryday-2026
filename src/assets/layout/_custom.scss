@@ -69,6 +69,9 @@ body {
 }
 
 .header-icon-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
   color: #212529;
   text-decoration: none;
   transition:
@@ -83,6 +86,29 @@ body {
 
 .header-icon-link.is-active {
   color: #000;
+}
+
+.header-icon-tooltip {
+  position: absolute;
+  left: 50%;
+  bottom: -28px;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 12px;
+  line-height: 1;
+  color: #fff;
+  background: rgba(33, 37, 41, 0.92);
+  border-radius: 4px;
+  padding: 4px 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.12s ease;
+  z-index: 20;
+}
+
+.header-icon-link:hover .header-icon-tooltip,
+.header-icon-link:focus-visible .header-icon-tooltip {
+  opacity: 1;
 }
 
 .header-nav-link {
