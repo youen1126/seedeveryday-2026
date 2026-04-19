@@ -17,6 +17,7 @@ import { toggleWishlistItem } from "@/slice/wishlistSlice";
 
 const ALL_CATEGORY = "全部商品";
 const CATEGORY_QUERY_KEY = "category";
+const PAGE_QUERY_KEY = "page";
 
 function getDeterministicRank(value, seed) {
   const input = `${value}-${seed}`;
@@ -31,6 +32,23 @@ function getCategoryFromSearchParams(searchParams) {
   return searchParams.get(CATEGORY_QUERY_KEY)?.trim() || "";
 }
 
+function getPageFromSearchParams(searchParams) {
+  const rawPage = searchParams.get(PAGE_QUERY_KEY);
+  const parsedPage = Number(rawPage);
+  if (!Number.isInteger(parsedPage) || parsedPage < 1) {
+    return 1;
+  }
+  return parsedPage;
+}
+
+function isValidPageQuery(searchParams) {
+  const rawPage = searchParams.get(PAGE_QUERY_KEY);
+  if (rawPage === null) {
+    return true;
+  }
+  return /^[1-9]\d*$/.test(rawPage);
+}
+
 function resolveCategoryFromQuery(categoryFromQuery, categories) {
   if (!categoryFromQuery) {
     return ALL_CATEGORY;
@@ -40,11 +58,20 @@ function resolveCategoryFromQuery(categoryFromQuery, categories) {
     : ALL_CATEGORY;
 }
 
-function buildCategorySearchParams(category) {
-  const nextParams = new URLSearchParams();
+function createNextSearchParams(searchParams, { category, page }) {
+  const nextParams = new URLSearchParams(searchParams);
   if (category && category !== ALL_CATEGORY) {
     nextParams.set(CATEGORY_QUERY_KEY, category);
+  } else {
+    nextParams.delete(CATEGORY_QUERY_KEY);
   }
+
+  if (page > 1) {
+    nextParams.set(PAGE_QUERY_KEY, String(page));
+  } else {
+    nextParams.delete(PAGE_QUERY_KEY);
+  }
+
   return nextParams;
 }
 
@@ -58,12 +85,19 @@ export default function Products() {
   const [randomSeed, setRandomSeed] = useState(1);
   const wishList = useSelector((state) => state.wishlist.items);
 
-  const { products, pagination, categories, categoryCounts, loading } =
-    useSelector(
+  const { products, pagination, categories, categoryCounts, loading } = useSelector(
     (state) => state.products,
   );
   const categoryFromQuery = useMemo(
     () => getCategoryFromSearchParams(searchParams),
+    [searchParams],
+  );
+  const currentPage = useMemo(
+    () => getPageFromSearchParams(searchParams),
+    [searchParams],
+  );
+  const hasInvalidPageQuery = useMemo(
+    () => !isValidPageQuery(searchParams),
     [searchParams],
   );
   const activeCategory = useMemo(
@@ -85,15 +119,65 @@ export default function Products() {
   useEffect(() => {
     dispatch(
       createAsyncGetProducts({
-        page: 1,
+        page: currentPage,
         category: activeCategory === ALL_CATEGORY ? "" : activeCategory,
       }),
     );
-  }, [dispatch, activeCategory]);
+  }, [dispatch, activeCategory, currentPage]);
 
   const handleCategoryChange = (category) => {
-    setSearchParams(buildCategorySearchParams(category));
+    setSearchParams(
+      createNextSearchParams(searchParams, {
+        category,
+        page: 1,
+      }),
+    );
   };
+
+  const handlePageChange = (page) => {
+    const nextPage = Math.max(1, Number(page) || 1);
+    const totalPages = pagination?.total_pages || 1;
+    const safePage = Math.min(nextPage, totalPages);
+
+    setSearchParams(
+      createNextSearchParams(searchParams, {
+        category: activeCategory,
+        page: safePage,
+      }),
+    );
+  };
+
+  useEffect(() => {
+    if (!hasInvalidPageQuery) {
+      return;
+    }
+    setSearchParams(
+      createNextSearchParams(searchParams, {
+        category: activeCategory,
+        page: 1,
+      }),
+    );
+  }, [hasInvalidPageQuery, searchParams, activeCategory, setSearchParams]);
+
+  useEffect(() => {
+    const totalPages = pagination?.total_pages || 0;
+    if (!totalPages || currentPage <= totalPages) {
+      return;
+    }
+
+    setSearchParams(
+      createNextSearchParams(searchParams, {
+        category: activeCategory,
+        page: totalPages,
+      }),
+    );
+  }, [
+    currentPage,
+    pagination?.total_pages,
+    searchParams,
+    activeCategory,
+    setSearchParams,
+  ]);
 
   const handleSortChange = (value) => {
     setSortType(value);
@@ -286,15 +370,7 @@ export default function Products() {
             {/* 頁碼區 */}
             <Pagination
               pagination={pagination}
-              onChangePage={(page) =>
-                dispatch(
-                  createAsyncGetProducts({
-                    page,
-                    category:
-                      activeCategory === ALL_CATEGORY ? "" : activeCategory,
-                  }),
-                )
-              }
+              onChangePage={handlePageChange}
             />
           </div>
         </div>
