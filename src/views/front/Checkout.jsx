@@ -22,7 +22,7 @@ export default function Checkout() {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isSubmitting },
   } = useForm({
     mode: "onChange",
   });
@@ -181,9 +181,9 @@ export default function Checkout() {
                   <button
                     type="submit"
                     className="btn btn-dark py-2 px-3 rounded-0"
-                    disabled={!isValid}
+                    disabled={!isValid || isSubmitting}
                   >
-                    送出訂單
+                    {isSubmitting ? "送出中..." : "送出訂單"}
                   </button>
                 </div>
               </div>
