@@ -146,7 +146,7 @@ export default function AboutWe() {
           </Link>
           <Link
             className="btn btn-dark rounded-0"
-            to="/product"
+            to="/products?category=種子小物"
             data-aos="fade-right"
           >
             看看送禮靈感

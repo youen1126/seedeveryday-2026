@@ -39,7 +39,7 @@ export default function HomeHero() {
             </Link>
             <Link
               className="btn btn-dark rounded-0"
-              to="/products"
+              to="/products?category=種子小物"
               data-aos="fade-right"
             >
               看看送禮靈感
