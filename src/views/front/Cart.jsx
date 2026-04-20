@@ -30,6 +30,7 @@ export default function Cart() {
   const { showSuccess, showError } = useMessage();
   const [activeTab, setActiveTab] = useState("cart");
   const [wishListProducts, setWishListProducts] = useState([]);
+  const MAX_QTY = 10;
 
   useEffect(() => {
     const getWishListProducts = async () => {
@@ -67,7 +68,7 @@ export default function Cart() {
   };
   //更改購物車數量
   const handleUpdateNum = (cartId, productId, qty) => {
-    if (qty < 1) return;
+    if (qty < 1 || qty > MAX_QTY) return;
     dispatch(
       createAsyncUpdataItemNum({
         cartId,
@@ -226,7 +227,10 @@ export default function Cart() {
                                         item.qty + 1,
                                       )
                                     }
-                                    disabled={loadingItem === item.id}
+                                    disabled={
+                                      loadingItem === item.id ||
+                                      item.qty >= MAX_QTY
+                                    }
                                   >
                                     +
                                   </button>

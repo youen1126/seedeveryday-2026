@@ -45,6 +45,7 @@ export default function SingleProducts() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const addToCartButtonRef = useRef(null);
   const [showFloatingAddCart, setShowFloatingAddCart] = useState(false);
+  const MAX_QTY = 10;
 
   useEffect(() => {
     const getProduct = async (id) => {
@@ -93,7 +94,7 @@ export default function SingleProducts() {
   };
 
   const handleNum = (newQty) => {
-    if (newQty < 1) return; // 不讓小於1
+    if (newQty < 1 || newQty > MAX_QTY) return;
     setQty(newQty);
   };
 
@@ -269,6 +270,7 @@ export default function SingleProducts() {
                           className="btn btn-outline-dark border-0 py-2"
                           type="button"
                           onClick={() => handleNum(qty + 1)}
+                          disabled={qty >= MAX_QTY}
                         >
                           +
                         </button>
