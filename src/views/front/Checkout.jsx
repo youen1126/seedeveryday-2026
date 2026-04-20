@@ -110,7 +110,7 @@ export default function Checkout() {
 
   const handleBackToPage = (e) => {
     e.preventDefault();
-    navigate(-1);
+    navigate("/cart");
   };
 
   const handleCloseSubmitErrorModal = () => {
