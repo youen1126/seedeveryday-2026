@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import axios from "axios";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 
@@ -13,6 +13,32 @@ import { scrollToTop } from "@/utils/scrollToTop";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
 const API_PATH = import.meta.env.VITE_API_PATH;
+const CHECKOUT_FORM_STORAGE_KEY = "checkoutFormDraft";
+const DEFAULT_FORM_VALUES = {
+  email: "",
+  name: "",
+  tel: "",
+  address: "春日市春日部春日路78號",
+  message: "",
+};
+
+function getCheckoutDefaultValues() {
+  try {
+    const savedDraft = sessionStorage.getItem(CHECKOUT_FORM_STORAGE_KEY);
+    if (!savedDraft) {
+      return DEFAULT_FORM_VALUES;
+    }
+
+    return {
+      ...DEFAULT_FORM_VALUES,
+      ...JSON.parse(savedDraft),
+    };
+  } catch (error) {
+    console.error("Failed to parse checkout draft:", error);
+    sessionStorage.removeItem(CHECKOUT_FORM_STORAGE_KEY);
+    return DEFAULT_FORM_VALUES;
+  }
+}
 
 function extractOrderIdFromResponse(response) {
   return (
@@ -32,10 +58,13 @@ export default function Checkout() {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { errors, isValid, isSubmitting },
   } = useForm({
     mode: "onChange",
+    defaultValues: getCheckoutDefaultValues(),
   });
+  const watchedFormValues = useWatch({ control });
 
   const onSubmit = async (formData) => {
     const data = {
@@ -53,6 +82,7 @@ export default function Checkout() {
       const orderId = extractOrderIdFromResponse(submitRes);
       showSuccess("訂單送出成功", submitRes);
       reset();
+      sessionStorage.removeItem(CHECKOUT_FORM_STORAGE_KEY);
       navigate("/orderSuccess", {
         state: { orderId },
       });
@@ -71,6 +101,13 @@ export default function Checkout() {
   useEffect(() => {
     scrollToTop();
   }, []);
+
+  useEffect(() => {
+    sessionStorage.setItem(
+      CHECKOUT_FORM_STORAGE_KEY,
+      JSON.stringify(watchedFormValues),
+    );
+  }, [watchedFormValues]);
 
   return (
     <div className="bg-light pt-3 pb-5 checkoutList">
@@ -163,7 +200,6 @@ export default function Checkout() {
                   type="text"
                   className="form-control"
                   placeholder="請輸入地址"
-                  defaultValue="春日市春日部春日路78號"
                   {...register("address", {
                     required: "僅可填寫台灣地區，目前無海外服務",
                   })}
