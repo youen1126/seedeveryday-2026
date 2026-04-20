@@ -68,7 +68,7 @@ export default function Cart() {
       setIsDeletingAll(true);
       const res = await DelAllCartApi();
       dispatch(createAsyncGetCart());
-      showSuccess(res.data.data, "成功");
+      showSuccess(res?.data?.message || "已清空購物車");
       setShowDeleteAllModal(false);
     } catch (error) {
       console.error(error.respones);
