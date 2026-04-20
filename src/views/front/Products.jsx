@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router";
 
 import BackToTop from "@/components/BackToTop";
+import AddToCartButton from "@/components/front/AddToCartButton";
 import Pagination from "@/components/Pagination";
 import useMessage from "@/hooks/useMessage";
 import LoadingSpinner from "@/components/LoadingSpinner";
@@ -343,13 +344,12 @@ export default function Products() {
                               </a>
                             </h4>
                             <div className="py-3">
-                              <button
-                                type="button"
+                              <AddToCartButton
                                 className="text-nowrap btn btn-dark w-20 p-2"
                                 onClick={(e) => handleAddCart(e, item.id)}
                               >
                                 加入購物車
-                              </button>
+                              </AddToCartButton>
                             </div>
                           </div>
                           <p className="card-text mb-0  font-zh-display">

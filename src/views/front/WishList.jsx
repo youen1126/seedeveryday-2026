@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router";
 
+import AddToCartButton from "@/components/front/AddToCartButton";
 import YoumaylikeSwiper from "@/components/front/YoumaylikeSwiper";
 import useMessage from "@/hooks/useMessage";
 import { createAsyncAddCart } from "@/slice/cartSlice";
@@ -86,13 +87,12 @@ export default function WishList() {
                   <h5 className="card-title">{item.title}</h5>
                   <p className="card-text">NT$ {item.price}</p>
                   <div className="py-3">
-                    <button
-                      type="button"
+                    <AddToCartButton
                       className="text-nowrap btn btn-dark w-20 p-2"
                       onClick={(e) => handleAddCart(e, item.id)}
                     >
                       加入購物車
-                    </button>
+                    </AddToCartButton>
                   </div>
                 </div>
               </div>

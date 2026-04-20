@@ -1,12 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
+import ViewProductButton from "@/components/front/ViewProductButton";
 import { createAsyncGetProducts } from "@/slice/productsSlice";
 
 export default function Hotspot() {
   const dispatch = useDispatch();
   const { products, currentCategory } = useSelector((state) => state.products);
-  const navigate = useNavigate();
   const descriptionClampStyle = {
     display: "-webkit-box",
     WebkitBoxOrient: "vertical",
@@ -27,11 +26,6 @@ export default function Hotspot() {
     (item) => item.category === "種子小物",
   );
 
-  //進入商品詳細頁
-  const handleViewDetail = (e, id) => {
-    e.preventDefault();
-    navigate(`/product/${id}`);
-  };
   return (
     <div className="row mt-5">
       <h2 className="mb-1 text-center font-zh-display fw-bold ">熱門商品</h2>
@@ -57,12 +51,12 @@ export default function Hotspot() {
                     {product.description}
                   </p>
 
-                  <button
+                  <ViewProductButton
+                    productId={product.id}
                     className="btn btn-outline-dark rounded-0 text-nowrap align-self-start"
-                    onClick={(e) => handleViewDetail(e, product.id)}
                   >
-                    暸解詳細
-                  </button>
+                    查看商品
+                  </ViewProductButton>
                 </div>
               </div>
             </div>

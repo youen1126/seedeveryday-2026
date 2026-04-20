@@ -8,6 +8,7 @@ import "swiper/css/free-mode";
 import "swiper/css/thumbs";
 
 import BackToTop from "@/components/BackToTop";
+import AddToCartButton from "@/components/front/AddToCartButton";
 import ProductSpecList from "@/components/front/ProductSpecList";
 import YoumaylikeSwiper from "@/components/front/YoumaylikeSwiper";
 import useMessage from "@/hooks/useMessage";
@@ -279,14 +280,13 @@ export default function SingleProducts() {
                   </div>
                   {/* 加入購物車按鈕 */}
                   <div className="col-6">
-                    <button
+                    <AddToCartButton
                       ref={addToCartButtonRef}
-                      type="button"
                       className="text-nowrap btn btn-dark w-100 py-2"
                       onClick={(e) => handleAddCart(e, product.id, qty)}
                     >
                       加入購物車
-                    </button>
+                    </AddToCartButton>
                   </div>
                   <div className="col-12 text-end">
                     <div>
@@ -469,13 +469,12 @@ export default function SingleProducts() {
         </div>
       </div>
       {showFloatingAddCart && product?.id ? (
-        <button
-          type="button"
+        <AddToCartButton
           className="btn btn-dark single-product-floating-cart-btn"
           onClick={(e) => handleAddCart(e, product.id, qty)}
         >
           加入購物車
-        </button>
+        </AddToCartButton>
       ) : null}
       <YoumaylikeSwiper />
       <BackToTop />

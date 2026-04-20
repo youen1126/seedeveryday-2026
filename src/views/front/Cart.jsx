@@ -4,8 +4,10 @@ import { Link, useNavigate } from "react-router";
 
 import CheckoutFlow from "@/components/front/CheckoutFlow";
 import EmptyCart from "@/components/front/EmptyCart";
+import AddToCartButton from "@/components/front/AddToCartButton";
 import CartThresholdNotice from "@/components/front/CartThresholdNotice";
 import OrderSavingsNotice from "@/components/front/OrderSavingsNotice";
+import ViewProductButton from "@/components/front/ViewProductButton";
 import YoumaylikeSwiper from "@/components/front/YoumaylikeSwiper";
 import useMessage from "@/hooks/useMessage";
 import { DelAllCartApi } from "@/services/carts";
@@ -361,19 +363,18 @@ export default function Cart() {
                                   </span>
                                 </p>
                                 <div className="mt-auto d-flex gap-2 flex-wrap">
-                                  <Link
-                                    to={`/product/${item.id}`}
+                                  <ViewProductButton
+                                    productId={item.id}
                                     className="btn btn-outline-dark"
                                   >
                                     查看商品
-                                  </Link>
-                                  <button
-                                    type="button"
+                                  </ViewProductButton>
+                                  <AddToCartButton
                                     className="btn btn-dark"
                                     onClick={(e) => handleAddCart(e, item.id)}
                                   >
                                     加入購物車
-                                  </button>
+                                  </AddToCartButton>
                                 </div>
                               </div>
                             </div>
