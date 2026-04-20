@@ -55,19 +55,22 @@ export default function Checkout() {
   const navigate = useNavigate();
   const { showSuccess } = useMessage();
   const [showSubmitErrorModal, setShowSubmitErrorModal] = useState(false);
+  const [showSubmitConfirmModal, setShowSubmitConfirmModal] = useState(false);
+  const [confirmFormData, setConfirmFormData] = useState(null);
+  const [isOrderSubmitting, setIsOrderSubmitting] = useState(false);
   const {
     register,
     handleSubmit,
     reset,
     control,
-    formState: { errors, isValid, isSubmitting },
+    formState: { errors, isValid },
   } = useForm({
     mode: "onChange",
     defaultValues: getCheckoutDefaultValues(),
   });
   const watchedFormValues = useWatch({ control });
 
-  const onSubmit = async (formData) => {
+  const submitOrder = async (formData) => {
     const data = {
       user: {
         name: formData.name,
@@ -77,13 +80,17 @@ export default function Checkout() {
       },
       message: formData.message,
     };
+
     try {
+      setIsOrderSubmitting(true);
       const url = `${API_BASE}/api/${API_PATH}/order`;
       const submitRes = await axios.post(url, { data });
       const orderId = extractOrderIdFromResponse(submitRes);
       showSuccess("訂單送出成功", submitRes);
       reset();
       sessionStorage.removeItem(CHECKOUT_FORM_STORAGE_KEY);
+      setShowSubmitConfirmModal(false);
+      setConfirmFormData(null);
       navigate("/orderSuccess", {
         state: { orderId },
       });
@@ -91,7 +98,14 @@ export default function Checkout() {
     } catch (error) {
       console.error(error);
       setShowSubmitErrorModal(true);
+    } finally {
+      setIsOrderSubmitting(false);
     }
+  };
+
+  const onSubmit = (formData) => {
+    setConfirmFormData(formData);
+    setShowSubmitConfirmModal(true);
   };
 
   const handleBackToPage = (e) => {
@@ -101,6 +115,16 @@ export default function Checkout() {
 
   const handleCloseSubmitErrorModal = () => {
     setShowSubmitErrorModal(false);
+  };
+
+  const handleCloseSubmitConfirmModal = () => {
+    if (isOrderSubmitting) return;
+    setShowSubmitConfirmModal(false);
+  };
+
+  const handleConfirmSubmit = () => {
+    if (!confirmFormData || isOrderSubmitting) return;
+    submitOrder(confirmFormData);
   };
 
   useEffect(() => {
@@ -130,7 +154,7 @@ export default function Checkout() {
                       htmlFor="ContactMail"
                       className="text-muted mb-0 form-label"
                     >
-                      收件人Email
+                      收件人 Email（請確認Email可用，後續通知將以Email通知）
                     </label>
                     <input
                       type="email"
@@ -236,9 +260,9 @@ export default function Checkout() {
                     <button
                       type="submit"
                       className="btn btn-dark py-2 px-3 rounded-0"
-                      disabled={!isValid || isSubmitting}
+                      disabled={!isValid}
                     >
-                      {isSubmitting ? "送出中..." : "送出訂單"}
+                      送出訂單
                     </button>
                   </div>
                 </div>
@@ -248,6 +272,79 @@ export default function Checkout() {
           </div>
         </div>
       </div>
+      {showSubmitConfirmModal && confirmFormData && (
+        <>
+          <div
+            className="modal fade show d-block"
+            tabIndex="-1"
+            role="dialog"
+            aria-modal="true"
+          >
+            <div className="modal-dialog modal-dialog-centered">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title font-zh-display">確認訂單資料</h5>
+                  <button
+                    type="button"
+                    className="btn-close"
+                    aria-label="Close"
+                    onClick={handleCloseSubmitConfirmModal}
+                    disabled={isOrderSubmitting}
+                  ></button>
+                </div>
+                <div className="modal-body">
+                  <p className="mb-2">
+                    <span className="fw-bold me-2">收件人 Email：</span>
+                    {confirmFormData.email}
+                    <br />
+                    <span className="text-danger">
+                      請務必確認Email正確可用，避免無法接收出貨通知
+                    </span>
+                  </p>
+                  <p className="mb-2">
+                    <span className="fw-bold me-2">收件人姓名：</span>
+                    {confirmFormData.name}
+                  </p>
+                  <p className="mb-2">
+                    <span className="fw-bold me-2">收件人電話：</span>
+                    {confirmFormData.tel}
+                  </p>
+                  <p className="mb-2">
+                    <span className="fw-bold me-2">收件地址：</span>
+                    {confirmFormData.address}
+                  </p>
+                  <p className="mb-0">
+                    <span className="fw-bold me-2">留言：</span>
+                    {confirmFormData.message || "無"}
+                  </p>
+                </div>
+                <div className="modal-footer">
+                  <button
+                    type="button"
+                    className="btn btn-outline-secondary rounded-0"
+                    onClick={handleCloseSubmitConfirmModal}
+                    disabled={isOrderSubmitting}
+                  >
+                    回去修改
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-dark rounded-0"
+                    onClick={handleConfirmSubmit}
+                    disabled={isOrderSubmitting}
+                  >
+                    {isOrderSubmitting ? "送出中..." : "確認送出"}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="modal-backdrop fade show"
+            onClick={handleCloseSubmitConfirmModal}
+          ></div>
+        </>
+      )}
       {showSubmitErrorModal && (
         <>
           <div
