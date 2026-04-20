@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useSearchParams } from "react-router";
+import { Link, useNavigate, useSearchParams } from "react-router";
 
 import BackToTop from "@/components/BackToTop";
 import AddToCartButton from "@/components/front/AddToCartButton";
@@ -86,9 +86,8 @@ export default function Products() {
   const [randomSeed, setRandomSeed] = useState(1);
   const wishList = useSelector((state) => state.wishlist.items);
 
-  const { products, pagination, categories, categoryCounts, loading } = useSelector(
-    (state) => state.products,
-  );
+  const { products, pagination, categories, categoryCounts, loading } =
+    useSelector((state) => state.products);
   const categoryFromQuery = useMemo(
     () => getCategoryFromSearchParams(searchParams),
     [searchParams],
@@ -247,6 +246,32 @@ export default function Products() {
             Bring blessings into every day
           </p>
         </div>
+        <nav
+          aria-label="breadcrumb"
+          className="position-absolute bottom-0 end-0 me-4 mb-3 z-1"
+        >
+          <ol
+            className="breadcrumb bg-transparent mb-0 py-0 font-zh-display hero-breadcrumb"
+            style={{
+              "--bs-breadcrumb-divider-color": "rgba(255, 255, 255, 0.85)",
+            }}
+          >
+            <li className="breadcrumb-item">
+              <Link
+                className="text-white text-decoration-none breadcrumb-home-link"
+                to="/"
+              >
+                回到首頁
+              </Link>
+            </li>
+            <li
+              className="breadcrumb-item active text-white"
+              aria-current="page"
+            >
+              商品列表
+            </li>
+          </ol>
+        </nav>
       </div>
       <div className="container mt-md-5 mt-3 mb-7">
         <div className="row">

@@ -35,6 +35,33 @@ export default function AboutWe() {
             每一顆種子，都來自自然。 我們把它變成日常中的祝福。
           </p>
         </div>
+        <nav
+          aria-label="breadcrumb"
+          className="position-absolute bottom-0 end-0 pe-3 pb-3 z-2"
+          style={{ right: 0, bottom: 0 }}
+        >
+          <ol
+            className="breadcrumb bg-transparent mb-0 py-0 font-zh-display hero-breadcrumb"
+            style={{
+              "--bs-breadcrumb-divider-color": "rgba(255, 255, 255, 0.85)",
+            }}
+          >
+            <li className="breadcrumb-item">
+              <Link
+                className="text-white text-decoration-none breadcrumb-home-link"
+                to="/"
+              >
+                回到首頁
+              </Link>
+            </li>
+            <li
+              className="breadcrumb-item active text-white"
+              aria-current="page"
+            >
+              品牌故事
+            </li>
+          </ol>
+        </nav>
       </section>
 
       {/* 品牌故事 */}

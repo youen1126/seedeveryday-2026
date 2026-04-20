@@ -154,6 +154,20 @@ body {
   font-weight: 700;
 }
 
+.breadcrumb-home-link {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.breadcrumb-home-link:hover {
+  transform: scale(1.06);
+}
+
+.hero-breadcrumb {
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+}
+
 .custom-menu-toggle {
   display: inline-flex;
   flex-direction: column;

@@ -192,19 +192,25 @@ export default function SingleProducts() {
             <div className="single-product-info my-4">
               <div className="single-product-info-top">
                 <nav aria-label="breadcrumb">
-                  <ol className="breadcrumb bg-white px-0 mb-0 py-3 font-zh-display">
+                  <ol className="breadcrumb bg-transparent mb-0 py-2 px-1 font-zh-display hero-breadcrumb">
                     <li className="breadcrumb-item">
-                      <Link className="text-muted" to="/">
-                        Home
+                      <Link
+                        className="text-decoration-none breadcrumb-home-link"
+                        to="/"
+                      >
+                        回到首頁
                       </Link>
                     </li>
                     <li className="breadcrumb-item">
-                      <Link className="text-muted" to="/product">
-                        Products
+                      <Link
+                        className="text-decoration-none breadcrumb-home-link"
+                        to="/product"
+                      >
+                        商品列表
                       </Link>
                     </li>
                     <li className="breadcrumb-item active" aria-current="page">
-                      Detail
+                      商品詳情
                     </li>
                   </ol>
                 </nav>
