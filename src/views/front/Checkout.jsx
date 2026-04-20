@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useForm, useWatch } from "react-hook-form";
 import { useDispatch } from "react-redux";
@@ -53,7 +53,8 @@ function extractOrderIdFromResponse(response) {
 export default function Checkout() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { showSuccess, showError } = useMessage();
+  const { showSuccess } = useMessage();
+  const [showSubmitErrorModal, setShowSubmitErrorModal] = useState(false);
   const {
     register,
     handleSubmit,
@@ -89,13 +90,17 @@ export default function Checkout() {
       dispatch(createAsyncGetCart());
     } catch (error) {
       console.error(error);
-      showError("訂單送出失敗");
+      setShowSubmitErrorModal(true);
     }
   };
 
   const handleBackToPage = (e) => {
     e.preventDefault();
     navigate(-1);
+  };
+
+  const handleCloseSubmitErrorModal = () => {
+    setShowSubmitErrorModal(false);
   };
 
   useEffect(() => {
@@ -110,137 +115,181 @@ export default function Checkout() {
   }, [watchedFormValues]);
 
   return (
-    <div className="bg-light pt-3 pb-5 checkoutList">
-      <CheckoutFlow currentStep={2} />
-      <div className="container">
-        <div className="row justify-content-center flex-md-row flex-column-reverse">
-          <div className="col-md-6">
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <div className="bg-white p-4">
-                <h4 className="fw-bold font-zh-display">填寫收件資料</h4>
+    <>
+      <div className="bg-light pt-3 pb-5 checkoutList">
+        <CheckoutFlow currentStep={2} />
+        <div className="container">
+          <div className="row justify-content-center flex-md-row flex-column-reverse">
+            <div className="col-md-6">
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="bg-white p-4">
+                  <h4 className="fw-bold font-zh-display">填寫收件資料</h4>
 
-                <div className="mb-2">
-                  <label
-                    htmlFor="ContactMail"
-                    className="text-muted mb-0 form-label"
-                  >
-                    收件人Email
-                  </label>
-                  <input
-                    type="email"
-                    className="form-control rounded-0"
-                    id="email"
-                    aria-describedby="emailHelp"
-                    placeholder="example@gmail.com"
-                    {...register("email", emailValidation)}
-                  />
+                  <div className="mb-2">
+                    <label
+                      htmlFor="ContactMail"
+                      className="text-muted mb-0 form-label"
+                    >
+                      收件人Email
+                    </label>
+                    <input
+                      type="email"
+                      className="form-control rounded-0"
+                      id="email"
+                      aria-describedby="emailHelp"
+                      placeholder="example@gmail.com"
+                      {...register("email", emailValidation)}
+                    />
+                  </div>
+                  {errors.email && (
+                    <p className="text-danger">{errors.email.message}</p>
+                  )}
+                  <div className="mb-2">
+                    <label
+                      htmlFor="ContactName"
+                      className="text-muted mb-0 form-label"
+                    >
+                      收件人姓名
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control rounded-0"
+                      id="name"
+                      placeholder="王小明"
+                      {...register("name", {
+                        required: "請輸入姓名",
+                        minLength: {
+                          value: 2,
+                          message: "姓名最少兩個字",
+                        },
+                      })}
+                    />
+                  </div>
+                  {errors.name && (
+                    <p className="text-danger">{errors.name.message}</p>
+                  )}
+                  <div className="">
+                    <label
+                      htmlFor="ContactPhone"
+                      className="text-muted mb-0 form-label"
+                    >
+                      收件人電話
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control rounded-0"
+                      id="tel"
+                      placeholder="0933123123"
+                      {...register("tel", {
+                        required: "請輸入收件人電話",
+                        minLength: {
+                          value: 8,
+                          message: "電話至少8碼，格式範例：0988788777",
+                        },
+                      })}
+                    />
+                  </div>
+                  {errors.tel && (
+                    <p className="text-danger">{errors.tel.message}</p>
+                  )}
                 </div>
-                {errors.email && (
-                  <p className="text-danger">{errors.email.message}</p>
-                )}
-                <div className="mb-2">
-                  <label
-                    htmlFor="ContactName"
-                    className="text-muted mb-0 form-label"
-                  >
-                    收件人姓名
+
+                <div className="bg-white p-4 mt-3">
+                  <h4 className="fw-bold font-zh-display">收件地址和備註</h4>
+
+                  <label htmlFor="address" className="mt-4 mb-3">
+                    收件地址
                   </label>
                   <input
+                    id="address"
+                    name="地址"
                     type="text"
-                    className="form-control rounded-0"
-                    id="name"
-                    placeholder="王小明"
-                    {...register("name", {
-                      required: "請輸入姓名",
-                      minLength: {
-                        value: 2,
-                        message: "姓名最少兩個字",
-                      },
-                    })}
-                  />
-                </div>
-                {errors.name && (
-                  <p className="text-danger">{errors.name.message}</p>
-                )}
-                <div className="">
-                  <label
-                    htmlFor="ContactPhone"
-                    className="text-muted mb-0 form-label"
-                  >
-                    收件人電話
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control rounded-0"
-                    id="tel"
-                    placeholder="0933123123"
-                    {...register("tel", {
-                      required: "請輸入收件人電話",
-                      minLength: {
-                        value: 8,
-                        message: "電話至少8碼，格式範例：0988788777",
-                      },
-                    })}
-                  />
-                </div>
-                {errors.tel && (
-                  <p className="text-danger">{errors.tel.message}</p>
-                )}
-              </div>
-
-              <div className="bg-white p-4 mt-3">
-                <h4 className="fw-bold font-zh-display">收件地址和備註</h4>
-
-                <label htmlFor="address" className="mt-4 mb-3">
-                  收件地址
-                </label>
-                <input
-                  id="address"
-                  name="地址"
-                  type="text"
-                  className="form-control"
-                  placeholder="請輸入地址"
-                  {...register("address", {
-                    required: "僅可填寫台灣地區，目前無海外服務",
-                  })}
-                />
-                {errors.address && (
-                  <p className="text-danger">{errors.address.message}</p>
-                )}
-                <div className="mb-3">
-                  <label htmlFor="message" className="mt-4 mb-3">
-                    留言(可空白)
-                  </label>
-                  <textarea
-                    id="message"
                     className="form-control"
-                    cols="30"
-                    rows="10"
-                    {...register("message")}
-                  ></textarea>
+                    placeholder="請輸入地址"
+                    {...register("address", {
+                      required: "僅可填寫台灣地區，目前無海外服務",
+                    })}
+                  />
+                  {errors.address && (
+                    <p className="text-danger">{errors.address.message}</p>
+                  )}
+                  <div className="mb-3">
+                    <label htmlFor="message" className="mt-4 mb-3">
+                      留言(可空白)
+                    </label>
+                    <textarea
+                      id="message"
+                      className="form-control"
+                      cols="30"
+                      rows="10"
+                      {...register("message")}
+                    ></textarea>
+                  </div>
+                  <div className="d-flex flex-column-reverse flex-md-row mt-4 justify-content-between align-items-md-center align-items-end  w-100">
+                    <a
+                      href="#"
+                      className="text-dark mt-md-0 mt-3 font-zh-display"
+                      onClick={(e) => handleBackToPage(e)}
+                    >
+                      <i className="fas fa-chevron-left me-2"></i> 回上一頁
+                    </a>
+                    <button
+                      type="submit"
+                      className="btn btn-dark py-2 px-3 rounded-0"
+                      disabled={!isValid || isSubmitting}
+                    >
+                      {isSubmitting ? "送出中..." : "送出訂單"}
+                    </button>
+                  </div>
                 </div>
-                <div className="d-flex flex-column-reverse flex-md-row mt-4 justify-content-between align-items-md-center align-items-end  w-100">
-                  <a
-                    href="#"
-                    className="text-dark mt-md-0 mt-3 font-zh-display"
-                    onClick={(e) => handleBackToPage(e)}
-                  >
-                    <i className="fas fa-chevron-left me-2"></i> 回上一頁
-                  </a>
+              </form>
+            </div>
+            <CheckoutCart />
+          </div>
+        </div>
+      </div>
+      {showSubmitErrorModal && (
+        <>
+          <div
+            className="modal fade show d-block"
+            tabIndex="-1"
+            role="dialog"
+            aria-modal="true"
+          >
+            <div className="modal-dialog modal-dialog-centered">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title font-zh-display">訂單送出失敗</h5>
                   <button
-                    type="submit"
-                    className="btn btn-dark py-2 px-3 rounded-0"
-                    disabled={!isValid || isSubmitting}
+                    type="button"
+                    className="btn-close"
+                    aria-label="Close"
+                    onClick={handleCloseSubmitErrorModal}
+                  ></button>
+                </div>
+                <div className="modal-body">
+                  <p className="mb-0 font-zh-display">
+                    系統忙線或網路中斷，請稍候重試
+                  </p>
+                </div>
+                <div className="modal-footer">
+                  <button
+                    type="button"
+                    className="btn btn-dark rounded-0"
+                    onClick={handleCloseSubmitErrorModal}
                   >
-                    {isSubmitting ? "送出中..." : "送出訂單"}
+                    我知道了
                   </button>
                 </div>
               </div>
-            </form>
+            </div>
           </div>
-          <CheckoutCart />
-        </div>
-      </div>
-    </div>
+          <div
+            className="modal-backdrop fade show"
+            onClick={handleCloseSubmitErrorModal}
+          ></div>
+        </>
+      )}
+    </>
   );
 }
