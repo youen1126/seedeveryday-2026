@@ -19,6 +19,18 @@ body {
   line-height: 1;
 }
 
+/* 前台按鈕與輸入元件統一為直角樣式 */
+.app-wrapper button,
+.app-wrapper .btn,
+.app-wrapper input,
+.app-wrapper textarea,
+.app-wrapper select,
+.app-wrapper .form-control,
+.app-wrapper .form-select,
+.app-wrapper .input-group-text {
+  border-radius: 0 !important;
+}
+
 .logo {
   height: 80px;
   width: auto;

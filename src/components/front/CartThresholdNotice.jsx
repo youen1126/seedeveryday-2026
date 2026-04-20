@@ -6,7 +6,7 @@ export default function CartThresholdNotice({ total = 0, className = "" }) {
   const formatMoney = (amount) => amount.toLocaleString("zh-TW");
 
   return (
-    <div className={`bg-light rounded px-3 py-2 mt-3 ${className}`.trim()}>
+    <div className={`bg-light px-3 py-3 mt-3 ${className}`.trim()}>
       <p
         className={`mb-2 font-zh-display ${
           freeShippingRemaining > 0 ? "text-danger" : "text-success"
