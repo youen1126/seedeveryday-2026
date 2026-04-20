@@ -4,34 +4,32 @@ export default function MessageToast() {
   const messages = useSelector((state) => state.message);
 
   return (
-    <div className="toast-container position-fixed top-0 end-0 p-3">
+    <div className="toast-container brand-toast-container position-fixed top-0 end-0 p-3">
       {messages.map((message) => {
+        const stateClass =
+          message.type === "success" ? "is-success" : "is-danger";
         return (
           <div
             key={message.id}
-            className="toast show"
+            className={`toast show brand-toast ${stateClass}`}
             role="alert"
             aria-live="assertive"
             aria-atomic="true"
           >
-            <div className={`toast-header text-white bg-${message.type}`}>
-              <strong className="me-auto">{message.title}</strong>
+            <div className="toast-header brand-toast-header">
+              <strong className="me-auto font-zh-display d-flex align-items-center gap-2">
+                <i className={message.icon} aria-hidden="true"></i>
+                <span>{message.title}</span>
+              </strong>
               <button
                 type="button"
-                className="btn-close"
+                className="btn-close brand-toast-close"
                 data-bs-dismiss="toast"
                 aria-label="Close"
               ></button>
             </div>
-            <div className="toast-body">
-              {/* <img
-                src={message.img}
-                className="rounded me-2"
-                alt="Cute pictrue"
-                style={{ height: "50px" }}
-              /> */}
+            <div className="toast-body brand-toast-body font-zh-display">
               {message.text}
-              {message.emoji}
             </div>
           </div>
         );
