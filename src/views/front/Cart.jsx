@@ -30,6 +30,9 @@ export default function Cart() {
   const { showSuccess, showError } = useMessage();
   const [activeTab, setActiveTab] = useState("cart");
   const [wishListProducts, setWishListProducts] = useState([]);
+  const [deletingItemId, setDeletingItemId] = useState(null);
+  const [showDeleteAllModal, setShowDeleteAllModal] = useState(false);
+  const [isDeletingAll, setIsDeletingAll] = useState(false);
   const MAX_QTY = 10;
 
   useEffect(() => {
@@ -49,22 +52,38 @@ export default function Cart() {
   const collectedItems = wishListProducts.filter((item) => wishList[item.id]);
 
   //刪除單一商品
-  const handleDelItem = (e, id) => {
+  const handleDelItem = async (e, id) => {
     e.preventDefault();
-    dispatch(createAsyncDelCart(id));
+    setDeletingItemId(id);
+    await dispatch(createAsyncDelCart(id));
+    setDeletingItemId(null);
     showSuccess("刪除成功");
   };
 
   //刪除全部
   const deleteAll = async () => {
     try {
+      setIsDeletingAll(true);
       const res = await DelAllCartApi();
       dispatch(createAsyncGetCart());
       showSuccess(res.data.data, "成功");
+      setShowDeleteAllModal(false);
     } catch (error) {
       console.error(error.respones);
       showError("刪除失敗，請聯繫客服");
+    } finally {
+      setIsDeletingAll(false);
     }
+  };
+
+  const openDeleteAllModal = () => {
+    if (!carts || carts.length === 0) return;
+    setShowDeleteAllModal(true);
+  };
+
+  const closeDeleteAllModal = () => {
+    if (isDeletingAll) return;
+    setShowDeleteAllModal(false);
   };
   //更改購物車數量
   const handleUpdateNum = (cartId, productId, qty) => {
@@ -142,7 +161,7 @@ export default function Cart() {
                   <button
                     type="button"
                     className="btn btn-outline-danger font-zh-display"
-                    onClick={deleteAll}
+                    onClick={openDeleteAllModal}
                     disabled={!carts || carts.length === 0}
                   >
                     清空購物車
@@ -169,12 +188,28 @@ export default function Cart() {
                               href="#"
                               onClick={(e) => handleDelItem(e, item.id)}
                               className="position-absolute"
+                              aria-disabled={deletingItemId === item.id}
                               style={{
                                 top: "16px",
                                 right: "16px",
+                                pointerEvents:
+                                  deletingItemId === item.id
+                                    ? "none"
+                                    : "auto",
                               }}
                             >
-                              <i className="fas fa-times"></i>
+                              {deletingItemId === item.id ? (
+                                <span
+                                  className="spinner-border spinner-border-sm text-secondary"
+                                  role="status"
+                                >
+                                  <span className="visually-hidden">
+                                    Loading...
+                                  </span>
+                                </span>
+                              ) : (
+                                <i className="fas fa-times"></i>
+                              )}
                             </a>
                             <p className="mb-0 fw-bold font-zh-display">
                               {item.product.title}
@@ -353,6 +388,58 @@ export default function Cart() {
           </div>
         </div>
       </div>
+      {showDeleteAllModal && (
+        <>
+          <div
+            className="modal fade show d-block"
+            tabIndex="-1"
+            role="dialog"
+            aria-modal="true"
+          >
+            <div className="modal-dialog modal-dialog-centered">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title font-zh-display">刪除確認</h5>
+                  <button
+                    type="button"
+                    className="btn-close"
+                    aria-label="Close"
+                    onClick={closeDeleteAllModal}
+                    disabled={isDeletingAll}
+                  ></button>
+                </div>
+                <div className="modal-body">
+                  <p className="mb-0 font-zh-display">
+                    確定要刪除所有購物車中的商品嗎？
+                  </p>
+                </div>
+                <div className="modal-footer">
+                  <button
+                    type="button"
+                    className="btn btn-outline-secondary rounded-0"
+                    onClick={closeDeleteAllModal}
+                    disabled={isDeletingAll}
+                  >
+                    取消
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-danger rounded-0"
+                    onClick={deleteAll}
+                    disabled={isDeletingAll}
+                  >
+                    {isDeletingAll ? "刪除中..." : "刪除"}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="modal-backdrop fade show"
+            onClick={closeDeleteAllModal}
+          ></div>
+        </>
+      )}
       <YoumaylikeSwiper />
     </>
   );
