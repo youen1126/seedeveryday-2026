@@ -142,7 +142,7 @@ export default function AboutWe() {
 
             <div className="col-md-4 mb-4 card-hover">
               <img
-                src="https://i.pinimg.com/736x/b0/1f/b7/b01fb7d26523055136bef6de3f34be49.jpg"
+                src="https://i.pinimg.com/736x/4d/59/ec/4d59ec9bb87e9654c0745722e859df24.jpg"
                 className="img-fluid rounded mb-3  mt-3 img-size-large"
                 alt="由夏威夷果核和迷你菇裝飾物製作的工藝創作品"
                 loading="lazy"

@@ -154,7 +154,7 @@ export default function Checkout() {
                       htmlFor="ContactMail"
                       className="text-muted mb-0 form-label"
                     >
-                      收件人 Email（請確認Email可用，後續通知將以Email通知）
+                      收件人Email（請確認Email正確可用，避免無法接收通知）
                     </label>
                     <input
                       type="email"
