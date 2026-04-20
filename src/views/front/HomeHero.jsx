@@ -35,14 +35,14 @@ export default function HomeHero() {
               to="/products"
               data-aos="fade-right"
             >
-              立即選購
+              熱門商品
             </Link>
             <Link
               className="btn btn-dark rounded-0"
               to="/products?category=種子小物"
               data-aos="fade-right"
             >
-              看看送禮靈感
+              本月主打
             </Link>
           </div>
         </div>

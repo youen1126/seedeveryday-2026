@@ -28,7 +28,7 @@ export default function Hotspot() {
 
   return (
     <div className="row mt-5">
-      <h2 className="mb-1 text-center font-zh-display fw-bold ">熱門商品</h2>
+      <h2 className="mb-1 text-center font-zh-display fw-bold ">本月主打</h2>
       {handmadeProducts.map((product) => {
         return (
           <div className="col-md-6 mt-md-4" key={product.id}>
