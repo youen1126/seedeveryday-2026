@@ -19,6 +19,15 @@
   flex-shrink: 0;
 }
 
+.cart-item-delete-btn {
+  color: #212529;
+  transition: color 0.2s ease;
+}
+
+.cart-item-delete-btn:hover {
+  color: #dc3545;
+}
+
 @media (max-width: 1000px) {
   .cart-item-total {
     width: 100%;

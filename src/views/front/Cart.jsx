@@ -189,7 +189,7 @@ export default function Cart() {
                             <a
                               href="#"
                               onClick={(e) => handleDelItem(e, item.id)}
-                              className="position-absolute"
+                              className="position-absolute cart-item-delete-btn"
                               aria-disabled={deletingItemId === item.id}
                               style={{
                                 top: "16px",
@@ -208,7 +208,7 @@ export default function Cart() {
                                   </span>
                                 </span>
                               ) : (
-                                <i className="fas fa-times"></i>
+                                <i className="fa-regular fa-trash-can"></i>
                               )}
                             </a>
                             <p className="mb-0 fw-bold font-zh-display">
