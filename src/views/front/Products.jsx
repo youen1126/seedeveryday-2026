@@ -84,6 +84,7 @@ export default function Products() {
   const [animatingId, setAnimatingId] = useState(null);
   const [sortType, setSortType] = useState("highToLow");
   const [randomSeed, setRandomSeed] = useState(1);
+  const [pendingCategory, setPendingCategory] = useState("");
   const wishList = useSelector((state) => state.wishlist.items);
 
   const { products, pagination, categories, categoryCounts, loading } =
@@ -125,13 +126,32 @@ export default function Products() {
     );
   }, [dispatch, activeCategory, currentPage]);
 
+  useEffect(() => {
+    if (!pendingCategory) {
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setPendingCategory("");
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [pendingCategory]);
+
   const handleCategoryChange = (category) => {
-    setSearchParams(
-      createNextSearchParams(searchParams, {
-        category,
-        page: 1,
-      }),
-    );
+    const nextParams = createNextSearchParams(searchParams, {
+      category,
+      page: 1,
+    });
+
+    if (nextParams.toString() === searchParams.toString()) {
+      return;
+    }
+
+    setPendingCategory(category);
+    setSearchParams(nextParams);
   };
 
   const handlePageChange = (page) => {
@@ -295,7 +315,16 @@ export default function Products() {
                               handleCategoryChange(category);
                             }}
                           >
-                            {`${category} (${categoryCounts?.[category] ?? 0})`}
+                            <span className="d-inline-flex align-items-center gap-2">
+                              <span>{`${category} (${categoryCounts?.[category] ?? 0})`}</span>
+                              {pendingCategory === category && (
+                                <span
+                                  className="spinner-border spinner-border-sm text-secondary"
+                                  role="status"
+                                  aria-label="分類載入中"
+                                ></span>
+                              )}
+                            </span>
                           </a>
                         </li>
                       );
