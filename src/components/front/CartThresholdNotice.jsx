@@ -12,18 +12,22 @@ export default function CartThresholdNotice({ total = 0, className = "" }) {
           freeShippingRemaining > 0 ? "text-danger" : "text-success"
         }`}
       >
-        {freeShippingRemaining > 0
-          ? `再消費 NT$${formatMoney(freeShippingRemaining)} 即可享滿千免運`
-          : "已達免運金額門檻"}
+        <small>
+          {freeShippingRemaining > 0
+            ? `再消費 NT$${formatMoney(freeShippingRemaining)} 即可享滿千免運`
+            : "已達免運金額門檻"}
+        </small>
       </p>
       <p
         className={`mb-0 font-zh-display ${
           giftRemaining > 0 ? "text-danger" : "text-success"
         }`}
       >
-        {giftRemaining > 0
-          ? `再消費 NT$${formatMoney(giftRemaining)} 即可享滿 2500 贈品`
-          : "已達贈品金額門檻"}
+        <small>
+          {giftRemaining > 0
+            ? `再消費 NT$${formatMoney(giftRemaining)} 即可享滿 2500 贈品`
+            : "已達贈品金額門檻"}
+        </small>
       </p>
     </div>
   );

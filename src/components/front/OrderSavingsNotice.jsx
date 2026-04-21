@@ -7,8 +7,8 @@ export default function OrderSavingsNotice({ carts = [], total = 0 }) {
   const formatMoney = (amount) => amount.toLocaleString("zh-TW");
 
   return (
-    <p className="mb-0 mt-2 font-zh-display text-success">
-      本筆訂單節省了 NT${formatMoney(savings)}
+    <p className="mb-0 mt-2 font-zh-display text-success ">
+      <small>本筆訂單節省了 NT${formatMoney(savings)}</small>
     </p>
   );
 }
