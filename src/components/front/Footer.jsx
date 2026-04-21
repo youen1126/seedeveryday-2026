@@ -17,7 +17,7 @@ const Footer = () => {
     <>
       <div className="bg-dark">
         <div className="container">
-          <div className="d-flex flex-column flex-md-row flex-wrap align-items-center justify-content-between text-white py-4 gap-2 gap-md-0 text-center text-md-start">
+          <div className="d-flex flex-column flex-md-row flex-wrap align-items-center justify-content-between text-white py-4 gap-2 gap-md-0 text-center text-md-start mt-5 mb-5">
             <p className="mb-0">© 2026 UN All Rights Reserved.</p>
             <p className="mb-0">
               客服信箱：
