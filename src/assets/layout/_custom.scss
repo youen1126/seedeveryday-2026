@@ -223,6 +223,12 @@ body {
   min-height: 160px;
 }
 
+.home-quote-image {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+}
+
 /* 平板 ≥768px */
 @media (min-width: 992px) {
   .hero-img {
@@ -272,5 +278,33 @@ body {
 
   .custom-header-md-open .nav-link {
     padding: 0.75rem 0;
+  }
+}
+
+@media (max-width: 430px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .checkoutList .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .hero-img {
+    width: 100%;
+    max-width: 380px;
+    height: auto;
+  }
+
+  .home-quote-image {
+    width: 132px;
+    height: 132px;
+  }
+
+  .font-zh-display-sm {
+    font-size: 16px;
+    line-height: 1.5;
   }
 }

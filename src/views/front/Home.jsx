@@ -35,17 +35,12 @@ export default function Home() {
           >
             <div className="carousel-inner">
               <div className="carousel-item active">
-                <div className="row justify-content-center py-7">
-                  <div className="col-md-8 d-flex img-hover">
+                <div className="row justify-content-center py-7 mx-0 my-0">
+                  <div className="col-md-10 d-flex flex-column flex-sm-row align-items-center img-hover gap-2">
                     <img
                       src="https://i.pinimg.com/736x/42/21/60/422160101cf1fb73d25f83dbd453c191.jpg"
                       alt="箴言配圖，由乾燥蓮藕排列成的照片"
-                      className="rounded-circle me-5"
-                      style={{
-                        width: "160px",
-                        height: "160px",
-                        objectFit: "cover",
-                      }}
+                      className="rounded-circle home-quote-image"
                       loading="lazy"
                     />
                     <div className="home-quote-copy d-flex flex-column justify-content-between font-zh-display-sm">
@@ -57,7 +52,7 @@ export default function Home() {
                         A little seed for everyday blessings.
                       </p>
                     </div>
-                    <div className="d-flex flex-column m-4">
+                    <div className="d-flex flex-column mt-2 mt-sm-0 ms-sm-3">
                       {" "}
                       <NavLink
                         to="/aboutwe"
