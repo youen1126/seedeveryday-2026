@@ -31,6 +31,7 @@ function OrderSuccess() {
             {orderId || "查詢中（若沒有顯示編號，請聯繫客服信箱）"}
           </p>
         </div>
+        <p className="mb-0">訂單將於2-3個工作天後出貨</p>
         <p className="mb-0">訂單後續將用 Email 進行通知</p>
         <hr />
         <p className="mb-0">如有疑問或沒有收到後續通知可聯繫</p>

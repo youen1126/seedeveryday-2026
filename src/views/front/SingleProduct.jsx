@@ -297,7 +297,7 @@ export default function SingleProducts() {
                   <div className="col-12 text-end">
                     <div>
                       <p className="mb-0 small text-muted">
-                        庫存：超過 10 件（下單超過 10 件請先聯絡客服）
+                        庫存：超過 10 件（超過 10 件請先聯絡客服）
                       </p>
                     </div>
                   </div>
@@ -379,11 +379,14 @@ export default function SingleProducts() {
                 {activeTab === "spec" ? (
                   <div className="single-product-tab-spec">
                     <ProductSpecList spec={spec} />
+                    <hr />
                     <section
                       className="single-product-faq"
                       aria-label="常見問題"
                     >
-                      <h3 className="single-product-faq-title">常見問題</h3>
+                      <h3 className="single-product-faq-title">
+                        <i class="bi bi-chat-left-text-fill"></i> 常見問題
+                      </h3>
                       <ul className="single-product-faq-list mb-0">
                         <li className="single-product-faq-item">
                           <p className="single-product-faq-question">
