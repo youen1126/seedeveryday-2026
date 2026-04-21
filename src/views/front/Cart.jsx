@@ -195,9 +195,7 @@ export default function Cart() {
                                 top: "16px",
                                 right: "16px",
                                 pointerEvents:
-                                  deletingItemId === item.id
-                                    ? "none"
-                                    : "auto",
+                                  deletingItemId === item.id ? "none" : "auto",
                               }}
                             >
                               {deletingItemId === item.id ? (

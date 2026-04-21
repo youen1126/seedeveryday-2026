@@ -1,10 +1,14 @@
 export default function SeedIntroduction() {
   return (
     <div className="bg-light py-1">
-      <div className="container my-5">
-        <h2 className="mb-5 text-center font-zh-display fw-bold ">
-          每一顆種子，都有自己的祝福
-        </h2>
+      <div className="container">
+        <div className="section-header">
+          <div className="title-wrapper title-bg-line py-5">
+            <h2 className="mb-2 text-center font-zh-display fw-bold">
+              每一顆種子，都有自己的祝福
+            </h2>
+          </div>
+        </div>
         <div className="row">
           <div className="col-md-4 card-hover ">
             <img

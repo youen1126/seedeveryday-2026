@@ -142,6 +142,37 @@ img {
   opacity: 1;
 }
 
+.title-wrapper {
+  position: relative;
+  text-align: center;
+}
+
+.title-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  mix-blend-mode: multiply;
+  opacity: 0.2;
+  z-index: 0;
+}
+
+.title-bg-pinecone::before {
+  background-image: url("/pinecone-ill.svg");
+  background-size: 150px;
+}
+
+.title-bg-line::before {
+  background-image: url("/Decorative lines2.svg");
+  background-size: 400px;
+}
+
+.title-wrapper h2 {
+  position: relative;
+  z-index: 1;
+}
+
 @media (max-width: 767.98px) {
   .hot-category-image {
     width: 170px;

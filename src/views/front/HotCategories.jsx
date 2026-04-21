@@ -28,8 +28,12 @@ const hotCategoryCards = [
 
 export default function HotCategories() {
   return (
-    <div className="container my-5">
-      <h2 className="mb-5 text-center font-zh-display fw-bold ">熱門分類</h2>
+    <div className="container my-2">
+      <div className="section-header">
+        <div className="title-wrapper title-bg-line py-5">
+          <h2 className="mb-1 text-center font-zh-display fw-bold">熱門分類</h2>
+        </div>
+      </div>
       <div className="row">
         {hotCategoryCards.map((item) => (
           <div

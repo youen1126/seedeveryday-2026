@@ -34,8 +34,14 @@ export default function WishList() {
 
   return (
     <>
-      <div className="container py-5">
-        <h2 className="mb-4 text-center font-zh-display fw-bold">收藏列表</h2>
+      <div className="container py-3">
+        <div className="section-header">
+          <div className="title-wrapper title-bg-pinecone py-5">
+            <h2 className="mb-2 text-center font-zh-display fw-bold">
+              收藏列表
+            </h2>
+          </div>
+        </div>
 
         {/* 空狀態 */}
         {wishListItems.length === 0 && (
