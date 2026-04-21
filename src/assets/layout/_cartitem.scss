@@ -19,6 +19,11 @@
   flex-shrink: 0;
 }
 
+.checkout-summary-table,
+.checkout-summary-table > :not(caption) > * > * {
+  background-color: transparent !important;
+}
+
 .cart-item-delete-btn {
   color: #212529;
   transition: color 0.2s ease;

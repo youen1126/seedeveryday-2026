@@ -44,7 +44,7 @@ export default function CheckoutCart() {
             </div>
           );
         })}
-        <table className="table mt-2 border-top border-bottom text-muted font-zh-display">
+        <table className="table mt-2 border-top border-bottom text-muted font-zh-display checkout-summary-table">
           <tbody>
             <tr>
               <th scope="row" className="border-0 px-0 pt-4 font-weight-normal">
