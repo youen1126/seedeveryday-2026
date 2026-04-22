@@ -4,7 +4,7 @@ const hotCategoryCards = [
   {
     category: "種子串",
     image:
-      "https://i.pinimg.com/1200x/f3/21/96/f32196edca89092a3324d16ef107a56b.jpg",
+      "https://i.pinimg.com/736x/40/35/44/403544ac161a9818bd4ac97e8cd083da.jpg",
     alt: "分類示意圖：種子串",
     description:
       "以天然種子串製而成，保留大地色澤與自然紋理，呈現素雅輕盈的手作氣質。",
@@ -22,7 +22,7 @@ const hotCategoryCards = [
       "https://i.pinimg.com/736x/6b/af/45/6baf45534919dea7577764310fac9c4d.jpg",
     alt: "分類示意圖：飾品",
     description:
-      "我們挑選色澤各具特色的種子，適合喜歡大地色系、自然系飾品、送給喜歡自然與手作的人。",
+      "我們挑選色澤各具特色的種子，適合喜歡大地自然系飾品、送給喜歡自然與手作的人。",
   },
 ];
 
