@@ -23,7 +23,7 @@ export default function Hotspot() {
   }, [dispatch, currentCategory]);
 
   const handmadeProducts = (products || []).filter(
-    (item) => item.category === "種子小物",
+    (item) => item.category === "掛飾",
   );
 
   return (
