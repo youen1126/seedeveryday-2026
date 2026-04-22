@@ -17,12 +17,12 @@ const hotCategoryCards = [
     description: "將天然種子做成各式裝飾物，適合當作無負擔又富含心意的小禮物",
   },
   {
-    category: "壓花",
+    category: "飾品",
     image:
-      "https://i.pinimg.com/1200x/9d/9f/6f/9d9f6fff4ff44de3769f148684842e9c.jpg",
-    alt: "分類示意圖：壓花",
+      "https://i.pinimg.com/736x/6b/af/45/6baf45534919dea7577764310fac9c4d.jpg",
+    alt: "分類示意圖：飾品",
     description:
-      "我們挑選花形與色澤各具特色的植物，適合作為桌面小物、送給喜歡自然與手作的人。",
+      "我們挑選色澤各具特色的種子，適合喜歡大地色系、自然系飾品、送給喜歡自然與手作的人。",
   },
 ];
 
