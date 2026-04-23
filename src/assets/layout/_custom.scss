@@ -32,7 +32,7 @@ body {
 }
 
 .logo {
-  height: 80px;
+  height: 55px;
   width: auto;
   flex-shrink: 0;
 }
@@ -43,15 +43,9 @@ body {
   padding-right: 100px;
 }
 
-@media (min-width: 568px) {
+@media (min-width: 992px) {
   .logo {
-    height: 80px;
-  }
-}
-
-@media (min-width: 1000px) {
-  .logo {
-    height: 90px;
+    height: 70px;
   }
 }
 
