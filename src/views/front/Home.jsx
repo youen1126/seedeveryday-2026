@@ -44,11 +44,11 @@ export default function Home() {
                       loading="lazy"
                     />
                     <div className="home-quote-copy d-flex flex-column justify-content-between font-zh-display-sm">
-                      <p className="link-hover">在忙碌的生活裡</p>
-                      <p className="link-hover">我們希望留下一點安靜</p>
-                      <p className="link-hover">一顆小小的種子</p>
-                      <p className="link-hover">也許就是一份祝福</p>
-                      <p className="text-muted link-hover">
+                      <p className="home-quote-line">在忙碌的生活裡</p>
+                      <p className="home-quote-line">我們希望留下一點安靜</p>
+                      <p className="home-quote-line">一顆小小的種子</p>
+                      <p className="home-quote-line">也許就是一份祝福</p>
+                      <p className="text-muted home-quote-line">
                         A little seed for everyday blessings.
                       </p>
                     </div>

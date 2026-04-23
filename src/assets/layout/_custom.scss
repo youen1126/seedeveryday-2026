@@ -208,13 +208,26 @@ body {
 }
 
 .hero-img {
-  width: 500px;
-  height: 500px;
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 1 / 1;
+  height: auto;
   object-fit: cover;
+  display: block;
+  margin: 0 auto;
 }
 
 .home-quote-copy {
   min-height: 160px;
+  line-height: 1.6;
+}
+
+.home-quote-line {
+  margin-bottom: 0.35rem;
+}
+
+.home-quote-line:last-child {
+  margin-bottom: 0;
 }
 
 .home-quote-image {
@@ -338,16 +351,24 @@ body {
 /* 平板 ≥768px */
 @media (min-width: 992px) {
   .hero-img {
-    width: 600px;
-    height: 600px;
+    max-width: 600px;
   }
 }
 
 /* 桌機 ≥992px */
 @media (min-width: 1200px) {
   .hero-img {
-    width: 650px;
-    height: 650px;
+    max-width: 650px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .hero-img {
+    max-width: 460px;
+  }
+
+  .home-quote-copy {
+    line-height: 1.55;
   }
 }
 
@@ -401,7 +422,6 @@ body {
   .hero-img {
     width: 100%;
     max-width: 380px;
-    height: auto;
   }
 
   .home-quote-image {
