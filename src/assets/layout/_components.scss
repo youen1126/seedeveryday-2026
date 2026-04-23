@@ -3,7 +3,7 @@ img {
   height: auto;
 }
 
-.img-hover {
+.img-hover:not(.card) {
   overflow: hidden;
 }
 
@@ -60,7 +60,6 @@ img {
 
 .section-gray {
   background-color: #dee2e6;
-  padding: 40px 0;
 }
 
 .swiper {
@@ -82,7 +81,6 @@ img {
   object-fit: cover;
   object-position: center;
   border-radius: 50%;
-  clip-path: circle(50% at 50% 50%);
 }
 
 .hot-category-title {
@@ -163,12 +161,15 @@ img {
   background-size: 150px;
 }
 
-.title-bg-line::before {
+.title-bg-line::before,
+.title-bg-line2::before {
   background-image: url("/Decorative lines2.svg");
+}
+
+.title-bg-line::before {
   background-size: 300px;
 }
 .title-bg-line2::before {
-  background-image: url("/Decorative lines2.svg");
   background-size: 400px;
 }
 
@@ -186,7 +187,6 @@ img {
 .btn-brand-featured:focus-visible,
 .btn-brand-featured:active {
   background-color: #ab8c83;
-  color: #fff;
 }
 
 @media (max-width: 767.98px) {
