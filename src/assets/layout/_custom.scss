@@ -39,8 +39,32 @@ body {
 
 .checkoutList .container {
   max-width: 100%;
-  padding-left: 100px;
-  padding-right: 100px;
+  padding-left: clamp(16px, 6vw, 100px);
+  padding-right: clamp(16px, 6vw, 100px);
+}
+
+.checkout-form-label {
+  color: #6c757d;
+  margin-bottom: 0;
+  font-family: "Noto Serif TC", "Roboto", "Noto Sans", serif;
+  letter-spacing: 0.03em;
+  font-size: 0.92rem;
+}
+
+.checkout-field-error {
+  margin-top: 0.35rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+.checkout-back-btn {
+  transition: color 0.2s ease;
+}
+
+.checkout-back-btn:hover,
+.checkout-back-btn:focus-visible {
+  color: #212529;
 }
 
 @media (min-width: 992px) {

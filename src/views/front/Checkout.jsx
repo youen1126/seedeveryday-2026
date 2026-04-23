@@ -108,8 +108,7 @@ export default function Checkout() {
     setShowSubmitConfirmModal(true);
   };
 
-  const handleBackToPage = (e) => {
-    e.preventDefault();
+  const handleBackToPage = () => {
     navigate("/cart");
   };
 
@@ -151,8 +150,8 @@ export default function Checkout() {
 
                   <div className="mb-2">
                     <label
-                      htmlFor="ContactMail"
-                      className="text-muted mb-0 form-label"
+                      htmlFor="email"
+                      className="checkout-form-label"
                     >
                       收件人Email（請確認Email正確可用，避免無法接收通知）
                     </label>
@@ -166,12 +165,14 @@ export default function Checkout() {
                     />
                   </div>
                   {errors.email && (
-                    <p className="text-danger">{errors.email.message}</p>
+                    <p className="checkout-field-error text-danger">
+                      {errors.email.message}
+                    </p>
                   )}
                   <div className="mb-2">
                     <label
-                      htmlFor="ContactName"
-                      className="text-muted mb-0 form-label"
+                      htmlFor="name"
+                      className="checkout-form-label"
                     >
                       收件人姓名
                     </label>
@@ -190,12 +191,14 @@ export default function Checkout() {
                     />
                   </div>
                   {errors.name && (
-                    <p className="text-danger">{errors.name.message}</p>
+                    <p className="checkout-field-error text-danger">
+                      {errors.name.message}
+                    </p>
                   )}
                   <div className="">
                     <label
-                      htmlFor="ContactPhone"
-                      className="text-muted mb-0 form-label"
+                      htmlFor="tel"
+                      className="checkout-form-label"
                     >
                       收件人電話
                     </label>
@@ -214,14 +217,19 @@ export default function Checkout() {
                     />
                   </div>
                   {errors.tel && (
-                    <p className="text-danger">{errors.tel.message}</p>
+                    <p className="checkout-field-error text-danger">
+                      {errors.tel.message}
+                    </p>
                   )}
                 </div>
 
                 <div className="bg-white p-4 mt-3">
                   <h4 className="fw-bold font-zh-display">收件地址和備註</h4>
 
-                  <label htmlFor="address" className="mt-4 mb-3">
+                  <label
+                    htmlFor="address"
+                    className="checkout-form-label mt-4 mb-3"
+                  >
                     收件地址
                   </label>
                   <input
@@ -235,10 +243,15 @@ export default function Checkout() {
                     })}
                   />
                   {errors.address && (
-                    <p className="text-danger">{errors.address.message}</p>
+                    <p className="checkout-field-error text-danger">
+                      {errors.address.message}
+                    </p>
                   )}
                   <div className="mb-3">
-                    <label htmlFor="message" className="mt-4 mb-3">
+                    <label
+                      htmlFor="message"
+                      className="checkout-form-label mt-4 mb-3"
+                    >
                       留言(可空白)
                     </label>
                     <textarea
@@ -250,13 +263,13 @@ export default function Checkout() {
                     ></textarea>
                   </div>
                   <div className="d-flex flex-column-reverse flex-md-row mt-4 justify-content-between align-items-md-center align-items-end  w-100">
-                    <a
-                      href="#"
-                      className="text-dark mt-md-0 mt-3 font-zh-display"
-                      onClick={(e) => handleBackToPage(e)}
+                    <button
+                      type="button"
+                      className="btn btn-link p-0 text-dark text-decoration-none mt-md-0 mt-3 font-zh-display checkout-back-btn"
+                      onClick={handleBackToPage}
                     >
                       <i className="fas fa-chevron-left me-2"></i> 回上一頁
-                    </a>
+                    </button>
                     <button
                       type="submit"
                       className="btn btn-dark py-2 px-3 rounded-0"
