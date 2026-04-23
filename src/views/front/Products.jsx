@@ -314,12 +314,12 @@ export default function Products() {
           className="position-absolute w-100 h-100"
           style={{
             backgroundImage:
-              "url(https://i.pinimg.com/1200x/84/51/d6/8451d67354799415e49c1f0217269403.jpg)",
-            backgroundRepeat: "no-repeat",
+              "url(https://i.pinimg.com/1200x/7d/6b/90/7d6b90ef382a67ec60646a95feab02ec.jpg)",
+            backgroundRepeat: "repeat",
             backgroundPosition: "center",
             backgroundSize: "cover",
             opacity: 0.8,
-            filter: "blur(6px)",
+            filter: "blur(4px)",
             transform: "scale(1.08)",
             zIndex: 0,
           }}
