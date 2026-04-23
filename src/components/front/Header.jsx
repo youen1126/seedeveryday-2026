@@ -76,7 +76,11 @@ const Header = () => {
               <span className="header-icon-tooltip">收藏頁</span>
             </NavLink>
             <NavLink to="/cart" className={getIconLinkClass}>
-              <div className="position-relative  me-5">
+              <div
+                className="position-relative  me-5"
+                data-cart-entry="true"
+                aria-label="購物車入口"
+              >
                 <i className="fas fa-shopping-cart "></i>
                 <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                   {carts.length}

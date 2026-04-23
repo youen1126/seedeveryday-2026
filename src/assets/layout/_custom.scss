@@ -275,6 +275,46 @@ body {
   line-height: 1;
 }
 
+.cart-fly-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1200;
+}
+
+.cart-fly-sprite {
+  position: fixed;
+  transform: translate(-50%, -50%);
+  color: #212529;
+  font-size: 18px;
+  animation: cart-fly-to-entry 0.7s cubic-bezier(0.25, 0.72, 0.36, 0.98)
+    forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes cart-fly-to-entry {
+  0% {
+    opacity: 0.95;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  70% {
+    opacity: 0.9;
+    transform: translate(
+        calc(-50% + var(--cart-fly-dx) * 0.75),
+        calc(-50% + var(--cart-fly-dy) * 0.75 - 18px)
+      )
+      scale(0.92);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(
+        calc(-50% + var(--cart-fly-dx)),
+        calc(-50% + var(--cart-fly-dy))
+      )
+      scale(0.25);
+  }
+}
+
 /* 平板 ≥768px */
 @media (min-width: 992px) {
   .hero-img {
