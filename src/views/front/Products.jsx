@@ -19,6 +19,7 @@ import { toggleWishlistItem } from "@/slice/wishlistSlice";
 const ALL_CATEGORY = "全部商品";
 const CATEGORY_QUERY_KEY = "category";
 const PAGE_QUERY_KEY = "page";
+const TAG_CANDIDATES = ["菩提子", "無患子", "松果", "青櫟"];
 
 function getDeterministicRank(value, seed) {
   const input = `${value}-${seed}`;
@@ -76,6 +77,10 @@ function createNextSearchParams(searchParams, { category, page }) {
   return nextParams;
 }
 
+function getProductKeywordText(item) {
+  return `${item?.title || ""} ${item?.description || ""}`;
+}
+
 export default function Products() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -85,9 +90,17 @@ export default function Products() {
   const [sortType, setSortType] = useState("highToLow");
   const [randomSeed, setRandomSeed] = useState(1);
   const [pendingCategory, setPendingCategory] = useState("");
+  const [selectedTags, setSelectedTags] = useState([]);
   const wishList = useSelector((state) => state.wishlist.items);
 
-  const { products, pagination, categories, categoryCounts, loading } =
+  const {
+    products,
+    allProducts,
+    pagination,
+    categories,
+    categoryCounts,
+    loading,
+  } =
     useSelector((state) => state.products);
   const categoryFromQuery = useMemo(
     () => getCategoryFromSearchParams(searchParams),
@@ -206,6 +219,15 @@ export default function Products() {
     }
   };
 
+  const handleToggleTag = (tag) => {
+    setSelectedTags((prev) => {
+      if (prev.includes(tag)) {
+        return prev.filter((item) => item !== tag);
+      }
+      return [...prev, tag];
+    });
+  };
+
   //進入商品詳細頁
   const handleViewDetail = (e, id) => {
     e.preventDefault();
@@ -237,6 +259,44 @@ export default function Products() {
         getDeterministicRank(b.id, randomSeed),
     );
   }, [products, sortType, randomSeed]);
+
+  const availableTags = useMemo(() => {
+    const sourceProducts =
+      Array.isArray(allProducts) && allProducts.length > 0
+        ? allProducts
+        : products || [];
+
+    return TAG_CANDIDATES.filter((keyword) =>
+      sourceProducts.some((item) => getProductKeywordText(item).includes(keyword)),
+    );
+  }, [allProducts, products]);
+
+  const filteredProducts = useMemo(() => {
+    if (selectedTags.length === 0) {
+      return sortedProducts;
+    }
+    return sortedProducts.filter((item) =>
+      selectedTags.some((tag) => getProductKeywordText(item).includes(tag)),
+    );
+  }, [sortedProducts, selectedTags]);
+
+  const displayPagination = useMemo(() => {
+    const pageSize = Number(pagination?.per_page) || products?.length || 1;
+    const shouldForceSinglePage =
+      selectedTags.length > 0 && filteredProducts.length <= pageSize;
+
+    if (!shouldForceSinglePage) {
+      return pagination;
+    }
+
+    return {
+      ...pagination,
+      current_page: 1,
+      total_pages: 1,
+      has_pre: false,
+      has_next: false,
+    };
+  }, [pagination, products?.length, selectedTags.length, filteredProducts.length]);
 
   return (
     <>
@@ -340,6 +400,29 @@ export default function Products() {
                 查無分類「{categoryFromQuery}」，以下顯示全部商品。
               </p>
             )}
+            {availableTags.length > 0 && (
+              <div className="products-tags-row mb-3" aria-label="關鍵字篩選">
+                {availableTags.map((tag) => {
+                  const isActive = selectedTags.includes(tag);
+                  return (
+                    <button
+                      key={tag}
+                      type="button"
+                      className={`products-tag-btn font-zh-display ${isActive ? "is-active" : ""}`}
+                      onClick={() => handleToggleTag(tag)}
+                      aria-pressed={isActive}
+                    >
+                      <span>{tag}</span>
+                      {isActive && (
+                        <span className="products-tag-btn__close" aria-hidden="true">
+                          ×
+                        </span>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
             <ProductSortSelect value={sortType} onChange={handleSortChange} />
             <div className="row">
               {/* 產品列表 */}
@@ -352,7 +435,7 @@ export default function Products() {
                 />
               ) : (
                 <>
-                  {sortedProducts?.map((item) => {
+                  {filteredProducts?.map((item) => {
                     return (
                       <div className="col-md-6 card-hover" key={item.id}>
                         <div className="card img-hover border-0 mb-4 position-relative position-relative">
@@ -417,13 +500,20 @@ export default function Products() {
                       </div>
                     );
                   })}
+                  {!filteredProducts?.length && (
+                    <div className="col-12">
+                      <p className="text-muted mt-4 font-zh-display">
+                        目前篩選條件下沒有商品，請取消部分關鍵字再試試。
+                      </p>
+                    </div>
+                  )}
                 </>
               )}
             </div>
             <br />
             {/* 頁碼區 */}
             <Pagination
-              pagination={pagination}
+              pagination={displayPagination}
               onChangePage={handlePageChange}
             />
           </div>

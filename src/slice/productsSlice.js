@@ -5,6 +5,7 @@ const productsSlice = createSlice({
   name: "products",
   initialState: {
     products: [],
+    allProducts: [],
     pagination: {},
     categories: [],
     categoryCounts: {},
@@ -26,6 +27,7 @@ const productsSlice = createSlice({
       })
       .addCase(createAsyncGetAllProducts.fulfilled, (state, action) => {
         state.loading = false;
+        state.allProducts = action.payload.products;
         state.categories = action.payload.categories;
         state.categoryCounts = action.payload.categoryCounts;
       })
@@ -60,6 +62,7 @@ export const createAsyncGetAllProducts = createAsyncThunk(
     ];
 
     return {
+      products,
       categories,
       categoryCounts: {
         ...categoryCounts,
