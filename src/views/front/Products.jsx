@@ -100,8 +100,7 @@ export default function Products() {
     categories,
     categoryCounts,
     loading,
-  } =
-    useSelector((state) => state.products);
+  } = useSelector((state) => state.products);
   const categoryFromQuery = useMemo(
     () => getCategoryFromSearchParams(searchParams),
     [searchParams],
@@ -267,7 +266,9 @@ export default function Products() {
         : products || [];
 
     return TAG_CANDIDATES.filter((keyword) =>
-      sourceProducts.some((item) => getProductKeywordText(item).includes(keyword)),
+      sourceProducts.some((item) =>
+        getProductKeywordText(item).includes(keyword),
+      ),
     );
   }, [allProducts, products]);
 
@@ -296,7 +297,12 @@ export default function Products() {
       has_pre: false,
       has_next: false,
     };
-  }, [pagination, products?.length, selectedTags.length, filteredProducts.length]);
+  }, [
+    pagination,
+    products?.length,
+    selectedTags.length,
+    filteredProducts.length,
+  ]);
 
   return (
     <>
@@ -395,35 +401,50 @@ export default function Products() {
             </div>
           </div>
           <div className="col-md-8">
-            {hasInvalidCategory && (
-              <p className="text-muted mb-3 font-zh-display">
-                查無分類「{categoryFromQuery}」，以下顯示全部商品。
-              </p>
-            )}
-            {availableTags.length > 0 && (
-              <div className="products-tags-row mb-3" aria-label="關鍵字篩選">
-                {availableTags.map((tag) => {
-                  const isActive = selectedTags.includes(tag);
-                  return (
-                    <button
-                      key={tag}
-                      type="button"
-                      className={`products-tag-btn font-zh-display ${isActive ? "is-active" : ""}`}
-                      onClick={() => handleToggleTag(tag)}
-                      aria-pressed={isActive}
-                    >
-                      <span>{tag}</span>
-                      {isActive && (
-                        <span className="products-tag-btn__close" aria-hidden="true">
-                          ×
-                        </span>
-                      )}
-                    </button>
-                  );
-                })}
+            <div className="row">
+              <div className="col-md-6">
+                {hasInvalidCategory && (
+                  <p className="text-muted mb-3 font-zh-display">
+                    查無分類「{categoryFromQuery}」，以下顯示全部商品。
+                  </p>
+                )}
+                {availableTags.length > 0 && (
+                  <div
+                    className="products-tags-row mb-3"
+                    aria-label="關鍵字篩選"
+                  >
+                    {availableTags.map((tag) => {
+                      const isActive = selectedTags.includes(tag);
+                      return (
+                        <button
+                          key={tag}
+                          type="button"
+                          className={`products-tag-btn font-zh-display ${isActive ? "is-active" : ""}`}
+                          onClick={() => handleToggleTag(tag)}
+                          aria-pressed={isActive}
+                        >
+                          <span>{tag}</span>
+                          {isActive && (
+                            <span
+                              className="products-tag-btn__close"
+                              aria-hidden="true"
+                            >
+                              ×
+                            </span>
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
-            )}
-            <ProductSortSelect value={sortType} onChange={handleSortChange} />
+              <div className="col-md-6">
+                <ProductSortSelect
+                  value={sortType}
+                  onChange={handleSortChange}
+                />
+              </div>
+            </div>
             <div className="row">
               {/* 產品列表 */}
               {loading ? (
