@@ -87,12 +87,23 @@
 
   .single-product-tabs {
     border: 1px solid #dee2e6;
+    overflow-x: hidden;
   }
 
   .single-product-tabs-nav {
     display: flex;
     border-bottom: 1px solid #dee2e6;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .single-product-tabs-nav::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
   }
 
   .single-product-tab-btn {

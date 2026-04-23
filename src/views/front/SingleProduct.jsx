@@ -241,7 +241,7 @@ export default function SingleProducts() {
                     ></i>
                   </button>
                 </div>
-                <div className="single-product-description">
+                <div className="single-product-description p-2">
                   <p>{shortDescription}</p>
                 </div>
                 <div className="single-product-promo">
@@ -357,7 +357,7 @@ export default function SingleProducts() {
                         ))}
                       </div>
                     ) : null}
-                    <div className="single-product-description-text p-5 text-center">
+                    <div className="single-product-description-text p-1 text-center">
                       {formattedDescription.map((sentence) => (
                         <p
                           key={sentence.id}
