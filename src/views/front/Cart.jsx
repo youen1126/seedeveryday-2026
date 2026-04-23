@@ -125,12 +125,12 @@ export default function Cart() {
         <CheckoutFlow currentStep={1} />
         <div className="row justify-content-center">
           <div
-            className="col-md-8 bg-white py-5"
+            className="col-md-8 bg-white py-5 cart-page-panel"
             style={{
-              minHeight: "min-height: calc(100vh - 56px - 76px)",
+              minHeight: "calc(100vh - 56px - 76px)",
             }}
           >
-            <div className="d-flex justify-content-between align-items-center flex-wrap gap-3">
+            <div className="d-flex justify-content-between align-items-center flex-wrap gap-3 cart-page-header">
               <div>
                 <h2 className="mt-2 mb-3 font-zh-display fw-bold">購物車</h2>
                 <div
@@ -158,7 +158,7 @@ export default function Cart() {
                   </button>
                 </div>
               </div>
-              <div className="text-end mt-4">
+              <div className="text-end">
                 {activeTab === "cart" && (
                   <button
                     type="button"
@@ -179,24 +179,24 @@ export default function Cart() {
                   <>
                     {carts.map((item) => {
                       return (
-                        <div className="d-flex mt-3 bg-light " key={item.id}>
+                        <div
+                          className="cart-item-row d-flex flex-column flex-sm-row mt-3 bg-light"
+                          key={item.id}
+                        >
                           <img
                             src={item.product.imageUrl}
                             alt={item.product.title}
-                            className="img-size-sm3"
+                            className="img-size-sm3 cart-item-image"
                           />
                           <div className="w-100 p-3 position-relative">
-                            <a
-                              href="#"
-                              onClick={(e) => handleDelItem(e, item.id)}
-                              className="position-absolute cart-item-delete-btn"
-                              aria-disabled={deletingItemId === item.id}
-                              style={{
-                                top: "16px",
-                                right: "16px",
-                                pointerEvents:
-                                  deletingItemId === item.id ? "none" : "auto",
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                handleDelItem(e, item.id);
                               }}
+                              className="position-absolute cart-item-delete-btn"
+                              disabled={deletingItemId === item.id}
+                              aria-label="刪除商品"
                             >
                               {deletingItemId === item.id ? (
                                 <span
@@ -210,16 +210,13 @@ export default function Cart() {
                               ) : (
                                 <i className="fa-regular fa-trash-can"></i>
                               )}
-                            </a>
-                            <p className="mb-0 fw-bold font-zh-display">
+                            </button>
+                            <p className="mb-0 fw-bold font-zh-display cart-item-title">
                               {item.product.title}
                             </p>
-                            <div className="d-flex justify-content-between align-items-center w-100">
-                              <div className="input-group w-50 align-items-center p-1">
-                                <div
-                                  className="input-group input-group-sm"
-                                  style={{ width: "120px" }}
-                                >
+                            <div className="d-flex justify-content-between align-items-center w-100 flex-wrap">
+                              <div className="input-group cart-item-qty-wrap align-items-center p-1">
+                                <div className="input-group input-group-sm cart-item-qty-control">
                                   <button
                                     className="btn btn-outline-secondary"
                                     type="button"
@@ -271,7 +268,7 @@ export default function Cart() {
                                   </button>
                                 </div>
                               </div>
-                              <p className="mb-0 ms-auto font-zh-display">
+                              <p className="mb-0 ms-auto font-zh-display cart-item-total">
                                 NT${item.product.price * item.qty}{" "}
                                 <span className="text-muted">
                                   <del>
@@ -287,7 +284,6 @@ export default function Cart() {
                     })}
                   </>
                 )}
-                <table className="table mt-4 text-muted"></table>
                 <div className="d-flex justify-content-between mt-4">
                   <p className="mb-0 h4 fw-bold font-zh-display">總金額</p>
                   <p className="mb-0 h4 fw-bold font-zh-display">NT${total}</p>
@@ -309,10 +305,10 @@ export default function Cart() {
               <div className="mt-4">
                 {collectedItems.length === 0 ? (
                   <div className="text-center py-5">
-                    <h1>
+                    <div className="fs-1 mb-2" aria-hidden="true">
                       <i className="fa-sharp fa-regular fa-heart text-secondary"></i>
-                    </h1>
-                    <p>目前還沒有收藏任何商品</p>
+                    </div>
+                    <p className="font-zh-display">目前還沒有收藏任何商品</p>
                     <Link to="/product" className="btn btn-dark mt-3">
                       去逛逛
                     </Link>
@@ -324,15 +320,10 @@ export default function Cart() {
                         <div className="card h-100 position-relative border-0 bg-light">
                           <button
                             type="button"
-                            className="p-0 border-0 bg-transparent text-danger position-absolute"
+                            className="p-0 border-0 bg-transparent text-danger position-absolute cart-wishlist-remove-btn"
                             onClick={() =>
                               dispatch(toggleWishlistItem(item.id))
                             }
-                            style={{
-                              top: "16px",
-                              right: "16px",
-                              zIndex: 2,
-                            }}
                             aria-label="移除收藏"
                           >
                             <i className="fa-solid fa-heart"></i>
@@ -343,14 +334,13 @@ export default function Cart() {
                                 <img
                                   src={item.imageUrl}
                                   alt={item.title}
-                                  className="img-fluid h-100 w-100"
-                                  style={{ objectFit: "cover" }}
+                                  className="img-fluid h-100 w-100 cart-wishlist-image"
                                 />
                               </Link>
                             </div>
                             <div className="col-8">
                               <div className="card-body d-flex flex-column h-100">
-                                <h5 className="card-title pe-4">
+                                <h5 className="card-title pe-4 cart-wishlist-title font-zh-display">
                                   {item.title}
                                 </h5>
 
