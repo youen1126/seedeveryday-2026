@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { NavLink } from "react-router";
 
 import BackToTop from "@/components/BackToTop";
+import HomePromoBannerSection from "@/components/front/HomePromoBannerSection";
 import { scrollToTop } from "@/utils/scrollToTop";
 
 import HomeHero from "./HomeHero";
@@ -16,6 +17,7 @@ export default function Home() {
     <>
       <div className="container">
         <HomeHero />
+        <HomePromoBannerSection />
       </div>
       <div className="bg-light mt-1 p-1">
         <HotCategories />
