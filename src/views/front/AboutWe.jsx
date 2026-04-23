@@ -114,7 +114,7 @@ export default function AboutWe() {
       <section className="py-1">
         <div className="container">
           <div className="section-header">
-            <div className="title-wrapper title-bg-line py-5">
+            <div className="title-wrapper title-bg-line2 py-5">
               <h2 className="mb-2 text-center font-zh-display fw-bold">
                 每一件作品，都是手工製作
               </h2>

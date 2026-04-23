@@ -35,7 +35,7 @@ export default function HomeHero() {
               熱門商品
             </Link>
             <Link
-              className="btn btn-dark rounded-0"
+              className="btn btn-brand-featured rounded-0"
               to="/products?category=種子小物"
               data-aos="fade-right"
             >

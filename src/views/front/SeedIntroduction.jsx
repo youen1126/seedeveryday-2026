@@ -3,7 +3,7 @@ export default function SeedIntroduction() {
     <div className="bg-light py-1">
       <div className="container">
         <div className="section-header">
-          <div className="title-wrapper title-bg-line py-5">
+          <div className="title-wrapper title-bg-line2 py-5">
             <h2 className="mb-2 text-center font-zh-display fw-bold">
               每一顆種子，都有自己的祝福
             </h2>

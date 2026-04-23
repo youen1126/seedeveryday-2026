@@ -165,12 +165,28 @@ img {
 
 .title-bg-line::before {
   background-image: url("/Decorative lines2.svg");
+  background-size: 300px;
+}
+.title-bg-line2::before {
+  background-image: url("/Decorative lines2.svg");
   background-size: 400px;
 }
 
 .title-wrapper h2 {
   position: relative;
   z-index: 1;
+}
+
+.btn-brand-featured {
+  background-color: #6d765b;
+  color: #fff;
+}
+
+.btn-brand-featured:hover,
+.btn-brand-featured:focus-visible,
+.btn-brand-featured:active {
+  background-color: #ab8c83;
+  color: #fff;
 }
 
 @media (max-width: 767.98px) {
