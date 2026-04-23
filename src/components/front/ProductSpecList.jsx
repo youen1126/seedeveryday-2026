@@ -22,7 +22,7 @@ export default function ProductSpecList({ spec }) {
   return (
     <>
       <h3 className="single-product-faq-title">
-        <i class="bi bi-chat-left-text-fill"></i> 規格說明
+        <i className="bi bi-chat-left-text-fill"></i> 規格說明
       </h3>
       <ProductSpecRow label="商品分類" value={spec?.category} />
       <ProductSpecRow label="販售單位" value={spec?.unit} />

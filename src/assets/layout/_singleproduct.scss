@@ -97,13 +97,10 @@
     -webkit-overflow-scrolling: touch;
     overscroll-behavior-x: contain;
     scrollbar-width: none;
-    -ms-overflow-style: none;
   }
 
   .single-product-tabs-nav::-webkit-scrollbar {
     display: none;
-    width: 0;
-    height: 0;
   }
 
   .single-product-tab-btn {
@@ -161,10 +158,6 @@
     line-height: 1.8;
   }
 
-  .single-product-faq-item:last-child {
-    margin-bottom: 0;
-  }
-
   .single-product-faq-question {
     margin-bottom: 0.25rem;
     font-size: 1rem;
@@ -188,6 +181,7 @@
     margin-bottom: 0.25rem;
   }
 
+  .single-product-faq-item:last-child,
   .single-product-faq-sublist li:last-child {
     margin-bottom: 0;
   }
@@ -240,9 +234,9 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: #212529;
   }
 
+  .single-product-tab-section-title,
   .single-product-tab-section-title i {
     color: #212529;
   }
@@ -279,9 +273,7 @@
   }
 
   .img-hover img,
-  .card-hover,
-  .link-hover::after,
-  .icon-hover {
+  .link-hover::after {
     transition: none;
   }
 
@@ -289,16 +281,7 @@
     transform: none;
   }
 
-  .card-hover:hover {
-    transform: none;
-    box-shadow: none;
-  }
-
   .link-hover:hover::after {
     width: 0;
-  }
-
-  .icon-hover:hover {
-    transform: none;
   }
 }

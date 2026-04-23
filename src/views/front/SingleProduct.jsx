@@ -219,7 +219,7 @@ export default function SingleProducts() {
                   </ol>
                 </nav>
                 <div className="d-flex align-items-center justify-content-between gap-3">
-                  <h2 className="fw-bold h1 mb-1 font-zh-display fw-bold">
+                  <h2 className="h1 mb-1 font-zh-display fw-bold">
                     {product.title}
                   </h2>
                   <button
@@ -299,11 +299,9 @@ export default function SingleProducts() {
                     </AddToCartButton>
                   </div>
                   <div className="col-12 text-end">
-                    <div>
-                      <p className="mb-0 small text-muted">
-                        庫存：超過 10 件（超過 10 件請先聯絡客服）
-                      </p>
-                    </div>
+                    <p className="mb-0 small text-muted">
+                      庫存：超過 10 件（超過 10 件請先聯絡客服）
+                    </p>
                   </div>
                 </div>
               </div>
@@ -346,9 +344,9 @@ export default function SingleProducts() {
                 </button>
               </div>
               <div className="single-product-tabs-content">
-                {activeTab === "description" ? (
+                {activeTab === "description" && (
                   <div className="single-product-tab-description">
-                    {descriptionImages.length > 0 ? (
+                    {descriptionImages.length > 0 && (
                       <div className="single-product-description-images">
                         {descriptionImages.map((image, index) => (
                           <img
@@ -360,7 +358,7 @@ export default function SingleProducts() {
                           />
                         ))}
                       </div>
-                    ) : null}
+                    )}
                     <div className="single-product-description-text p-1 text-center">
                       {formattedDescription.map((sentence) => (
                         <p
@@ -379,8 +377,8 @@ export default function SingleProducts() {
                       ))}
                     </div>
                   </div>
-                ) : null}
-                {activeTab === "spec" ? (
+                )}
+                {activeTab === "spec" && (
                   <div className="single-product-tab-spec">
                     <ProductSpecList spec={spec} />
                     <hr />
@@ -389,7 +387,7 @@ export default function SingleProducts() {
                       aria-label="常見問題"
                     >
                       <h3 className="single-product-faq-title">
-                        <i class="bi bi-chat-left-text-fill"></i> 常見問題
+                        <i className="bi bi-chat-left-text-fill"></i> 常見問題
                       </h3>
                       <ul className="single-product-faq-list mb-0">
                         <li className="single-product-faq-item">
@@ -443,17 +441,17 @@ export default function SingleProducts() {
                       </ul>
                     </section>
                   </div>
-                ) : null}
-                {activeTab === "shippingPayment" ? (
+                )}
+                {activeTab === "shippingPayment" && (
                   <div className="single-product-shipping-payment">
                     <div className="single-product-shipping-payment-column">
-                      <p className="single-product-tab-section-title mb-2 fw-semibold">
+                      <h4 className="single-product-tab-section-title mb-2 fw-semibold">
                         <i
                           className="fa-solid fa-truck-fast"
                           aria-hidden="true"
                         ></i>
                         <span>送貨方式</span>
-                      </p>
+                      </h4>
                       <ul className="mb-0">
                         <li>外島郵寄(中華郵政)</li>
                         <li>全家 取貨付款 (B2C)</li>
@@ -461,13 +459,13 @@ export default function SingleProducts() {
                       </ul>
                     </div>
                     <div className="single-product-shipping-payment-column">
-                      <p className="single-product-tab-section-title mb-2 fw-semibold">
+                      <h4 className="single-product-tab-section-title mb-2 fw-semibold">
                         <i
                           className="fa-regular fa-credit-card"
                           aria-hidden="true"
                         ></i>
                         <span>付款方式</span>
-                      </p>
+                      </h4>
                       <ul className="mb-0">
                         <li>宅配貨到付款</li>
                         <li>7-11 取貨付款</li>
@@ -475,20 +473,20 @@ export default function SingleProducts() {
                       </ul>
                     </div>
                   </div>
-                ) : null}
+                )}
               </div>
             </section>
           </div>
         </div>
       </div>
-      {showFloatingAddCart && product?.id ? (
+      {showFloatingAddCart && product?.id && (
         <AddToCartButton
           className="btn btn-dark single-product-floating-cart-btn"
           onClick={(e) => handleAddCart(e, product.id, qty)}
         >
           加入購物車
         </AddToCartButton>
-      ) : null}
+      )}
       <YoumaylikeSwiper />
       <BackToTop />
     </div>
