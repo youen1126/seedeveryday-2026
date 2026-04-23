@@ -19,6 +19,11 @@ export default function CheckoutCart() {
           購買項目
         </h4>
         <hr />
+        {carts.length === 0 && (
+          <p className="text-center text-muted font-zh-display py-3 mb-0">
+            目前尚無商品，請先返回購物車加入商品。
+          </p>
+        )}
         {carts.map((item) => {
           return (
             <div className="d-flex p-2" key={item.id}>

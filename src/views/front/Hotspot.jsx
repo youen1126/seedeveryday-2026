@@ -66,6 +66,13 @@ export default function Hotspot() {
             </div>
           );
         })}
+        {handmadeProducts.length === 0 && (
+          <div className="col-12 text-center py-4">
+            <p className="mb-0 text-muted font-zh-display">
+              目前暫無本月主打商品，敬請期待。
+            </p>
+          </div>
+        )}
       </div>
     </>
   );

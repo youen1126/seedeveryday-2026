@@ -132,60 +132,64 @@ export default function SingleProducts() {
                 }}
                 className="single-product-main-swiper"
               >
-                {(galleryImages.length > 0 ? galleryImages : [""]).map(
-                  (image, index) => (
+                {galleryImages.length > 0 ? (
+                  galleryImages.map((image, index) => (
                     <SwiperSlide key={`${image}-${index}`}>
                       <div className="single-product-square">
-                        {image ? (
-                          <img
-                            src={image}
-                            alt={`${product.title || "商品圖片"}-${index + 1}`}
-                            className="single-product-main-image"
-                            loading="lazy"
-                          />
-                        ) : null}
+                        <img
+                          src={image}
+                          alt={`${product.title || "商品圖片"}-${index + 1}`}
+                          className="single-product-main-image"
+                          loading="lazy"
+                        />
                       </div>
                     </SwiperSlide>
-                  ),
+                  ))
+                ) : (
+                  <SwiperSlide key="empty-gallery">
+                    <div className="single-product-square">
+                      <p className="mb-0 text-muted font-zh-display">
+                        暫無商品圖片
+                      </p>
+                    </div>
+                  </SwiperSlide>
                 )}
               </Swiper>
-              <Swiper
-                onSwiper={setThumbsSwiper}
-                modules={[FreeMode, Thumbs]}
-                freeMode
-                watchSlidesProgress
-                slidesPerView={7}
-                spaceBetween={12}
-                className="single-product-thumbs-swiper mt-3"
-                breakpoints={{
-                  0: {
-                    slidesPerView: 3,
-                  },
-                  768: {
-                    slidesPerView: 7,
-                  },
-                  1200: {
-                    slidesPerView: 8,
-                  },
-                }}
-              >
-                {(galleryImages.length > 0 ? galleryImages : [""]).map(
-                  (image, index) => (
+              {galleryImages.length > 0 && (
+                <Swiper
+                  onSwiper={setThumbsSwiper}
+                  modules={[FreeMode, Thumbs]}
+                  freeMode
+                  watchSlidesProgress
+                  slidesPerView={7}
+                  spaceBetween={12}
+                  className="single-product-thumbs-swiper mt-3"
+                  breakpoints={{
+                    0: {
+                      slidesPerView: 3,
+                    },
+                    768: {
+                      slidesPerView: 7,
+                    },
+                    1200: {
+                      slidesPerView: 8,
+                    },
+                  }}
+                >
+                  {galleryImages.map((image, index) => (
                     <SwiperSlide key={`thumb-${image}-${index}`}>
                       <div className="single-product-thumb-square">
-                        {image ? (
-                          <img
-                            src={image}
-                            alt={`${product.title || "商品縮圖"}-${index + 1}`}
-                            className="single-product-thumb-image"
-                            loading="lazy"
-                          />
-                        ) : null}
+                        <img
+                          src={image}
+                          alt={`${product.title || "商品縮圖"}-${index + 1}`}
+                          className="single-product-thumb-image"
+                          loading="lazy"
+                        />
                       </div>
                     </SwiperSlide>
-                  ),
-                )}
-              </Swiper>
+                  ))}
+                </Swiper>
+              )}
             </div>
           </div>
           <div className="col-md-5">
