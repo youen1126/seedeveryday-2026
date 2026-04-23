@@ -269,6 +269,32 @@ body {
   line-height: 1;
 }
 
+.product-sort-select {
+  gap: 0.45rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.product-sort-select__label {
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  opacity: 0.82;
+}
+
+.product-sort-select__control {
+  min-width: 128px;
+  padding: 0.2rem 1.8rem 0.2rem 0.5rem;
+  font-size: 0.8rem;
+  line-height: 1.2;
+  color: #6c757d;
+  border-color: #d8dde2;
+  background-size: 10px 8px;
+}
+
+.product-sort-select__control:focus {
+  border-color: #c3cbd4;
+  box-shadow: 0 0 0 0.1rem rgba(108, 117, 125, 0.15);
+}
+
 .cart-fly-layer {
   position: fixed;
   inset: 0;

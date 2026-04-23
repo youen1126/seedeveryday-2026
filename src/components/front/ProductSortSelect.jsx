@@ -1,12 +1,15 @@
 export default function ProductSortSelect({ value, onChange }) {
   return (
-    <div className="d-flex align-items-center justify-content-md-end justify-content-start mb-3 gap-2">
-      <label htmlFor="product-sort" className="mb-0 text-muted font-zh-display">
+    <div className="product-sort-select d-flex align-items-center justify-content-md-end justify-content-start mb-3 gap-2">
+      <label
+        htmlFor="product-sort"
+        className="product-sort-select__label mb-0 text-muted font-zh-display"
+      >
         排序方式
       </label>
       <select
         id="product-sort"
-        className="form-select w-auto"
+        className="form-select form-select-sm w-auto product-sort-select__control"
         value={value}
         onChange={(e) => onChange(e.target.value)}
       >
