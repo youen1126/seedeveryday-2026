@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useSearchParams } from "react-router";
 
 import BackToTop from "@/components/BackToTop";
-import AddToCartButton from "@/components/front/AddToCartButton";
 import Pagination from "@/components/Pagination";
 import useMessage from "@/hooks/useMessage";
 import LoadingSpinner from "@/components/LoadingSpinner";
-import ProductSortSelect from "@/components/front/ProductSortSelect";
 import ProductCategoryFilter from "@/components/front/ProductCategoryFilter";
+import ProductCard from "@/components/front/products/ProductCard";
+import ProductsToolbar from "@/components/front/products/ProductsToolbar";
 
 import { createAsyncAddCart } from "@/slice/cartSlice";
 import {
@@ -228,6 +228,14 @@ export default function Products() {
     });
   };
 
+  const handleToggleWishlist = (productId) => {
+    dispatch(toggleWishlistItem(productId));
+    setAnimatingId(productId);
+    setTimeout(() => {
+      setAnimatingId(null);
+    }, 350);
+  };
+
   //進入商品詳細頁
   const handleViewDetail = (e, id) => {
     e.preventDefault();
@@ -373,50 +381,15 @@ export default function Products() {
             />
           </div>
           <div className="col-md-8">
-            <div className="row">
-              <div className="col-md-6">
-                {hasInvalidCategory && (
-                  <p className="text-muted mb-3 font-zh-display">
-                    查無分類「{categoryFromQuery}」，以下顯示全部商品。
-                  </p>
-                )}
-                {availableTags.length > 0 && (
-                  <div
-                    className="products-tags-row mb-3"
-                    aria-label="關鍵字篩選"
-                  >
-                    {availableTags.map((tag) => {
-                      const isActive = selectedTags.includes(tag);
-                      return (
-                        <button
-                          key={tag}
-                          type="button"
-                          className={`products-tag-btn font-zh-display ${isActive ? "is-active" : ""}`}
-                          onClick={() => handleToggleTag(tag)}
-                          aria-pressed={isActive}
-                        >
-                          <span>{tag}</span>
-                          {isActive && (
-                            <span
-                              className="products-tag-btn__close"
-                              aria-hidden="true"
-                            >
-                              ×
-                            </span>
-                          )}
-                        </button>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
-              <div className="col-md-6">
-                <ProductSortSelect
-                  value={sortType}
-                  onChange={handleSortChange}
-                />
-              </div>
-            </div>
+            <ProductsToolbar
+              hasInvalidCategory={hasInvalidCategory}
+              categoryFromQuery={categoryFromQuery}
+              availableTags={availableTags}
+              selectedTags={selectedTags}
+              onToggleTag={handleToggleTag}
+              sortType={sortType}
+              onSortChange={handleSortChange}
+            />
             <div className="row">
               {/* 產品列表 */}
               {loading ? (
@@ -428,71 +401,17 @@ export default function Products() {
                 />
               ) : (
                 <>
-                  {filteredProducts?.map((item) => {
-                    return (
-                      <div className="col-md-6 card-hover" key={item.id}>
-                        <div className="card img-hover border-0 mb-4 position-relative">
-                          <img
-                            src={item.imageUrl}
-                            className="card-img-top img-size-large"
-                            alt={item.title}
-                            onClick={(e) => handleViewDetail(e, item.id)}
-                          />
-                          <button
-                            type="button"
-                            className="p-0 border-0 bg-transparent text-dark"
-                            onClick={() => {
-                              dispatch(toggleWishlistItem(item.id));
-
-                              setAnimatingId(item.id);
-
-                              setTimeout(() => {
-                                setAnimatingId(null);
-                              }, 350);
-                            }}
-                          >
-                            <i
-                              className={`fa-${
-                                wishList[item.id] ? "solid" : "regular"
-                              } fa-heart position-absolute ${
-                                animatingId === item.id ? "is-animating" : ""
-                              }`}
-                              style={{
-                                right: "16px",
-                                top: "35px",
-                                fontSize: "18px",
-                              }}
-                            ></i>
-                          </button>
-                          <div className="card-body p-0">
-                            <h4 className="mb-0 mt-3 font-zh-display fw-bold">
-                              <a
-                                href="#"
-                                onClick={(e) => handleViewDetail(e, item.id)}
-                              >
-                                {item.title}
-                              </a>
-                            </h4>
-                            <div className="py-3">
-                              <AddToCartButton
-                                className="text-nowrap btn btn-dark w-20 p-2"
-                                onClick={(e) => handleAddCart(e, item.id)}
-                              >
-                                加入購物車
-                              </AddToCartButton>
-                            </div>
-                          </div>
-                          <p className="card-text mb-0 font-zh-display">
-                            NT${item.price}{" "}
-                            <span className="text-muted">
-                              <del>NT${item.origin_price}</del>
-                            </span>
-                          </p>
-                          {/* <p className="text-muted mt-3">{item.description}</p> */}
-                        </div>
-                      </div>
-                    );
-                  })}
+                  {filteredProducts?.map((item) => (
+                    <ProductCard
+                      key={item.id}
+                      item={item}
+                      isWished={Boolean(wishList[item.id])}
+                      isAnimating={animatingId === item.id}
+                      onViewDetail={handleViewDetail}
+                      onToggleWishlist={handleToggleWishlist}
+                      onAddCart={handleAddCart}
+                    />
+                  ))}
                   {!filteredProducts?.length && (
                     <div className="col-12">
                       <p className="text-muted mt-4 font-zh-display">
