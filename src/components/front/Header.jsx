@@ -77,7 +77,7 @@ const Header = () => {
             </NavLink>
             <NavLink to="/cart" className={getIconLinkClass}>
               <div
-                className="position-relative  me-5"
+                className="position-relative  me-3"
                 data-cart-entry="true"
                 aria-label="購物車入口"
               >

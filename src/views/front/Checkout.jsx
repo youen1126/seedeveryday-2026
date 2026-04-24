@@ -4,8 +4,8 @@ import { useForm, useWatch } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 
-import CheckoutCart from "@/components/front/CheckoutCart.jsx";
-import CheckoutFlow from "@/components/front/CheckoutFlow.jsx";
+import CheckoutCart from "@/components/front/checkout/CheckoutCart.jsx";
+import CheckoutFlow from "@/components/front/checkout/CheckoutFlow.jsx";
 import useMessage from "@/hooks/useMessage";
 import { createAsyncGetCart } from "@/slice/cartSlice";
 import { emailValidation } from "@/utils/emailValidation";
@@ -141,7 +141,7 @@ export default function Checkout() {
     <>
       <div className="bg-light pt-3 pb-5 checkoutList">
         <CheckoutFlow currentStep={2} />
-        <div className="container">
+        <div className="container mt-4">
           <div className="row justify-content-center flex-md-row flex-column-reverse">
             <div className="col-md-6">
               <form onSubmit={handleSubmit(onSubmit)}>
@@ -149,10 +149,7 @@ export default function Checkout() {
                   <h4 className="fw-bold font-zh-display">填寫收件資料</h4>
 
                   <div className="mb-2">
-                    <label
-                      htmlFor="email"
-                      className="checkout-form-label"
-                    >
+                    <label htmlFor="email" className="checkout-form-label">
                       收件人Email（請確認Email正確可用，避免無法接收通知）
                     </label>
                     <input
@@ -170,10 +167,7 @@ export default function Checkout() {
                     </p>
                   )}
                   <div className="mb-2">
-                    <label
-                      htmlFor="name"
-                      className="checkout-form-label"
-                    >
+                    <label htmlFor="name" className="checkout-form-label">
                       收件人姓名
                     </label>
                     <input
@@ -196,10 +190,7 @@ export default function Checkout() {
                     </p>
                   )}
                   <div className="">
-                    <label
-                      htmlFor="tel"
-                      className="checkout-form-label"
-                    >
+                    <label htmlFor="tel" className="checkout-form-label">
                       收件人電話
                     </label>
                     <input

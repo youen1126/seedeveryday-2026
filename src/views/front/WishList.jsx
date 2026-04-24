@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router";
 
-import AddToCartButton from "@/components/front/AddToCartButton";
-import YoumaylikeSwiper from "@/components/front/YoumaylikeSwiper";
+import AddToCartButton from "@/components/front/cart/AddToCartButton";
+import YoumaylikeSwiper from "@/components/front/singleProduct/YoumaylikeSwiper";
 import useMessage from "@/hooks/useMessage";
 import { createAsyncAddCart } from "@/slice/cartSlice";
 import { toggleWishlistItem } from "@/slice/wishlistSlice";

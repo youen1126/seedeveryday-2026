@@ -1,7 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 const getAssetPath = (rawPath) => {
@@ -11,7 +10,7 @@ const getAssetPath = (rawPath) => {
   if (/^https?:\/\//i.test(rawPath)) return rawPath;
 
   // Normalize local paths so users can provide:
-  // "seedevery-banner01.png", "/seedevery-banner01.png", or "public/seedevery-banner01.png".
+  // "seedevery-banner01.jpg", "/seedevery-banner01.jpg", or "public/seedevery-banner01.jpg".
   const normalizedPath = rawPath.replace(/^public\//, "").replace(/^\/+/, "");
   return `${import.meta.env.BASE_URL}${normalizedPath}`;
 };
@@ -19,12 +18,12 @@ const getAssetPath = (rawPath) => {
 const promoBanners = [
   {
     id: "promo-1",
-    image: getAssetPath("seedevery-banner03.png"),
+    image: getAssetPath("seedevery-banner03.jpg"),
     alt: "活動橫幅：SeedEvery 手作活動主視覺",
   },
   {
     id: "promo-2",
-    image: getAssetPath("seedevery-banner01.png"),
+    image: getAssetPath("seedevery-banner01.jpg"),
     alt: "活動橫幅：SeedEvery 手作活動主視覺",
   },
   {
@@ -34,21 +33,20 @@ const promoBanners = [
   },
 ];
 
-export default function HomePromoBannerSection() {
+export default function HomeBanner() {
   return (
     <section
       className="home-promo-banner-section my-3"
       aria-label="活動橫幅輪播"
     >
       <Swiper
-        modules={[Autoplay, Navigation, Pagination]}
+        modules={[Autoplay, Pagination]}
         loop={promoBanners.length > 1}
         autoplay={{
           delay: 5000,
           disableOnInteraction: false,
           pauseOnMouseEnter: true,
         }}
-        navigation
         pagination={{ clickable: true }}
       >
         {promoBanners.map((banner) => (

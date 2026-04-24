@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router";
 
 import BackToTop from "@/components/BackToTop";
-import YoumaylikeSwiper from "@/components/front/YoumaylikeSwiper";
+import YoumaylikeSwiper from "@/components/front/singleProduct/YoumaylikeSwiper";
 import bannerImg from "/public/seed-everyday- Stamp Logo-compression.png";
 import SeedIntroduction from "./SeedIntroduction";
 import { scrollToTop } from "@/utils/scrollToTop";

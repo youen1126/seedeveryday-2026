@@ -6,7 +6,7 @@ import SingleProduct from "../views/front/SingleProduct";
 import Cart from "../views/front/Cart";
 import Checkout from "../views/front/Checkout";
 import Login from "../views/Login";
-import OrderSuccess from "../components/front/OrderSuccess";
+import OrderSuccess from "../components/front/checkout/OrderSuccess";
 import AdminLayout from "../layout/AdminLayout";
 import AdminProducts from "../views/admin/AdminProducts";
 import AdminOrders from "../views/admin/AdminOrders";

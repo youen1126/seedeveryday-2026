@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 import { selectCartTotal } from "@/slice/cartSlice";
 import { curryency } from "@/utils/filter";
-import CartThresholdNotice from "@/components/front/CartThresholdNotice";
-import OrderSavingsNotice from "@/components/front/OrderSavingsNotice";
+import CartThresholdNotice from "@/components/front/cart/CartThresholdNotice";
+import OrderSavingsNotice from "@/components/front/cart/OrderSavingsNotice";
 
 export default function CheckoutCart() {
   const carts = useSelector((state) => state.cart.carts);
