@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
 
 import BackToTop from "@/components/BackToTop";
 import Pagination from "@/components/Pagination";
-import useMessage from "@/hooks/useMessage";
 import LoadingSpinner from "@/components/LoadingSpinner";
+import useProductsActions from "@/hooks/products/useProductsActions";
 import useProductsFilterSort from "@/hooks/products/useProductsFilterSort";
 import useProductsQueryState from "@/hooks/products/useProductsQueryState";
 import ProductCard from "@/components/front/products/ProductCard";
@@ -13,7 +12,6 @@ import ProductCategoryFilter from "@/components/front/products/ProductCategoryFi
 import ProductsHero from "@/components/front/products/ProductsHero";
 import ProductsToolbar from "@/components/front/products/ProductsToolbar";
 
-import { createAsyncAddCart } from "@/slice/cartSlice";
 import {
   createAsyncGetAllProducts,
   createAsyncGetProducts,
@@ -24,14 +22,8 @@ const ALL_CATEGORY = "全部商品";
 const TAG_CANDIDATES = ["菩提子", "無患子", "松果", "青櫟"];
 
 export default function Products() {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { showSuccess } = useMessage();
   const [animatingId, setAnimatingId] = useState(null);
-  const [sortType, setSortType] = useState("highToLow");
-  const [randomSeed, setRandomSeed] = useState(1);
-  const [pendingCategory, setPendingCategory] = useState("");
-  const [selectedTags, setSelectedTags] = useState([]);
   const wishList = useSelector((state) => state.wishlist.items);
 
   const {
@@ -54,6 +46,21 @@ export default function Products() {
     allCategory: ALL_CATEGORY,
     totalPages: pagination?.total_pages,
   });
+  const {
+    sortType,
+    randomSeed,
+    selectedTags,
+    pendingCategory,
+    handleCategoryChange,
+    handlePageChange,
+    handleSortChange,
+    handleToggleTag,
+    handleViewDetail,
+    handleAddCart,
+  } = useProductsActions({
+    setCategoryAndResetPage,
+    setPageWithinRange,
+  });
 
   useEffect(() => {
     dispatch(createAsyncGetAllProducts());
@@ -68,70 +75,12 @@ export default function Products() {
     );
   }, [dispatch, activeCategory, currentPage]);
 
-  useEffect(() => {
-    if (!pendingCategory) {
-      return;
-    }
-
-    const timer = setTimeout(() => {
-      setPendingCategory("");
-    }, 1000);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [pendingCategory]);
-
-  const handleCategoryChange = (category) => {
-    const hasChanged = setCategoryAndResetPage(category);
-    if (hasChanged) {
-      setPendingCategory(category);
-    }
-  };
-
-  const handlePageChange = (page) => {
-    setPageWithinRange(page);
-  };
-
-  const handleSortChange = (value) => {
-    setSortType(value);
-    if (value === "random") {
-      setRandomSeed((prev) => prev + 1);
-    }
-  };
-
-  const handleToggleTag = (tag) => {
-    setSelectedTags((prev) => {
-      if (prev.includes(tag)) {
-        return prev.filter((item) => item !== tag);
-      }
-      return [...prev, tag];
-    });
-  };
-
   const handleToggleWishlist = (productId) => {
     dispatch(toggleWishlistItem(productId));
     setAnimatingId(productId);
     setTimeout(() => {
       setAnimatingId(null);
     }, 350);
-  };
-
-  //進入商品詳細頁
-  const handleViewDetail = (e, id) => {
-    e.preventDefault();
-    navigate(`/product/${id}`);
-  };
-  //將商品加入購物車
-  const handleAddCart = (e, id, qty = 1) => {
-    e.preventDefault();
-    dispatch(
-      createAsyncAddCart({
-        id,
-        qty,
-      }),
-    );
-    showSuccess("成功加入購物車");
   };
 
   const { availableTags, filteredProducts, displayPagination } =
