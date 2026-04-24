@@ -1,4 +1,5 @@
 import ProductSortSelect from "@/components/front/products/ProductSortSelect";
+import ProductsTagFilter from "@/components/front/products/ProductsTagFilter";
 
 export default function ProductsToolbar({
   hasInvalidCategory,
@@ -17,29 +18,11 @@ export default function ProductsToolbar({
             查無分類「{categoryFromQuery}」，以下顯示全部商品。
           </p>
         )}
-        {availableTags.length > 0 && (
-          <div className="products-tags-row mb-3" aria-label="關鍵字篩選">
-            {availableTags.map((tag) => {
-              const isActive = selectedTags.includes(tag);
-              return (
-                <button
-                  key={tag}
-                  type="button"
-                  className={`products-tag-btn font-zh-display ${isActive ? "is-active" : ""}`}
-                  onClick={() => onToggleTag(tag)}
-                  aria-pressed={isActive}
-                >
-                  <span>{tag}</span>
-                  {isActive && (
-                    <span className="products-tag-btn__close" aria-hidden="true">
-                      ×
-                    </span>
-                  )}
-                </button>
-              );
-            })}
-          </div>
-        )}
+        <ProductsTagFilter
+          availableTags={availableTags}
+          selectedTags={selectedTags}
+          onToggle={onToggleTag}
+        />
       </div>
       <div className="col-md-6">
         <ProductSortSelect value={sortType} onChange={onSortChange} />
