@@ -8,6 +8,7 @@ import Pagination from "@/components/Pagination";
 import useMessage from "@/hooks/useMessage";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import ProductSortSelect from "@/components/front/ProductSortSelect";
+import ProductCategoryFilter from "@/components/front/ProductCategoryFilter";
 
 import { createAsyncAddCart } from "@/slice/cartSlice";
 import {
@@ -363,36 +364,13 @@ export default function Products() {
         <div className="row">
           {/* 分類區 */}
           <div className="col-md-4">
-            <div className="border border-bottom border-top-0 border-start-0 border-end-0 mb-3 py-2">
-              <ul className="list-unstyled mb-0">
-                {categories?.map((category) => {
-                  return (
-                    <li key={category}>
-                      <button
-                        type="button"
-                        className={`py-2 d-block w-100 text-start bg-transparent border-0 icon-hover font-zh-display ${
-                          activeCategory === category
-                            ? "text-dark fw-bold"
-                            : "text-muted"
-                        }`}
-                        onClick={() => handleCategoryChange(category)}
-                      >
-                        <span className="d-inline-flex align-items-center gap-2">
-                          <span>{`${category} (${categoryCounts?.[category] ?? 0})`}</span>
-                          {pendingCategory === category && (
-                            <span
-                              className="spinner-border spinner-border-sm text-secondary"
-                              role="status"
-                              aria-label="分類載入中"
-                            ></span>
-                          )}
-                        </span>
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
+            <ProductCategoryFilter
+              categories={categories}
+              activeCategory={activeCategory}
+              categoryCounts={categoryCounts}
+              pendingCategory={pendingCategory}
+              onCategoryChange={handleCategoryChange}
+            />
           </div>
           <div className="col-md-8">
             <div className="row">
