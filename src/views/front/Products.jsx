@@ -323,9 +323,9 @@ export default function Products() {
             transform: "scale(1.08)",
             zIndex: 0,
           }}
-        ></div>
-        <div className="flex text-center" style={{ opacity: 0.7 }}>
-          <h4 className="fw-bold position-relative z-1 mb-0 font-zh-display fw-bold ">
+        />
+        <div className="text-center" style={{ opacity: 0.7 }}>
+          <h4 className="position-relative z-1 mb-0 font-zh-display fw-bold">
             把祝福帶進每一天
           </h4>
           <p className="position-relative z-1 mb-0 font-zh-display">
@@ -363,41 +363,35 @@ export default function Products() {
         <div className="row">
           {/* 分類區 */}
           <div className="col-md-4">
-            <div
-              className="accordion border border-bottom border-top-0 border-start-0 border-end-0 mb-3"
-              id="accordionExample"
-            >
-              <div className="card border-0">
-                <div className="card-body py-0">
-                  <ul className="list-unstyled">
-                    {categories?.map((category) => {
-                      return (
-                        <li key={category}>
-                          <a
-                            href="#"
-                            className={`py-2 d-block text-muted icon-hover ${activeCategory === category ? "text-dark fw-bold font-zh-display" : "text-muted font-zh-display"}`}
-                            onClick={(e) => {
-                              e.preventDefault();
-                              handleCategoryChange(category);
-                            }}
-                          >
-                            <span className="d-inline-flex align-items-center gap-2">
-                              <span>{`${category} (${categoryCounts?.[category] ?? 0})`}</span>
-                              {pendingCategory === category && (
-                                <span
-                                  className="spinner-border spinner-border-sm text-secondary"
-                                  role="status"
-                                  aria-label="分類載入中"
-                                ></span>
-                              )}
-                            </span>
-                          </a>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              </div>
+            <div className="border border-bottom border-top-0 border-start-0 border-end-0 mb-3 py-2">
+              <ul className="list-unstyled mb-0">
+                {categories?.map((category) => {
+                  return (
+                    <li key={category}>
+                      <button
+                        type="button"
+                        className={`py-2 d-block w-100 text-start bg-transparent border-0 icon-hover font-zh-display ${
+                          activeCategory === category
+                            ? "text-dark fw-bold"
+                            : "text-muted"
+                        }`}
+                        onClick={() => handleCategoryChange(category)}
+                      >
+                        <span className="d-inline-flex align-items-center gap-2">
+                          <span>{`${category} (${categoryCounts?.[category] ?? 0})`}</span>
+                          {pendingCategory === category && (
+                            <span
+                              className="spinner-border spinner-border-sm text-secondary"
+                              role="status"
+                              aria-label="分類載入中"
+                            ></span>
+                          )}
+                        </span>
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
           </div>
           <div className="col-md-8">
@@ -459,7 +453,7 @@ export default function Products() {
                   {filteredProducts?.map((item) => {
                     return (
                       <div className="col-md-6 card-hover" key={item.id}>
-                        <div className="card img-hover border-0 mb-4 position-relative position-relative">
+                        <div className="card img-hover border-0 mb-4 position-relative">
                           <img
                             src={item.imageUrl}
                             className="card-img-top img-size-large"
@@ -493,7 +487,7 @@ export default function Products() {
                             ></i>
                           </button>
                           <div className="card-body p-0">
-                            <h4 className="mb-0 mt-3  font-zh-display fw-bold ">
+                            <h4 className="mb-0 mt-3 font-zh-display fw-bold">
                               <a
                                 href="#"
                                 onClick={(e) => handleViewDetail(e, item.id)}
@@ -510,9 +504,9 @@ export default function Products() {
                               </AddToCartButton>
                             </div>
                           </div>
-                          <p className="card-text mb-0  font-zh-display">
+                          <p className="card-text mb-0 font-zh-display">
                             NT${item.price}{" "}
-                            <span className="text-muted ">
+                            <span className="text-muted">
                               <del>NT${item.origin_price}</del>
                             </span>
                           </p>
@@ -531,12 +525,13 @@ export default function Products() {
                 </>
               )}
             </div>
-            <br />
             {/* 頁碼區 */}
-            <Pagination
-              pagination={displayPagination}
-              onChangePage={handlePageChange}
-            />
+            <div className="mt-3">
+              <Pagination
+                pagination={displayPagination}
+                onChangePage={handlePageChange}
+              />
+            </div>
           </div>
         </div>
       </div>
