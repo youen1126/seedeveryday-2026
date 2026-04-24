@@ -19,12 +19,12 @@ const getAssetPath = (rawPath) => {
 const promoBanners = [
   {
     id: "promo-1",
-    image: getAssetPath("seedevery-banner03.png"),
+    image: getAssetPath("seedevery-banner03.jpg"),
     alt: "活動橫幅：SeedEvery 手作活動主視覺",
   },
   {
     id: "promo-2",
-    image: getAssetPath("seedevery-banner01.png"),
+    image: getAssetPath("seedevery-banner01.jpg"),
     alt: "活動橫幅：SeedEvery 手作活動主視覺",
   },
   {
