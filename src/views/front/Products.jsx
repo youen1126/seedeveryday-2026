@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router";
 
@@ -6,6 +6,7 @@ import BackToTop from "@/components/BackToTop";
 import Pagination from "@/components/Pagination";
 import useMessage from "@/hooks/useMessage";
 import LoadingSpinner from "@/components/LoadingSpinner";
+import useProductsFilterSort from "@/hooks/useProductsFilterSort";
 import useProductsQueryState from "@/hooks/useProductsQueryState";
 import ProductCategoryFilter from "@/components/front/ProductCategoryFilter";
 import ProductCard from "@/components/front/products/ProductCard";
@@ -20,19 +21,6 @@ import { toggleWishlistItem } from "@/slice/wishlistSlice";
 
 const ALL_CATEGORY = "全部商品";
 const TAG_CANDIDATES = ["菩提子", "無患子", "松果", "青櫟"];
-
-function getDeterministicRank(value, seed) {
-  const input = `${value}-${seed}`;
-  let hash = 0;
-  for (let i = 0; i < input.length; i += 1) {
-    hash = (hash * 31 + input.charCodeAt(i)) >>> 0;
-  }
-  return hash;
-}
-
-function getProductKeywordText(item) {
-  return `${item?.title || ""} ${item?.description || ""}`;
-}
 
 export default function Products() {
   const navigate = useNavigate();
@@ -145,65 +133,16 @@ export default function Products() {
     showSuccess("成功加入購物車");
   };
 
-  const sortedProducts = useMemo(() => {
-    const productList = [...(products || [])];
-    if (sortType === "highToLow") {
-      return productList.sort((a, b) => b.price - a.price);
-    }
-    if (sortType === "lowToHigh") {
-      return productList.sort((a, b) => a.price - b.price);
-    }
-    return productList.sort(
-      (a, b) =>
-        getDeterministicRank(a.id, randomSeed) -
-        getDeterministicRank(b.id, randomSeed),
-    );
-  }, [products, sortType, randomSeed]);
-
-  const availableTags = useMemo(() => {
-    const sourceProducts =
-      Array.isArray(allProducts) && allProducts.length > 0
-        ? allProducts
-        : products || [];
-
-    return TAG_CANDIDATES.filter((keyword) =>
-      sourceProducts.some((item) =>
-        getProductKeywordText(item).includes(keyword),
-      ),
-    );
-  }, [allProducts, products]);
-
-  const filteredProducts = useMemo(() => {
-    if (selectedTags.length === 0) {
-      return sortedProducts;
-    }
-    return sortedProducts.filter((item) =>
-      selectedTags.some((tag) => getProductKeywordText(item).includes(tag)),
-    );
-  }, [sortedProducts, selectedTags]);
-
-  const displayPagination = useMemo(() => {
-    const pageSize = Number(pagination?.per_page) || products?.length || 1;
-    const shouldForceSinglePage =
-      selectedTags.length > 0 && filteredProducts.length <= pageSize;
-
-    if (!shouldForceSinglePage) {
-      return pagination;
-    }
-
-    return {
-      ...pagination,
-      current_page: 1,
-      total_pages: 1,
-      has_pre: false,
-      has_next: false,
-    };
-  }, [
-    pagination,
-    products?.length,
-    selectedTags.length,
-    filteredProducts.length,
-  ]);
+  const { availableTags, filteredProducts, displayPagination } =
+    useProductsFilterSort({
+      products,
+      allProducts,
+      pagination,
+      selectedTags,
+      sortType,
+      randomSeed,
+      tagCandidates: TAG_CANDIDATES,
+    });
 
   return (
     <>
