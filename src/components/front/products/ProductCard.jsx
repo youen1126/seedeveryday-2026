@@ -13,7 +13,7 @@ export default function ProductCard({
       <div className="card img-hover border-0 mb-4 position-relative">
         <img
           src={item.imageUrl}
-          className="card-img-top img-size-large products-card-image"
+          className="card-img-top img-size-large"
           alt={item.title}
           onClick={(e) => onViewDetail(e, item.id)}
         />
