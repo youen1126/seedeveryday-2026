@@ -1,11 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, useSearchParams } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 import BackToTop from "@/components/BackToTop";
 import Pagination from "@/components/Pagination";
 import useMessage from "@/hooks/useMessage";
 import LoadingSpinner from "@/components/LoadingSpinner";
+import useProductsQueryState from "@/hooks/useProductsQueryState";
 import ProductCategoryFilter from "@/components/front/ProductCategoryFilter";
 import ProductCard from "@/components/front/products/ProductCard";
 import ProductsToolbar from "@/components/front/products/ProductsToolbar";
@@ -18,8 +19,6 @@ import {
 import { toggleWishlistItem } from "@/slice/wishlistSlice";
 
 const ALL_CATEGORY = "全部商品";
-const CATEGORY_QUERY_KEY = "category";
-const PAGE_QUERY_KEY = "page";
 const TAG_CANDIDATES = ["菩提子", "無患子", "松果", "青櫟"];
 
 function getDeterministicRank(value, seed) {
@@ -31,60 +30,12 @@ function getDeterministicRank(value, seed) {
   return hash;
 }
 
-function getCategoryFromSearchParams(searchParams) {
-  return searchParams.get(CATEGORY_QUERY_KEY)?.trim() || "";
-}
-
-function getPageFromSearchParams(searchParams) {
-  const rawPage = searchParams.get(PAGE_QUERY_KEY);
-  const parsedPage = Number(rawPage);
-  if (!Number.isInteger(parsedPage) || parsedPage < 1) {
-    return 1;
-  }
-  return parsedPage;
-}
-
-function isValidPageQuery(searchParams) {
-  const rawPage = searchParams.get(PAGE_QUERY_KEY);
-  if (rawPage === null) {
-    return true;
-  }
-  return /^[1-9]\d*$/.test(rawPage);
-}
-
-function resolveCategoryFromQuery(categoryFromQuery, categories) {
-  if (!categoryFromQuery) {
-    return ALL_CATEGORY;
-  }
-  return categories.includes(categoryFromQuery)
-    ? categoryFromQuery
-    : ALL_CATEGORY;
-}
-
-function createNextSearchParams(searchParams, { category, page }) {
-  const nextParams = new URLSearchParams(searchParams);
-  if (category && category !== ALL_CATEGORY) {
-    nextParams.set(CATEGORY_QUERY_KEY, category);
-  } else {
-    nextParams.delete(CATEGORY_QUERY_KEY);
-  }
-
-  if (page > 1) {
-    nextParams.set(PAGE_QUERY_KEY, String(page));
-  } else {
-    nextParams.delete(PAGE_QUERY_KEY);
-  }
-
-  return nextParams;
-}
-
 function getProductKeywordText(item) {
   return `${item?.title || ""} ${item?.description || ""}`;
 }
 
 export default function Products() {
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
   const { showSuccess } = useMessage();
   const [animatingId, setAnimatingId] = useState(null);
@@ -102,29 +53,18 @@ export default function Products() {
     categoryCounts,
     loading,
   } = useSelector((state) => state.products);
-  const categoryFromQuery = useMemo(
-    () => getCategoryFromSearchParams(searchParams),
-    [searchParams],
-  );
-  const currentPage = useMemo(
-    () => getPageFromSearchParams(searchParams),
-    [searchParams],
-  );
-  const hasInvalidPageQuery = useMemo(
-    () => !isValidPageQuery(searchParams),
-    [searchParams],
-  );
-  const activeCategory = useMemo(
-    () => resolveCategoryFromQuery(categoryFromQuery, categories),
-    [categoryFromQuery, categories],
-  );
-  const hasInvalidCategory = useMemo(
-    () =>
-      Boolean(categoryFromQuery) &&
-      categories.length > 0 &&
-      !categories.includes(categoryFromQuery),
-    [categoryFromQuery, categories],
-  );
+  const {
+    categoryFromQuery,
+    currentPage,
+    activeCategory,
+    hasInvalidCategory,
+    setCategoryAndResetPage,
+    setPageWithinRange,
+  } = useProductsQueryState({
+    categories,
+    allCategory: ALL_CATEGORY,
+    totalPages: pagination?.total_pages,
+  });
 
   useEffect(() => {
     dispatch(createAsyncGetAllProducts());
@@ -154,63 +94,15 @@ export default function Products() {
   }, [pendingCategory]);
 
   const handleCategoryChange = (category) => {
-    const nextParams = createNextSearchParams(searchParams, {
-      category,
-      page: 1,
-    });
-
-    if (nextParams.toString() === searchParams.toString()) {
-      return;
+    const hasChanged = setCategoryAndResetPage(category);
+    if (hasChanged) {
+      setPendingCategory(category);
     }
-
-    setPendingCategory(category);
-    setSearchParams(nextParams);
   };
 
   const handlePageChange = (page) => {
-    const nextPage = Math.max(1, Number(page) || 1);
-    const totalPages = pagination?.total_pages || 1;
-    const safePage = Math.min(nextPage, totalPages);
-
-    setSearchParams(
-      createNextSearchParams(searchParams, {
-        category: activeCategory,
-        page: safePage,
-      }),
-    );
+    setPageWithinRange(page);
   };
-
-  useEffect(() => {
-    if (!hasInvalidPageQuery) {
-      return;
-    }
-    setSearchParams(
-      createNextSearchParams(searchParams, {
-        category: activeCategory,
-        page: 1,
-      }),
-    );
-  }, [hasInvalidPageQuery, searchParams, activeCategory, setSearchParams]);
-
-  useEffect(() => {
-    const totalPages = pagination?.total_pages || 0;
-    if (!totalPages || currentPage <= totalPages) {
-      return;
-    }
-
-    setSearchParams(
-      createNextSearchParams(searchParams, {
-        category: activeCategory,
-        page: totalPages,
-      }),
-    );
-  }, [
-    currentPage,
-    pagination?.total_pages,
-    searchParams,
-    activeCategory,
-    setSearchParams,
-  ]);
 
   const handleSortChange = (value) => {
     setSortType(value);
