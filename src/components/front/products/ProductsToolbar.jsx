@@ -1,4 +1,4 @@
-import ProductSortSelect from "@/components/front/ProductSortSelect";
+import ProductSortSelect from "@/components/front/products/ProductSortSelect";
 
 export default function ProductsToolbar({
   hasInvalidCategory,

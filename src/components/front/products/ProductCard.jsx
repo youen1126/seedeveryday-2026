@@ -1,4 +1,4 @@
-import AddToCartButton from "@/components/front/AddToCartButton";
+import AddToCartButton from "@/components/front/cart/AddToCartButton";
 
 export default function ProductCard({
   item,

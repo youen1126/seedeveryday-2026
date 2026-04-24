@@ -33,7 +33,7 @@ const promoBanners = [
   },
 ];
 
-export default function HomePromoBannerSection() {
+export default function HomeBanner() {
   return (
     <section
       className="home-promo-banner-section my-3"

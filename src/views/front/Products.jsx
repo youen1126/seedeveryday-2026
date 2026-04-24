@@ -8,8 +8,8 @@ import useMessage from "@/hooks/useMessage";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import useProductsFilterSort from "@/hooks/products/useProductsFilterSort";
 import useProductsQueryState from "@/hooks/products/useProductsQueryState";
-import ProductCategoryFilter from "@/components/front/ProductCategoryFilter";
 import ProductCard from "@/components/front/products/ProductCard";
+import ProductCategoryFilter from "@/components/front/products/ProductCategoryFilter";
 import ProductsToolbar from "@/components/front/products/ProductsToolbar";
 
 import { createAsyncAddCart } from "@/slice/cartSlice";

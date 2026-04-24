@@ -8,9 +8,9 @@ import "swiper/css/free-mode";
 import "swiper/css/thumbs";
 
 import BackToTop from "@/components/BackToTop";
-import AddToCartButton from "@/components/front/AddToCartButton";
-import ProductSpecList from "@/components/front/ProductSpecList";
-import YoumaylikeSwiper from "@/components/front/YoumaylikeSwiper";
+import AddToCartButton from "@/components/front/cart/AddToCartButton";
+import ProductSpecList from "@/components/front/singleProduct/ProductSpecList";
+import YoumaylikeSwiper from "@/components/front/singleProduct/YoumaylikeSwiper";
 import useMessage from "@/hooks/useMessage";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { getThisProductApi } from "@/services/product";

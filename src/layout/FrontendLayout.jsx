@@ -1,6 +1,6 @@
 import Header from "../components/front/Header";
 import Footer from "../components/front/Footer";
-import CartFlyToIconEffect from "../components/front/CartFlyToIconEffect";
+import CartFlyToIconEffect from "../components/front/cart/CartFlyToIconEffect";
 import { Outlet } from "react-router";
 
 export default function FrontendLayout() {
