@@ -6,7 +6,7 @@ import {
   getPageFromSearchParams,
   isValidPageQuery,
   resolveCategoryFromQuery,
-} from "@/utils/productsQuery.utils";
+} from "@/utils/products/productsQuery.utils";
 
 export default function useProductsQueryState({
   categories,
