@@ -22,10 +22,12 @@ const ALL_CATEGORY = "全部商品";
 const TAG_CANDIDATES = ["菩提子", "無患子", "松果", "青櫟"];
 
 export default function Products() {
+  // 介面狀態：愛心點擊動畫
   const dispatch = useDispatch();
   const [animatingId, setAnimatingId] = useState(null);
   const wishList = useSelector((state) => state.wishlist.items);
 
+  // Redux 狀態：商品列表、分類資訊、載入狀態與分頁
   const {
     products,
     allProducts,
@@ -34,6 +36,8 @@ export default function Products() {
     categoryCounts,
     loading,
   } = useSelector((state) => state.products);
+
+  // Query 狀態：分類與頁碼和 URL 同步
   const {
     categoryFromQuery,
     currentPage,
@@ -46,6 +50,8 @@ export default function Products() {
     allCategory: ALL_CATEGORY,
     totalPages: pagination?.total_pages,
   });
+
+  // 互動行為：頁面事件處理與本地篩選/排序狀態
   const {
     sortType,
     randomSeed,
@@ -62,10 +68,12 @@ export default function Products() {
     setPageWithinRange,
   });
 
+  // 初始資料：先抓全部商品，提供標籤/篩選使用
   useEffect(() => {
     dispatch(createAsyncGetAllProducts());
   }, [dispatch]);
 
+  // 分頁資料：當 URL 對應的頁碼或分類改變時重抓資料
   useEffect(() => {
     dispatch(
       createAsyncGetProducts({
@@ -75,6 +83,7 @@ export default function Products() {
     );
   }, [dispatch, activeCategory, currentPage]);
 
+  // 收藏清單切換：供 ProductCard 使用
   const handleToggleWishlist = (productId) => {
     dispatch(toggleWishlistItem(productId));
     setAnimatingId(productId);
@@ -83,6 +92,7 @@ export default function Products() {
     }, 350);
   };
 
+  // 衍生資料：排序結果、可用標籤、篩選後商品與分頁顯示
   const { availableTags, filteredProducts, displayPagination } =
     useProductsFilterSort({
       products,
@@ -99,7 +109,7 @@ export default function Products() {
       <ProductsHero />
       <div className="container mt-md-5 mt-3 mb-7">
         <div className="row">
-          {/* 分類區 */}
+          {/* 左側：分類 */}
           <div className="col-md-4">
             <ProductCategoryFilter
               categories={categories}
@@ -109,6 +119,7 @@ export default function Products() {
               onCategoryChange={handleCategoryChange}
             />
           </div>
+          {/* 右側：工具列 + 商品列表 + 分頁 */}
           <div className="col-md-8">
             <ProductsToolbar
               hasInvalidCategory={hasInvalidCategory}
@@ -120,7 +131,7 @@ export default function Products() {
               onSortChange={handleSortChange}
             />
             <div className="row">
-              {/* 產品列表 */}
+              {/* 商品列表 */}
               {loading ? (
                 <LoadingSpinner height={80} width={80} />
               ) : (
@@ -146,7 +157,7 @@ export default function Products() {
                 </>
               )}
             </div>
-            {/* 頁碼區 */}
+            {/* 分頁 */}
             <div className="mt-3">
               <Pagination
                 pagination={displayPagination}
