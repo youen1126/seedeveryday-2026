@@ -17,7 +17,9 @@ export default function Home() {
     <>
       <div className="container">
         <HomeHero />
-        <HomeBanner />
+        <div data-aos="zoom-in">
+          <HomeBanner />
+        </div>
       </div>
       <div className="bg-light mt-1 p-1">
         <HotCategories />

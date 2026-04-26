@@ -37,7 +37,7 @@ export default function HomeHero() {
             <Link
               className="btn btn-brand-featured rounded-0"
               to="/products?category=種子小物"
-              data-aos="fade-right"
+              data-aos="fade-left"
             >
               本月主打
             </Link>
