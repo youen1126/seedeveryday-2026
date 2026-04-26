@@ -12,7 +12,7 @@ import AdminProducts from "../views/admin/AdminProducts";
 import AdminOrders from "../views/admin/AdminOrders";
 import NotFound from "../views/NotFound";
 import ProtectedRoute from "../components/ProtectedRoute";
-import AboutWe from "../views/front/AboutWe";
+import AboutUse from "../views/front/AboutUse";
 import WishList from "../views/front/WishList";
 
 export const router = createHashRouter([
@@ -37,8 +37,8 @@ export const router = createHashRouter([
         element: <SingleProduct />,
       },
       {
-        path: "/aboutwe",
-        element: <AboutWe />,
+        path: "/aboutuse",
+        element: <AboutUse />,
       },
       {
         path: "/checkout",

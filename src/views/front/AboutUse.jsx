@@ -7,7 +7,7 @@ import bannerImg from "/public/seed-everyday- Stamp Logo-compression.png";
 import SeedIntroduction from "./SeedIntroduction";
 import { scrollToTop } from "@/utils/scrollToTop";
 
-export default function AboutWe() {
+export default function AboutUse() {
   useEffect(() => {
     scrollToTop();
   }, []);
