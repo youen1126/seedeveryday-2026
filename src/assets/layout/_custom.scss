@@ -6,6 +6,47 @@ body {
   margin: 0;
 }
 
+@keyframes portfolioModalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes portfolioBackdropFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: var(--bs-backdrop-opacity, 0.5);
+  }
+}
+
+@keyframes portfolioModalDialogFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.portfolio-fade-modal {
+  animation: portfolioModalFadeIn 0.45s ease;
+}
+
+.portfolio-fade-dialog {
+  animation: portfolioModalDialogFadeIn 0.48s ease;
+}
+
+.portfolio-fade-backdrop {
+  animation: portfolioBackdropFadeIn 0.45s ease;
+}
+
 ::selection {
   background: #6d765b; /* 你想要的底色 */
   color: #fff; /* 文字顏色 */
