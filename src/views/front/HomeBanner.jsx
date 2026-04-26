@@ -65,7 +65,7 @@ export default function HomeBanner() {
           }}
           pagination={{ clickable: true }}
         >
-          {promoBanners.map((banner) => (
+          {promoBanners.map((banner, index) => (
             <SwiperSlide key={banner.id}>
               <div className="home-promo-banner-slide">
                 <a
@@ -78,7 +78,9 @@ export default function HomeBanner() {
                     src={banner.image}
                     alt={banner.alt}
                     className="home-promo-banner-image"
-                    loading="lazy"
+                    loading={index === 0 ? "eager" : "lazy"}
+                    fetchPriority={index === 0 ? "high" : "auto"}
+                    decoding="async"
                   />
                 </a>
               </div>

@@ -7,8 +7,12 @@ export default function HomeHero() {
         <img
           src="https://yunicrafts.com/cdn/shop/files/the-forest-chime-handcrafted-natural-seed-pod-bell-mobile-4998382.jpg?v=1772537851&width=2560"
           className="img-fluid hero-img"
-          data-aos="fade-down"
           alt="天然種子手作裝飾 松果藝術 擺飾"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          width="1200"
+          height="1200"
         />
         {/* https://i.pinimg.com/1200x/7d/6b/90/7d6b90ef382a67ec60646a95feab02ec.jpg */}
       </div>
