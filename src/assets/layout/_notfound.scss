@@ -1,11 +1,13 @@
 .nf {
   min-height: calc(100vh - 80px); // 80px navbar 實際高度
+  min-height: calc(100dvh - 80px);
   background: #1f1a16;
 }
 
 .nf__hero {
   position: relative;
   min-height: calc(100vh - 80px);
+  min-height: calc(100dvh - 80px);
   display: flex;
   align-items: center;
   background-image: url("https://images.unsplash.com/photo-1772454697149-4ead43f7a218?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
@@ -30,13 +32,6 @@
   max-width: 720px;
   padding: 72px 16px;
   color: #f4f1e6;
-}
-
-.nf__code {
-  font-size: 14px;
-  letter-spacing: 0.22em;
-  opacity: 0.85;
-  margin-bottom: 12px;
 }
 
 .nf__title {
@@ -87,18 +82,13 @@
 
 .nf__btn--ghost {
   background: transparent;
-  color: #6d765b;
+  color: #f4f1e6;
   border: 1px solid rgba(244, 241, 230, 0.35);
 
   &:hover {
     border-color: rgba(244, 241, 230, 0.55);
     opacity: 0.95;
   }
-}
-
-.nf__hint {
-  font-size: 13px;
-  opacity: 0.75;
 }
 
 @media (max-width: 576px) {

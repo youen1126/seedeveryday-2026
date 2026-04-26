@@ -7,7 +7,7 @@ import bannerImg from "/public/seed-everyday- Stamp Logo-compression.png";
 import SeedIntroduction from "./SeedIntroduction";
 import { scrollToTop } from "@/utils/scrollToTop";
 
-export default function AboutWe() {
+export default function AboutUse() {
   useEffect(() => {
     scrollToTop();
   }, []);
@@ -15,30 +15,25 @@ export default function AboutWe() {
     <div className="about-page">
       {/* HERO */}
       <section className="about-hero position-relative text-center py-5 mt-2">
-        <div
-          className="position-absolute w-100 h-100"
-          style={{
-            top: 0,
-            left: 0,
-            backgroundImage:
-              "url(https://i.pinimg.com/1200x/8c/38/39/8c3839dcb4661963056fa7ee7b56a6d8.jpg)",
-            backgroundSize: "cover",
-            opacity: 0.9,
-          }}
-        ></div>
+        <div className="about-hero__media position-absolute w-100 h-100"></div>
 
-        <div className="container position-relative text-white">
-          <h1 className="mb-3 font-zh-display fw-bold " data-aos="zoom-in">
-            關於 種子日常
+        <div className="container position-relative text-white about-hero__content">
+          <h1
+            className="mb-3 font-zh-display fw-bold about-hero__title"
+            data-aos="zoom-in"
+          >
+            關於種子日常
           </h1>
-          <p className="lead font-zh-display" data-aos="zoom-in-right">
+          <p
+            className="lead font-zh-display about-hero__subtitle"
+            data-aos="zoom-in-right"
+          >
             我們把每一顆種子變成日常中的祝福。
           </p>
         </div>
         <nav
           aria-label="breadcrumb"
-          className="position-absolute bottom-0 end-0 pe-3 pb-3 z-2"
-          style={{ right: 0, bottom: 0 }}
+          className="position-absolute bottom-0 end-0 pe-3 pb-3 z-2 about-hero__breadcrumb-wrap"
         >
           <ol
             className="breadcrumb bg-transparent mb-0 py-0 font-zh-display hero-breadcrumb"
@@ -67,7 +62,7 @@ export default function AboutWe() {
       {/* 品牌故事 */}
       <section className="py-5 brand-story">
         <div className="container">
-          <div className="row align-items-center">
+          <div className="row align-items-center g-4 g-lg-5">
             <div className="col-md-6 mb-4">
               <img
                 src={bannerImg}
@@ -77,28 +72,23 @@ export default function AboutWe() {
               />
             </div>
 
-            <div className="col-md-6" data-aos="fade-up">
-              <h2 className="mb-3 font-zh-display fw-bold ">
+            <div className="col-md-6 about-story__content" data-aos="fade-up">
+              <h2 className="mb-3 font-zh-display fw-bold about-story__heading">
                 我們為什麼開始做種子手作
               </h2>
-              <p> 在自然裡，每一顆種子都有自己的故事。</p>
-              <p> 有些象徵平安，有些代表思念，有些帶來力量。</p>
-              <p>
-                「種子日常」希望把這些來自自然的種子，
-                透過手作，變成能陪伴生活的小小祝福。
-              </p>
-              <div className="p-3">
+              <div className="about-story__copy font-zh-display-sm">
+                <p>在自然裡，每一顆種子都有自己的故事。</p>
+                <p>有些象徵平安，有些代表思念，有些帶來力量。</p>
+                <p>
+                  「種子日常」希望把這些來自自然的種子，
+                  透過手作，變成能陪伴生活的小小祝福。
+                </p>
+              </div>
+              <div className="about-story__actions">
                 <Link
-                  className="btn btn-dark rounded-0 m-2"
-                  to="/product"
-                  data-aos="fade-right"
-                >
-                  立即選購
-                </Link>
-                <Link
-                  className="btn btn-dark rounded-0"
-                  to="/product"
-                  data-aos="fade-right"
+                  className="btn btn-brand-featured rounded-0"
+                  to="/products?category=種子小物"
+                  data-aos="fade-left"
                 >
                   看看送禮靈感
                 </Link>
@@ -115,7 +105,7 @@ export default function AboutWe() {
         <div className="container">
           <div className="section-header">
             <div className="title-wrapper title-bg-line2 py-5">
-              <h2 className="mb-2 text-center font-zh-display fw-bold">
+              <h2 className="mb-2 text-center font-zh-display fw-bold about-section-title">
                 每一件作品，都是手工製作
               </h2>
             </div>
@@ -129,8 +119,12 @@ export default function AboutWe() {
                 alt="一隻手捧著剛撿起的松果"
                 loading="lazy"
               />
-              <h5>挑選種子</h5>
-              <p className="text-muted">每一顆種子都經過細心挑選</p>
+              <h5 className="about-process__card-title font-zh-display">
+                挑選種子
+              </h5>
+              <p className="text-muted about-process__card-text">
+                每一顆種子都經過細心挑選
+              </p>
             </div>
 
             <div className="col-md-4 mb-4 card-hover">
@@ -140,8 +134,12 @@ export default function AboutWe() {
                 alt="由色彩斑斕的種子組成的正方形圖，看得出每顆種子的紋理"
                 loading="lazy"
               />
-              <h5>手工製作</h5>
-              <p className="text-muted">保留自然紋理與形狀</p>
+              <h5 className="about-process__card-title font-zh-display">
+                手工製作
+              </h5>
+              <p className="text-muted about-process__card-text">
+                保留自然紋理與形狀
+              </p>
             </div>
 
             <div className="col-md-4 mb-4 card-hover">
@@ -151,8 +149,12 @@ export default function AboutWe() {
                 alt="由夏威夷果核和迷你菇裝飾物製作的工藝創作品"
                 loading="lazy"
               />
-              <h5>完成作品</h5>
-              <p className="text-muted">成為生活中的祝福</p>
+              <h5 className="about-process__card-title font-zh-display">
+                完成作品
+              </h5>
+              <p className="text-muted about-process__card-text">
+                成為生活中的祝福
+              </p>
             </div>
           </div>
         </div>
@@ -163,30 +165,30 @@ export default function AboutWe() {
         <div className="container">
           <div className="section-header">
             <div className="title-wrapper title-bg-line py-5">
-              <h2 className="mb-2 text-center font-zh-display fw-bold">
+              <h2 className="mb-2 text-center font-zh-display fw-bold about-section-title">
                 讓祝福成為日常
               </h2>
             </div>
           </div>
 
-          <p className="mb-4">
+          <p className="mb-4 about-cta__copy font-zh-display-sm">
             在忙碌的生活裡，我們希望保留一點來自自然的安靜。
             一顆小小的種子，也許就是一份祝福。
           </p>
 
           <Link
             className="btn btn-dark rounded-0 m-2"
-            to="/product"
+            to="/products"
             data-aos="fade-right"
           >
-            立即選購
+            熱門商品
           </Link>
           <Link
-            className="btn btn-dark rounded-0"
+            className="btn btn-brand-featured rounded-0"
             to="/products?category=種子小物"
-            data-aos="fade-right"
+            data-aos="fade-left"
           >
-            看看送禮靈感
+            本月主打
           </Link>
         </div>
       </section>

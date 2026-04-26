@@ -34,7 +34,7 @@ img {
 .link-hover::after {
   content: "";
   position: absolute;
-  max-width: 0;
+  width: 0;
   height: 2px;
   background: black;
   left: 0;
@@ -116,28 +116,10 @@ img {
   background-color: #f7ece9;
 }
 
-.brand-toast-header {
-  border: 0;
-  border-bottom: 1px solid rgba(33, 37, 41, 0.08);
-  border-radius: 0;
-  background: transparent;
-  color: #2b2b2b;
-  padding: 10px 12px 8px;
-}
-
 .brand-toast-body {
   color: #3e3a33;
   padding: 10px 12px 12px;
   line-height: 1.45;
-}
-
-.brand-toast-close {
-  filter: none;
-  opacity: 0.75;
-}
-
-.brand-toast-close:hover {
-  opacity: 1;
 }
 
 .title-wrapper {

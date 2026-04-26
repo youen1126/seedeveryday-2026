@@ -17,25 +17,9 @@
   display: block;
 }
 
-.home-promo-banner-section .swiper-button-prev,
-.home-promo-banner-section .swiper-button-next {
-  width: 42px;
-  height: 42px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.86);
-  color: #2f2b24;
-  border: 1px solid rgba(47, 43, 36, 0.12);
-}
-
-.home-promo-banner-section .swiper-button-prev::after,
-.home-promo-banner-section .swiper-button-next::after {
-  font-size: 16px;
-  font-weight: 700;
-}
-
 .home-promo-banner-section .swiper-pagination-bullet {
-  width: 9px;
-  height: 9px;
+  width: 12px;
+  height: 12px;
   opacity: 0.55;
   background: #fff;
   border: 1px solid rgba(47, 43, 36, 0.3);
@@ -43,14 +27,6 @@
 
 .home-promo-banner-section .swiper-pagination-bullet-active {
   opacity: 1;
-  background: #6d765b;
-  border-color: #6d765b;
-}
-
-@media (max-width: 767.98px) {
-  .home-promo-banner-section .swiper-button-prev,
-  .home-promo-banner-section .swiper-button-next {
-    width: 34px;
-    height: 34px;
-  }
+  background: #5f7754;
+  border-color: #5f7754;
 }

@@ -97,7 +97,7 @@ const Header = () => {
             id="navbarNav"
           >
             <ul className="navbar-nav">
-              <li className="nav-item active">
+              <li className="nav-item active ms-4">
                 <NavLink
                   className={getNavLinkClass}
                   to="/products"
@@ -109,7 +109,7 @@ const Header = () => {
               <li className="nav-item active">
                 <NavLink
                   className={getNavLinkClass}
-                  to="/aboutwe"
+                  to="/aboutuse"
                   onClick={closeMenu}
                 >
                   品牌故事

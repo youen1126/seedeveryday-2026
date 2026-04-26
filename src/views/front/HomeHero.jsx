@@ -2,13 +2,17 @@ import { Link } from "react-router";
 
 export default function HomeHero() {
   return (
-    <div className="row flex-md-row-reverse flex-column m-4">
+    <div className="row flex-md-row-reverse flex-column ml-4">
       <div className="col-md-6">
         <img
-          src="https://yunicrafts.com/cdn/shop/files/the-forest-chime-handcrafted-natural-seed-pod-bell-mobile-4998382.jpg?v=1772537851&width=2560"
+          src="https://i.pinimg.com/736x/99/75/f7/9975f7c806840ea52ef02e779f3f129c.jpg"
           className="img-fluid hero-img"
-          data-aos="fade-down"
           alt="天然種子手作裝飾 松果藝術 擺飾"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          width="1200"
+          height="1200"
         />
         {/* https://i.pinimg.com/1200x/7d/6b/90/7d6b90ef382a67ec60646a95feab02ec.jpg */}
       </div>
@@ -37,7 +41,7 @@ export default function HomeHero() {
             <Link
               className="btn btn-brand-featured rounded-0"
               to="/products?category=種子小物"
-              data-aos="fade-right"
+              data-aos="fade-left"
             >
               本月主打
             </Link>

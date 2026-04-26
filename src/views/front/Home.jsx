@@ -17,7 +17,9 @@ export default function Home() {
     <>
       <div className="container">
         <HomeHero />
-        <HomeBanner />
+        <div>
+          <HomeBanner />
+        </div>
       </div>
       <div className="bg-light mt-1 p-1">
         <HotCategories />
@@ -50,7 +52,7 @@ export default function Home() {
             </div>
             <div className="d-flex flex-column mt-2 mt-sm-0 ms-sm-3">
               <NavLink
-                to="/aboutwe"
+                to="/aboutuse"
                 className="btn btn-dark mt-4 rounded-0"
                 data-aos="zoom-in"
               >
