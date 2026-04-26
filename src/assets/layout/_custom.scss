@@ -6,6 +6,11 @@ body {
   margin: 0;
 }
 
+::selection {
+  background: #6d765b; /* 你想要的底色 */
+  color: #fff; /* 文字顏色 */
+}
+
 .font-zh-display {
   font-family: "Noto Serif TC", "Roboto", "Noto Sans", serif;
   letter-spacing: 0.06em;
