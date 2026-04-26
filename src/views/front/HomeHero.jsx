@@ -5,7 +5,7 @@ export default function HomeHero() {
     <div className="row flex-md-row-reverse flex-column ml-4">
       <div className="col-md-6">
         <img
-          src="https://yunicrafts.com/cdn/shop/files/the-forest-chime-handcrafted-natural-seed-pod-bell-mobile-4998382.jpg?v=1772537851&width=2560"
+          src="https://i.pinimg.com/736x/99/75/f7/9975f7c806840ea52ef02e779f3f129c.jpg"
           className="img-fluid hero-img"
           alt="天然種子手作裝飾 松果藝術 擺飾"
           loading="eager"
