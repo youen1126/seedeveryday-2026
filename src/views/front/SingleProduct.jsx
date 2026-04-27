@@ -9,6 +9,7 @@ import "swiper/css/thumbs";
 
 import BackToTop from "@/components/BackToTop";
 import AddToCartButton from "@/components/front/cart/AddToCartButton";
+import ImageLightbox from "@/components/common/ImageLightbox";
 import ProductSpecList from "@/components/front/singleProduct/ProductSpecList";
 import YoumaylikeSwiper from "@/components/front/singleProduct/YoumaylikeSwiper";
 import useMessage from "@/hooks/useMessage";
@@ -46,6 +47,7 @@ export default function SingleProducts() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const addToCartButtonRef = useRef(null);
   const [showFloatingAddCart, setShowFloatingAddCart] = useState(false);
+  const [activeImage, setActiveImage] = useState(null);
   const MAX_QTY = 10;
 
   useEffect(() => {
@@ -99,6 +101,14 @@ export default function SingleProducts() {
     setQty(newQty);
   };
 
+  const handleOpenLightbox = (image, alt) => {
+    setActiveImage({ image, alt });
+  };
+
+  const handleCloseLightbox = () => {
+    setActiveImage(null);
+  };
+
   const galleryImages = [
     product.imageUrl,
     ...(Array.isArray(product.imagesUrl) ? product.imagesUrl : []),
@@ -136,12 +146,24 @@ export default function SingleProducts() {
                   galleryImages.map((image, index) => (
                     <SwiperSlide key={`${image}-${index}`}>
                       <div className="single-product-square">
-                        <img
-                          src={image}
-                          alt={`${product.title || "商品圖片"}-${index + 1}`}
-                          className="single-product-main-image"
-                          loading="lazy"
-                        />
+                        <button
+                          type="button"
+                          className="single-product-main-image-trigger"
+                          onClick={() =>
+                            handleOpenLightbox(
+                              image,
+                              `${product.title || "商品圖片"}-${index + 1}`,
+                            )
+                          }
+                          aria-label={`放大檢視 ${product.title || "商品"} 圖片 ${index + 1}`}
+                        >
+                          <img
+                            src={image}
+                            alt={`${product.title || "商品圖片"}-${index + 1}`}
+                            className="single-product-main-image"
+                            loading="lazy"
+                          />
+                        </button>
                       </div>
                     </SwiperSlide>
                   ))
@@ -349,13 +371,25 @@ export default function SingleProducts() {
                     {descriptionImages.length > 0 && (
                       <div className="single-product-description-images">
                         {descriptionImages.map((image, index) => (
-                          <img
+                          <button
                             key={`${image}-${index}`}
-                            src={image}
-                            alt={`${product.title || "商品介紹圖片"}-${index + 1}`}
-                            className="single-product-description-image"
-                            loading="lazy"
-                          />
+                            type="button"
+                            className="single-product-description-image-trigger"
+                            onClick={() =>
+                              handleOpenLightbox(
+                                image,
+                                `${product.title || "商品介紹圖片"}-${index + 1}`,
+                              )
+                            }
+                            aria-label={`放大檢視 ${product.title || "商品"} 介紹圖片 ${index + 1}`}
+                          >
+                            <img
+                              src={image}
+                              alt={`${product.title || "商品介紹圖片"}-${index + 1}`}
+                              className="single-product-description-image"
+                              loading="lazy"
+                            />
+                          </button>
                         ))}
                       </div>
                     )}
@@ -489,6 +523,13 @@ export default function SingleProducts() {
       )}
       <YoumaylikeSwiper />
       <BackToTop />
+      <ImageLightbox
+        isOpen={Boolean(activeImage)}
+        image={activeImage?.image}
+        alt={activeImage?.alt}
+        ariaLabel={activeImage ? `${activeImage.alt} 放大檢視` : undefined}
+        onClose={handleCloseLightbox}
+      />
     </div>
   );
 }

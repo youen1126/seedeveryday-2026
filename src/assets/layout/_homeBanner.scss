@@ -1,0 +1,53 @@
+.homeBanner {
+  position: relative;
+}
+
+.homeBanner-slide {
+  width: 100%;
+  aspect-ratio: 3 / 1;
+  overflow: hidden;
+  background: #ece8e2;
+}
+
+.homeBanner-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.homeBanner-trigger {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  text-align: inherit;
+  cursor: zoom-in;
+}
+
+@media (max-width: 767.98px) {
+  .homeBanner-slide {
+    aspect-ratio: 3 / 4;
+  }
+
+  .homeBanner-image {
+    object-fit: contain;
+  }
+}
+
+.homeBanner .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  opacity: 0.55;
+  background: #fff;
+  border: 1px solid rgba(47, 43, 36, 0.3);
+}
+
+.homeBanner .swiper-pagination-bullet-active {
+  opacity: 1;
+  background: #5f7754;
+  border-color: #5f7754;
+}

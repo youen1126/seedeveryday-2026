@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
+import ImageLightbox from "@/components/common/ImageLightbox";
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -20,39 +21,38 @@ const promoBanners = [
   {
     id: "promo-1",
     image: getAssetPath("seedevery-banner03.jpg"),
+    mobileImage: getAssetPath("seedevery-banner03-mob.webp"),
     alt: "活動橫幅：SeedEvery 手作活動主視覺",
-    href: "#",
   },
   {
     id: "promo-2",
     image: getAssetPath("seedevery-banner01.jpg"),
+    mobileImage: getAssetPath("seedevery-banner01-mob.webp"),
     alt: "活動橫幅：SeedEvery 手作活動主視覺",
-    href: "#",
   },
   {
     id: "promo-3",
     image: getAssetPath("seedevery-banner02.jpg"),
+    mobileImage: getAssetPath("seedevery-banner02-mob.webp"),
     alt: "活動橫幅：SeedEvery 手作活動主視覺",
-    href: "#",
   },
 ];
 
 export default function HomeBanner() {
-  const [showLinkNotice, setShowLinkNotice] = useState(false);
+  const [activeBanner, setActiveBanner] = useState(null);
 
-  const handleOpenLinkNotice = (e) => {
-    e.preventDefault();
-    setShowLinkNotice(true);
+  const handleOpenLightbox = (banner) => {
+    setActiveBanner(banner);
   };
 
-  const handleCloseLinkNotice = () => {
-    setShowLinkNotice(false);
+  const handleCloseLightbox = () => {
+    setActiveBanner(null);
   };
 
   return (
     <>
       <section
-        className="home-promo-banner-section my-3"
+        className="homeBanner my-3"
         aria-label="活動橫幅輪播"
       >
         <Swiper
@@ -67,70 +67,42 @@ export default function HomeBanner() {
         >
           {promoBanners.map((banner, index) => (
             <SwiperSlide key={banner.id}>
-              <div className="home-promo-banner-slide">
-                <a
-                  href={banner.href}
-                  className="d-block"
-                  onClick={handleOpenLinkNotice}
-                  aria-label={`${banner.alt}（作品展示虛構連結）`}
+              <div className="homeBanner-slide">
+                <button
+                  type="button"
+                  className="homeBanner-trigger"
+                  onClick={() => handleOpenLightbox(banner)}
+                  aria-label={`${banner.alt}（點擊放大圖片）`}
                 >
-                  <img
-                    src={banner.image}
-                    alt={banner.alt}
-                    className="home-promo-banner-image"
-                    loading={index === 0 ? "eager" : "lazy"}
-                    fetchPriority={index === 0 ? "high" : "auto"}
-                    decoding="async"
-                  />
-                </a>
+                  <picture>
+                    <source
+                      media="(max-width: 767.98px)"
+                      srcSet={banner.mobileImage}
+                    />
+                    <img
+                      src={banner.image}
+                      alt={banner.alt}
+                      className="homeBanner-image"
+                      loading={index === 0 ? "eager" : "lazy"}
+                      fetchPriority={index === 0 ? "high" : "auto"}
+                      decoding="async"
+                    />
+                  </picture>
+                </button>
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
       </section>
 
-      {showLinkNotice && (
-        <>
-          <div
-            className="modal fade show d-block portfolio-fade-modal"
-            tabIndex="-1"
-            role="dialog"
-            aria-modal="true"
-          >
-            <div className="modal-dialog modal-dialog-centered portfolio-fade-dialog">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h5 className="modal-title font-zh-display">連結提示</h5>
-                  <button
-                    type="button"
-                    className="btn-close"
-                    aria-label="Close"
-                    onClick={handleCloseLinkNotice}
-                  ></button>
-                </div>
-                <div className="modal-body">
-                  <p className="mb-0 font-zh-display">
-                    此平台僅作爲作品集展示，此為虛構連結
-                  </p>
-                </div>
-                <div className="modal-footer">
-                  <button
-                    type="button"
-                    className="btn btn-dark rounded-0"
-                    onClick={handleCloseLinkNotice}
-                  >
-                    我知道了
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            className="modal-backdrop fade show portfolio-fade-backdrop"
-            onClick={handleCloseLinkNotice}
-          ></div>
-        </>
-      )}
+      <ImageLightbox
+        isOpen={Boolean(activeBanner)}
+        image={activeBanner?.image}
+        mobileImage={activeBanner?.mobileImage}
+        alt={activeBanner?.alt}
+        ariaLabel={activeBanner ? `${activeBanner.alt} 放大檢視` : undefined}
+        onClose={handleCloseLightbox}
+      />
     </>
   );
 }
