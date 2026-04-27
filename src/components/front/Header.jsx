@@ -96,8 +96,8 @@ const Header = () => {
             }`}
             id="navbarNav"
           >
-            <ul className="navbar-nav">
-              <li className="nav-item active ms-4">
+            <ul className="navbar-nav  ms-4">
+              <li className="nav-item active">
                 <NavLink
                   className={getNavLinkClass}
                   to="/products"
