@@ -1,15 +1,15 @@
-.home-promo-banner-section {
+.homeBanner {
   position: relative;
 }
 
-.home-promo-banner-slide {
+.homeBanner-slide {
   width: 100%;
   aspect-ratio: 3 / 1;
   overflow: hidden;
   background: #ece8e2;
 }
 
-.home-promo-banner-image {
+.homeBanner-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -17,7 +17,7 @@
   display: block;
 }
 
-.home-promo-banner-trigger {
+.homeBanner-trigger {
   display: block;
   width: 100%;
   height: 100%;
@@ -29,16 +29,16 @@
 }
 
 @media (max-width: 767.98px) {
-  .home-promo-banner-slide {
+  .homeBanner-slide {
     aspect-ratio: 3 / 4;
   }
 
-  .home-promo-banner-image {
+  .homeBanner-image {
     object-fit: contain;
   }
 }
 
-.home-promo-banner-section .swiper-pagination-bullet {
+.homeBanner .swiper-pagination-bullet {
   width: 12px;
   height: 12px;
   opacity: 0.55;
@@ -46,7 +46,7 @@
   border: 1px solid rgba(47, 43, 36, 0.3);
 }
 
-.home-promo-banner-section .swiper-pagination-bullet-active {
+.homeBanner .swiper-pagination-bullet-active {
   opacity: 1;
   background: #5f7754;
   border-color: #5f7754;

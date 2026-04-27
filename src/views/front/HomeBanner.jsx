@@ -52,7 +52,7 @@ export default function HomeBanner() {
   return (
     <>
       <section
-        className="home-promo-banner-section my-3"
+        className="homeBanner my-3"
         aria-label="活動橫幅輪播"
       >
         <Swiper
@@ -67,10 +67,10 @@ export default function HomeBanner() {
         >
           {promoBanners.map((banner, index) => (
             <SwiperSlide key={banner.id}>
-              <div className="home-promo-banner-slide">
+              <div className="homeBanner-slide">
                 <button
                   type="button"
-                  className="home-promo-banner-trigger"
+                  className="homeBanner-trigger"
                   onClick={() => handleOpenLightbox(banner)}
                   aria-label={`${banner.alt}（點擊放大圖片）`}
                 >
@@ -82,7 +82,7 @@ export default function HomeBanner() {
                     <img
                       src={banner.image}
                       alt={banner.alt}
-                      className="home-promo-banner-image"
+                      className="homeBanner-image"
                       loading={index === 0 ? "eager" : "lazy"}
                       fetchPriority={index === 0 ? "high" : "auto"}
                       decoding="async"
